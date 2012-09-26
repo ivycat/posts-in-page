@@ -121,8 +121,10 @@ class AddPostsToPage{
         }
         if( $atts['orderby'] ){
             $this->args['orderby'] = $atts['orderby'];
-            if( $atts['order'] ) $this->args['order'] = $atts['order'];
         }
+		if( $atts['order'] )
+			$this->args['order'] = $atts['order'];
+			
         if( $atts['template'] ) $this->args['template'] = $atts['template'];
         if( $atts['category'] ){
             $cats = explode( ',', $atts['category'] );
