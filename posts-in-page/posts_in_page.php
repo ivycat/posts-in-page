@@ -114,6 +114,7 @@ class AddPostsToPage{
     protected function set_args( $atts ){
         global $wp_query;
         $this->args = array( 'post_type' => (  $atts['post_type'] ) ? $atts['post_type'] : 'post' );
+		$this->args['post_status'] = 'publish';
         if($atts['ids'] ){
             $post_ids = explode( ',', $atts['ids'] );
             $this->args['post__in'] = $post_ids;
