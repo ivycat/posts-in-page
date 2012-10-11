@@ -12,7 +12,7 @@ class ICPagePosts {
 		'orderby' => 'date',
 		'order' => 'DESC',
 		'posts_per_page' => 10
-	);
+	); // set defaults for wp_parse_args
 	
 	public function __construct( $atts ) {
 		$this->args = wp_parse_args( $atts, $this->defaults );
