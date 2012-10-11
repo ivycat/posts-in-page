@@ -30,9 +30,9 @@
  */
 
 if (!function_exists ('add_action')) {
-        header('Status: 403 Forbidden');
-        header('HTTP/1.1 403 Forbidden');
-        exit();
+	header('Status: 403 Forbidden');
+	header('HTTP/1.1 403 Forbidden');
+	exit();
 }
 
 define( 'POSTSPAGE_DIR', dirname( __FILE__ ) );
@@ -40,7 +40,7 @@ define( 'POSTPAGE_URL', str_replace( ABSPATH, site_url( '/' ), POSTSPAGE_DIR ) )
 
 require_once 'lib/page_posts.php';
 
-class AddPostsToPage{
+class ICAddPostsToPage{
     
     public function __construct(){
         add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page' ) );
@@ -87,7 +87,7 @@ class AddPostsToPage{
 }
 
 function init_ic_posts_in_page(){
-	new AddPostsToPage();
+	new ICAddPostsToPage();
 }
 
 add_action( 'plugins_loaded', 'init_ic_posts_in_page' );
