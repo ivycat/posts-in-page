@@ -4,13 +4,11 @@ Donate link: http://www.ivycat.com/contribute/
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: trunk
-License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Stable tag: 1.0.10
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-==Short Description ==
-
-Add posts loop inside page.
+Easily add a posts loop inside any page without modifying template files.
 
 ==Description==
 
@@ -36,8 +34,8 @@ You can install from within WordPress using the Plugin/Add New feature, or if yo
 Shortcode usage:
 
 * `[ic_add_posts]`  - Add all posts to a page (limit to what number posts in WordPress is set to), essentially adds blog "page" to page.
-* `[ic_add_posts post_type='post_type' ids='1,2,3']` - show posts with certain IDs (currently only one post type per category)
-* `[ic_add_posts id='1']` - show a single post with the given ID ( must give post type if not post )
+* `[ic_add_posts ids='1,2,3']` - show one or many posts by specifying the post ID(s) (currently only one post type per shortcode)
+* `[ic_add_posts post_type='post_type']` - show posts from a custom post type by specifying the post type slug ( must give post type if not a standard post )
 * `[ic_add_posts showposts='5']` - limit number of posts (or override default setting)
 * `[ic_add_posts orderby='title' order='ASC']` - orderby title - supports all WP orderby variables.  Order is optional, WP default 
 * `[ic_add_posts category='category-slug']` - Show posts within a specific category.  Uses slugs, can have multiple but separate by commas. 	 category-1,category2, etc (no spaces.)
@@ -66,9 +64,12 @@ Simply copy the posts_loop_template.php to your theme directory and make changes
 
 You can even rename it - but make sure to indicate that in the shortcode using the `template='template_name.php'`.  
 
-You can even use multiple layouts for each shortcode if you like.
+You can even use different templates for each shortcode if you like.
 
 == Changelog ==
+
+= 1.0.10 =
+* Added check for published/private posts.
 
 = 1.0.9 =
 * Fixed template bug introduced by comments.
@@ -91,11 +92,26 @@ You can even use multiple layouts for each shortcode if you like.
 
 == Upgrade Notice ==
 
+= 1.0.10 =
+* Added feature - non-critical update.
+
+= 1.0.9 =
+* Fixed template bug - please update.
+
+= 1.0.8 =
+* Added features and documentation - non-critical update.
+
+= 1.0.7 =
+* Added Help Page - non-critical update.
+
+= 1.0.6 =
+* Plugin housekeeping - non-critical update.
+
 = 1.0.4 =
-* Minor housekeeping, added author, updated readme.txt. No security or urgent changes.
+* Minor housekeeping, added author, updated readme.txt. Non-critical update.
 
 = 1.0.3 =
-* Added single post or specific post capabilities.
+* Added single post or specific post capabilities.  Important feature.
 
 == Road Map ==
 

@@ -1,25 +1,33 @@
 <?php
+
 /**
-    Plugin name: Posts in Page
-    Plugin URI: http://wordpress.org/extend/plugins/posts-in-page/
-    Author: IvyCat Web Services
-    Author URI: http://www.ivycat.com
-    Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
-    Version: 1.0.9
-    License: GPLv3
-    
-   Shortcode usage:
-    [ic_add_posts]  - Add all posts to a page (limit to what number posts in WordPress is set to).  This essentially makes the page look like a blog.
-    [ic_add_posts post_type='post_type' ids='1,2,3'] - show posts with certain IDs (currently only one post type per category)
-    [ic_add_posts id='1'] - show a single post with the given ID ( must give post type if not post )
-    [ic_add_posts showposts='5'] - limit number of posts (or override default setting)
-    [ic_add_posts orderby='title' order='ASC'] - orderby title - supports all WordPress orderby variables.  Order is optional, WP default 
-    [ic_add_posts category='category-slug']  - Show posts within a specific category.  Uses slugs, and can have multiple categories separate by commas. category-1,category2, etc (no spaces.)
-    [ic_add_posts post_type='post-type'] - Show posts that belong to a specific post type (only one post type right now)
-    [ic_add_posts tax='taxonomy' term='term'] - limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work.
-    [ic_add_posts template='template-in-theme-dir.php'] - In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.
-    Or any combination above.
-**/
+ *  Plugin Name: Posts in Page
+ *  Plugin URI: http://wordpress.org/extend/plugins/posts-in-page/
+ *  Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
+ *  Author: IvyCat Web Services
+ *  Author URI: http://www.ivycat.com
+ *  version: 1.0.10
+ *  License: GNU General Public License v2.0
+ *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ 
+ ------------------------------------------------------------------------
+	IvyCat AJAX Slider, Copyright 2012 IvyCat, Inc. (admins@ivycat.com)
+	
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+	
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+	
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+ */
 
 define( 'POSTSPAGE_DIR', dirname( __FILE__ ) );
 define( 'POSTPAGE_URL', str_replace( ABSPATH, site_url( '/' ), POSTSPAGE_DIR ) );
