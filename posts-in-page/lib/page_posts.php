@@ -14,7 +14,8 @@ class ICPagePosts {
 		'post_status'      => 'publish',
 		'orderby'            => 'date',
 		'order'                => 'DESC',
-		'posts_per_page' => 10
+		'posts_per_page' => 10,
+		'template'          => false
 	); // set defaults for wp_parse_args
 	
 	public function __construct( $atts ) {
@@ -93,7 +94,7 @@ class ICPagePosts {
             }
         }
 		
-        if ( $atts['tag'] ) {
+        if ( isset( $atts['tag'] ) && isset( $atts['category'] ) ) {
             $tags = explode( ',', $atts['category'] );
             $this->args['tag'] = ( count( $tags ) > 1 ) ? $tags : $atts['tag'];
         }
@@ -101,7 +102,7 @@ class ICPagePosts {
         if ( isset( $atts['showposts'] ) )
 			$this->args[ 'posts_per_page' ] = $atts['showposts'];
 		
-        if ( $wp_query->query_vars['page'] > 1 ) {
+        if ( isset( $wp_query->query_vars['page'] ) &&  $wp_query->query_vars['page'] > 1 ) {
             $this->args['paged'] = $wp_query->query_vars['page'];
         }
     }
