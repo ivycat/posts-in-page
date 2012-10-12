@@ -121,6 +121,7 @@ class ICPagePosts {
         } else {
             $ic_posts->the_post( );
         }
+		$output = '';
         ob_start( );
         require ( $file_path = self::has_theme_template( ) )
 			? get_stylesheet_directory( ) . $file_path 
