@@ -3,11 +3,8 @@
  *	Page Posts Class, main workhorse for the ic_add_posts shortcode.
  */
 
-if ( !function_exists ( 'add_action' ) ) {
-	header( 'Status: 403 Forbidden' );
-	header( 'HTTP/1.1 403 Forbidden' );
-	exit( );
-}
+if ( !function_exists( 'add_action' ) )
+	wp_die( 'You are trying to access this file in a manner not allowed.', 'Direct Access Forbidden', array( 'response' => '403' ) );
 
 class ICPagePosts {
 	
@@ -111,8 +108,8 @@ class ICPagePosts {
     
     protected function has_theme_template( ) {
         $template_file = ( $this->args['template'] )
-			? self::current_theme_path( )  . '/' . $this->args['template']
-			: self::current_theme_path( ) . '/posts_loop_template.php';
+			? get_stylesheet_directory( )  . '/' . $this->args['template']
+			: get_stylesheet_directory( ) . '/posts_loop_template.php';
         
         return ( file_exists( $template_file ) ) ? $template_file : false;
     }
@@ -125,15 +122,10 @@ class ICPagePosts {
         }
         ob_start( );
         require ( $file_path = self::has_theme_template( ) )
-			? str_replace( site_url( ), '', $file_path )
-			: POSTPAGE_URL . '/posts_loop_template.php';
+			? get_stylesheet_directory( ) . $file_path 
+			: POSTSPAGE_DIR . '/posts_loop_template.php';
         $output .= ob_get_contents( );
         return ob_get_clean( );
    }
-    
-    protected function current_theme_path( ) {
-        $theme_data = explode( '/', get_bloginfo( 'stylesheet_directory' ) );
-        $theme_path = get_theme_root();
-        return $theme_path . '/' . $theme_data[ count( $theme_data ) -1 ];
-    }
+
 }

@@ -29,11 +29,9 @@
 
  */
 
-if ( !function_exists( 'add_action' ) ) {
-	header( 'Status: 403 Forbidden' );
-	header( 'HTTP/1.1 403 Forbidden' );
-	exit( );
-}
+if ( !function_exists( 'add_action' ) )
+	wp_die( 'You are trying to access this file in a manner not allowed.', 'Direct Access Forbidden', array( 'response' => '403' ) );
+
 
 define( 'POSTSPAGE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
