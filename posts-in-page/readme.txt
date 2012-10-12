@@ -4,7 +4,7 @@ Donate link: http://www.ivycat.com/contribute/
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 1.0.10
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,7 +44,7 @@ Shortcode usage:
 * `[ic_add_posts tax='taxonomy' term='term']` - limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work
 * `[ic_add_posts template='template-in-theme-dir.php']` - In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.
 
-Or any combination above.
+Or any combination of the above.
 
 == Screenshots ==
 
@@ -67,6 +67,9 @@ You can even rename it - but make sure to indicate that in the shortcode using t
 You can even use different templates for each shortcode if you like.
 
 == Changelog ==
+
+= 1.1.0 =
+* Code maintenance, squash non-critical debug notices.
 
 = 1.0.10 =
 * Added check for published/private posts.
@@ -91,6 +94,9 @@ You can even use different templates for each shortcode if you like.
 * Added single post or specific post capabilities.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+* Code maintenance & housekeeping - non-critical update.
 
 = 1.0.10 =
 * Added feature - non-critical update.
