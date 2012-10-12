@@ -47,22 +47,37 @@ class ICAddPostsToPage {
         add_filter( 'plugin_action_links_'. plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links' ), 10, 4 );
     }
     
+	/**
+	 * 	Add settings link on plugins page.
+	 */
     public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
         if ( is_plugin_active( $plugin_file ) )
             $actions[] = '<a href="' . admin_url('options-general.php?page=posts_in_page') . '">' . __( ' Help', 'posts_in_page' ) . '</a>';
         return $actions;
     }
   
+	/**
+	 * 	Main Shortcode
+	 *
+	 * 	@param array $atts An array of shortcode parameters.  None required
+	 */
     public function posts_in_page( $atts ) {
         $posts = new ICPagePosts( $atts );
 		return $posts->output_posts( );
     }
 	
+	/**
+	 * 	Depreciated Shortcode (routing to posts in page function now )
+	 *
+	 * 	@todo Remove this depreciated function.
+	 */
 	public function post_in_page( $atts ) {
-        $posts = new ICPagePosts( $atts );
-		return $posts->post_in_page( );
+        return self::posts_in_page( $atts );
 	}
-
+	
+	/**
+	 *  Init Plugin, add menu page and setup hooks to load assets on the plugin options page
+	 */
     public function plugin_page_init() {
         if( !current_user_can( 'administrator' ) )
 			return;
@@ -76,17 +91,26 @@ class ICAddPostsToPage {
         }
     }
 
+	/**
+	 * Enqueue Plugin Assets (Scripts and Styles)
+	 */
     public function load_assets( ) {
         wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. '/assets/post-page_styles.css' );
         wp_enqueue_script( 'postpagescript', POSTPAGE_URL. '/assets/post-page_scripts.js' );
     }
-
+	
+	/**
+	 * Plugin Setting page - includes view for the page
+	 */
     public function plugin_page( ) {
         require_once 'assets/posts_in_page_help_view.php';
     }
     
 }
 
+/**
+* Instantiate the Plugin - called using the plugins_loaded action hook.
+*/
 function init_ic_posts_in_page( ) {
 	new ICAddPostsToPage( );
 }
