@@ -29,20 +29,20 @@
 
  */
 
-if (!function_exists ('add_action')) {
-	header('Status: 403 Forbidden');
-	header('HTTP/1.1 403 Forbidden');
-	exit();
+if ( !function_exists( 'add_action' ) ) {
+	header( 'Status: 403 Forbidden' );
+	header( 'HTTP/1.1 403 Forbidden' );
+	exit( );
 }
 
-define( 'POSTSPAGE_DIR', dirname( __FILE__ ) );
-define( 'POSTPAGE_URL', str_replace( ABSPATH, site_url( '/' ), POSTSPAGE_DIR ) );
+define( 'POSTSPAGE_DIR', plugin_dir_path( __FILE__ ) );
+define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
 
 require_once 'lib/page_posts.php';
 
-class ICAddPostsToPage{
+class ICAddPostsToPage {
     
-    public function __construct(){
+    public function __construct( ) {
         add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page' ) );
         add_shortcode( 'ic_add_post', array( &$this, 'post_in_page' ) );
         add_action( 'admin_menu', array( &$this, 'plugin_page_init' ) );
@@ -55,39 +55,42 @@ class ICAddPostsToPage{
         return $actions;
     }
   
-    public function posts_in_page( $atts ){
+    public function posts_in_page( $atts ) {
         $posts = new ICPagePosts( $atts );
-		return $posts->output_posts();
+		return $posts->output_posts( );
     }
 	
-	public function post_in_page( $atts ){
+	public function post_in_page( $atts ) {
         $posts = new ICPagePosts( $atts );
 		return $posts->post_in_page( );
 	}
 
-    public function plugin_page_init(){
-        if( !current_user_can( 'administrator' ) ) return;   
-        $hooks = array();
+    public function plugin_page_init() {
+        if( !current_user_can( 'administrator' ) )
+			return;
+		
+        $hooks = array( );
         $hooks[] = add_options_page( __( 'Posts In Page' ), __( 'Posts In Page' ), 'read', 'posts_in_page', 
-            array( $this, 'plugin_page') );
-        foreach($hooks as $hook) {
-            add_action("admin_print_styles-{$hook}", array($this, 'load_assets'));
+            array( $this, 'plugin_page' ) );
+		
+        foreach ( $hooks as $hook ) {
+            add_action( "admin_print_styles-{$hook}", array( $this, 'load_assets' ) );
         }
     }
 
-    public function load_assets(){
+    public function load_assets( ) {
         wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. '/assets/post-page_styles.css' );
         wp_enqueue_script( 'postpagescript', POSTPAGE_URL. '/assets/post-page_scripts.js' );
     }
 
-    public function plugin_page(){
+    public function plugin_page( ) {
         require_once 'assets/posts_in_page_help_view.php';
     }
     
 }
 
-function init_ic_posts_in_page(){
-	new ICAddPostsToPage();
+function init_ic_posts_in_page( ) {
+	new ICAddPostsToPage( );
 }
 
 add_action( 'plugins_loaded', 'init_ic_posts_in_page' );
