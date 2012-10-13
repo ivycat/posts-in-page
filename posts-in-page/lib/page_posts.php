@@ -8,8 +8,7 @@ if ( !function_exists( 'add_action' ) )
 
 class ICPagePosts {
 	
-	protected $args = false;
-	protected $defaults = array(
+	protected $args = array(
 		'post_type'         => 'post',
 		'post_status'      => 'publish',
 		'orderby'            => 'date',
@@ -19,9 +18,6 @@ class ICPagePosts {
 	); // set defaults for wp_parse_args
 	
 	public function __construct( $atts ) {
-		// parse the arguments using the defaults
-		$this->args = wp_parse_args( $atts, $this->defaults );
-		// set additional arguments (one's for which defaults might break things)
         self::set_args( $atts );
 	}
 	
@@ -50,7 +46,9 @@ class ICPagePosts {
 	 */
     protected function set_args( $atts ) {
         global $wp_query;
-        
+		
+		// parse the arguments using the defaults
+        $this->args = wp_parse_args( $atts, $this->args );
 		// Show specific posts by ID
         if ( isset( $atts['ids'] ) ) {
             $post_ids = explode( ',', $atts['ids'] );
@@ -64,11 +62,9 @@ class ICPagePosts {
         
 		// get posts in a certain category by name (slug)
 		if ( isset( $atts['category'] ) ) {
-            $cats = explode( ',', $atts['category'] ); // multiple categories are possible
-            $this->args['category_name'] = ( count( $cats ) > 1 ) ? $cats : $atts['category'];
+            $this->args['category_name'] = $atts['category'];
         } elseif (  isset( $atts['cats'] ) ) { // get posts in a certain category by id
-            $cats = explode( ',', $atts['cats'] ); // multiple catgegories
-            $this->args['category_name'] = ( count( $cats ) > 1 ) ? $cats : $atts['cats'];
+            $this->args['cat'] =  $atts['cats'];
         }
 		
 		// Do a tex query, tax and term a required.
