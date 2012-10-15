@@ -4,7 +4,7 @@ Donate link: http://www.ivycat.com/contribute/
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,8 +34,9 @@ You can install from within WordPress using the Plugin/Add New feature, or if yo
 Shortcode usage:
 
 * `[ic_add_posts]`  - Add all posts to a page (limit to what number posts in WordPress is set to), essentially adds blog "page" to page.
-* `[ic_add_posts ids='1,2,3']` - show one or many posts by specifying the post ID(s) (currently only one post type per shortcode)
+* `[ic_add_posts ids='1,2,3']` - show one or many posts by specifying the post ID(s) ( specify all post types )
 * `[ic_add_posts post_type='post_type']` - show posts from a custom post type by specifying the post type slug ( must give post type if not a standard post )
+	add multiple post types by separating with commas (i.e post_type1,post_type2)
 * `[ic_add_posts showposts='5']` - limit number of posts (or override default setting)
 * `[ic_add_posts orderby='title' order='ASC']` - orderby title - supports all WP orderby variables.  Order is optional, WP default 
 * `[ic_add_posts category='category-slug']` - Show posts within a specific category.  Uses slugs, can have multiple but separate by commas. 	 category-1,category2, etc (no spaces.)
@@ -67,6 +68,9 @@ You can even rename it - but make sure to indicate that in the shortcode using t
 You can even use different templates for each shortcode if you like.
 
 == Changelog ==
+
+= 1.1.1 =
+* Code maintenance, fix for category bug, also added ability for multiple post types per shortcode.
 
 = 1.1.0 =
 * Code maintenance, squash non-critical debug notices.

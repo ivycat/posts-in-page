@@ -6,7 +6,7 @@
  *  Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
  *  Author: IvyCat Web Services
  *  Author URI: http://www.ivycat.com
- *  version: 1.1.0
+ *  version: 1.1.1
  *  License: GNU General Public License v2.0
  *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -32,9 +32,11 @@
 if ( !function_exists( 'add_action' ) )
 	wp_die( 'You are trying to access this file in a manner not allowed.', 'Direct Access Forbidden', array( 'response' => '403' ) );
 
-
-define( 'POSTSPAGE_DIR', plugin_dir_path( __FILE__ ) );
-define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
+if ( ! defined( 'POSTSPAGE_DIR' ) )
+	define( 'POSTSPAGE_DIR', plugin_dir_path( __FILE__ ) );
+	
+if ( ! defined( 'POSTPAGE_URL' ) )
+	define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
 
 require_once 'lib/page_posts.php';
 
