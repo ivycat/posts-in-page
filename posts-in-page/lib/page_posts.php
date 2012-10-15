@@ -49,6 +49,12 @@ class ICPagePosts {
 		
 		// parse the arguments using the defaults
         $this->args = wp_parse_args( $atts, $this->args );
+		
+		if( preg_match( '`,`', $this->args['post_type'] ) ){
+			$post_types = explode( ',', $this->args['post_type'] );
+			$this->args['post_type'] = $post_types;
+		}
+		
 		// Show specific posts by ID
         if ( isset( $atts['ids'] ) ) {
             $post_ids = explode( ',', $atts['ids'] );
