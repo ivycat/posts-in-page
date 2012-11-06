@@ -69,7 +69,7 @@ class ICAddPostsToPage {
     }
 	
 	/**
-	 * 	Depreciated Shortcode (routing to posts in page function now )
+	 * 	Deprecated Shortcode (routing to posts in page function now )
 	 *
 	 * 	@todo Remove this depreciated function.
 	 */
