@@ -13,7 +13,6 @@ class ICPagePosts {
 		'post_status'      => 'publish',
 		'orderby'            => 'date',
 		'order'                => 'DESC',
-		'posts_per_page' => 10,
 		'template'          => false
 	); // set defaults for wp_parse_args
 	
@@ -34,6 +33,8 @@ class ICPagePosts {
 			while ( $page_posts->have_posts( ) ):
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
+			$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
+			echo paginate_links( array( 'current' => $page, 'total' => $page_posts->max_num_pages ) );
 		endif;
         wp_reset_postdata( );
         return $output;
@@ -46,7 +47,7 @@ class ICPagePosts {
 	 */
     protected function set_args( $atts ) {
         global $wp_query;
-		
+		$this->args['posts_per_page'] = get_option( 'posts_per_page' );
 		// parse the arguments using the defaults
         $this->args = wp_parse_args( $atts, $this->args );
 		
