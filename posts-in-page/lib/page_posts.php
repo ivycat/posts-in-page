@@ -34,7 +34,7 @@ class ICPagePosts {
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
 			$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
-			echo paginate_links( array( 'current' => $page, 'total' => $page_posts->max_num_pages ) );
+			$output .= paginate_links( array( 'current' => $page, 'total' => $page_posts->max_num_pages ) );
 		endif;
         wp_reset_postdata( );
         return $output;
