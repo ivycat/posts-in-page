@@ -55,7 +55,7 @@ class ICAddPostsToPage {
     public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
         if ( is_plugin_active( $plugin_file ) )
             $actions[] = '<a href="' . admin_url('options-general.php?page=posts_in_page') . '">' . __( ' Help', 'posts_in_page' ) . '</a>';
-        return $actions;
+        return apply_filters( 'post_in_page_actions', $actions );
     }
   
 	/**
@@ -81,7 +81,7 @@ class ICAddPostsToPage {
 	 *  Init Plugin, add menu page and setup hooks to load assets on the plugin options page
 	 */
     public function plugin_page_init() {
-        if( !current_user_can( 'administrator' ) )
+        if ( ! current_user_can( 'administrator' ) )
 			return;
 		
         $hooks = array( );
