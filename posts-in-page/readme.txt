@@ -4,21 +4,25 @@ Donate link: http://www.ivycat.com/contribute/
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 1.2.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easily add a posts loop inside any page without modifying template files.
+Easily add one or more posts to any page using simple shortcodes.
 
 ==Description==
 
-Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
+Easily add one or more posts to any page using simple shortcodes. 
 
-== Notes ==
+Supports categories, tags, custom post types, custom taxonomies, and more.
 
-Plugin is depending upon theme styling; version 1.x of this plugin does not contain native styles. 
+You can get all of the same functionality provided by this plugin by modifying your theme's template files; this plugin just makes it easy for anyone to _pull_ posts into other areas of the site without having to modify theme files.
+
+Plugin is depending upon your theme's styling; version 1.x of this plugin _does not_ contain native styles. 
 
 This is a minimal plugin, function over form.  If you would like to extend it, or would like us to extend it in later versions, please post feature suggestions in the plugin's [support forum](http://wordpress.org/support/plugin/posts-in-page) or [contact us](http://www.ivycat.com/contact/).
+
+Give us feedback and contribute to this plugin on its [GitHub page](https://github.com/ivycat/Posts-in-Page)
 
 == Installation ==
 
@@ -26,10 +30,17 @@ You can install from within WordPress using the Plugin/Add New feature, or if yo
 
 1. Download the plugin.
 1. Upload the entire `posts-in-page` directory to your plugins folder 
-1. Activate the plugin from your WordPress plugin page
-1. Start embedding your posts in whatever pages you like using shortcodes.
+1. Activate the plugin from the plugin page in your WordPress Dashboard
+1. Start embedding posts in whatever pages you like using shortcodes.
 
-Shortcode usage:
+### Shortcode Usage 
+
+To 'pull' posts into a page, you can either:
+
+1. place a shortcode in the editor window of the page you're editing, or 
+1. modify a theme template file using the shortcode in a PHP function.
+
+#### Using Shortcodes in the WordPress editor
 
 * `[ic_add_posts]`  - Add all posts to a page (limit to what number posts in WordPress is set to), essentially adds blog "page" to page.
 * `[ic_add_posts ids='1,2,3']` - show one or many posts by specifying the post ID(s) ( specify all post types )
@@ -42,6 +53,12 @@ Shortcode usage:
 * `[ic_add_posts template='template-in-theme-dir.php']` - In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.
 
 Or any combination of the above.
+
+#### Using Shortcodes within a PHP function
+
+If you'd like to use this plugin to pull posts directly into your theme's template files, you can drop the following WordPress function in your template files, replacing the `[shortcode]` part with your, custom shortcode.
+
+`<?php echo do_shortcode("[shortcode]"); ?>`
 
 == Frequently Asked Questions ==
 
@@ -67,14 +84,22 @@ Absolutely.
 
 You bet.
 
+= Will it make me coffee?
+
+Not likely, but let us know if it does; then we'll know we have something special.
+
 == Screenshots ==
 
 1. Embed a shortcode into a page and it will automatically pull in the post(s) you need.
+2. Embed shortcodes directly in your template using `do_shortcode`.
 
 == Changelog ==
 
 = 1.2.0 =
-* Code maintenance, added pagination, plugin now honors default post reading settings under Settings/Reading in the WordPress Dashboard.
+* Code maintenance to better comply with standards
+* Added post pagination
+* Plugin now honors default post reading settings under Settings/Reading in the WordPress Dashboard.
+* Improved and simplified documentation.
 
 = 1.1.1 =
 * Code maintenance, fix for category bug, also added ability for multiple post types per shortcode.
@@ -132,9 +157,5 @@ You bet.
 
 = 1.0.3 =
 * Added single post or specific post capabilities.  Important feature.
-
-== Road Map ==
-
-1. Suggest a feature...
 
 
