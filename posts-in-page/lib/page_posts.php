@@ -27,14 +27,14 @@ class ICPagePosts {
 	 */
 	public function output_posts() {
 		if ( !$this->args ) return '';
-        $page_posts = new WP_Query( $this->args ); // New WP_Query object 
+        $page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object 
         $output = '';
         if ( $page_posts->have_posts( ) ):
 			while ( $page_posts->have_posts( ) ):
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
 			$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
-			$output .= paginate_links( array( 'current' => $page, 'total' => $page_posts->max_num_pages ) );
+			$output .= apply_filters( 'posts_in_page_paginate', paginate_links( array( 'current' => $page, 'total' => $page_posts->max_num_pages ), $page_posts ) );
 		endif;
         wp_reset_postdata( );
         return $output;
@@ -99,6 +99,7 @@ class ICPagePosts {
         if ( isset( $wp_query->query_vars['page'] ) &&  $wp_query->query_vars['page'] > 1 ) {
             $this->args['paged'] = $wp_query->query_vars['page'];
         }
+		$this->args = apply_filters( 'posts_in_page_args', $this->args );
     }
     
 	/**
@@ -127,10 +128,12 @@ class ICPagePosts {
         }
 		$output = '';
         ob_start( );
+		$output .= apply_filters( 'posts_in_page_pre_loop', '' );
         require ( $file_path = self::has_theme_template( ) )
 			? $file_path // use template file in theme
 			: POSTSPAGE_DIR . '/posts_loop_template.php'; // use default plugin template file
         $output .= ob_get_contents( );
+		$output .= apply_filters( 'posts_in_page_post_loop', '' );
         return ob_get_clean( );
    }
 
