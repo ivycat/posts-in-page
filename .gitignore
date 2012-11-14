@@ -1,3 +1,4 @@
 .DS_Store
-/posts-in-page/posts-in-page.komodoproject
-/posts-in-page.komodoproject
+*.komodoproject
+*.sublime-project
+*.sublime-workspace
