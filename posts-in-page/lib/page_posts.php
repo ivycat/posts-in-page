@@ -33,12 +33,26 @@ class ICPagePosts {
 			while ( $page_posts->have_posts( ) ):
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
-			$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
-			$output .= apply_filters( 'posts_in_page_paginate', paginate_links( array( 'current' => $page, 'total' => $page_posts->max_num_pages ), $page_posts ) );
+			$output .= '<div class="ivcat-pagination">' . apply_filters( 'posts_in_page_paginate',
+				$this->paginate_links( $page_posts )
+			) . '</div>';
 		endif;
         wp_reset_postdata( );
         return $output;
     }
+	
+	protected function paginate_links( $posts ){
+		global $wp_query;
+		$page_url = home_url( '/' . $wp_query->post->post_name . '/' );
+		$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
+		$total_pages = $posts->max_num_pages;
+		$per_page = $posts->query_vars['posts_per_page'];
+		$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0  ) ? $posts->query_vars['paged'] : 1;
+		//echo '<pre>' . print_r( $posts, true ) . '</pre>';
+		$prev = ( $curr_page && $curr_page > 1 ) ? '<li><a href="'.$page_url.'?page='. ( $curr_page-1 ).'">Previous</a></li>' : '';
+		$next = ( $curr_page && $curr_page < $total_pages ) ? '<li><a href="'.$page_url.'?page='. ( $curr_page+1 ).'">Next</a></li>' : '';
+		return '<ul>' . $prev . $next . '</ul>';
+	}
    
 	/**
 	 *	Build additional Arguments for the WP_Query object
