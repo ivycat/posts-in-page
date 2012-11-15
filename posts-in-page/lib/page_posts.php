@@ -33,7 +33,7 @@ class ICPagePosts {
 			while ( $page_posts->have_posts( ) ):
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
-			$output .= '<div class="ivcat-pagination">' . apply_filters( 'posts_in_page_paginate',
+			$output .= '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate',
 				$this->paginate_links( $page_posts )
 			) . '</div>';
 		endif;
