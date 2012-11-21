@@ -10,7 +10,7 @@
 
 Easily add one or more posts to any page using simple shortcodes.
 
-##Description##
+## Description ##
 
 Easily add one or more posts to any page using simple shortcodes. 
 
@@ -46,13 +46,44 @@ To 'pull' posts into a page, you can either:
 * `[ic_add_posts ids='1,2,3']` - show one or many posts by specifying the post ID(s) ( specify all post types )
 * `[ic_add_posts post_type='post_type']` - show posts from a custom post type by specifying the post type slug ( must give post type if not a standard post ) add multiple post types by separating with commas (ex. `post_type='post_type1,post_type2'`)
 * `[ic_add_posts showposts='5']` - limit number of posts (or override default setting)
-* `[ic_add_posts orderby='title' order='ASC']` - orderby title - supports all WP orderby variables.  Order is optional, WP default 
+* `[ic_add_posts orderby='title' order='ASC']` - orderby title - supports all WP orderby variables.  Order is optional, WP default is 'DESC'.
 * `[ic_add_posts category='category-slug']` - Show posts within a specific category.  Uses slugs, can have multiple but separate by commas. 	 category-1,category2, etc (no spaces.)
 * `[ic_add_posts tag='tag-slug']`  - Show posts using a specific tag.  Like categories, it uses slugs, and can accommodate multiple tags separate by commas. 	 tag-1,tag-2, etc (no spaces.)
 * `[ic_add_posts tax='taxonomy' term='term']` - limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work
 * `[ic_add_posts template='template-in-theme-dir.php']` - In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.
+* `[ic_add_posts ignore_sticky_posts='no']` - Show sticky posts too (they're ignored by default).
 
 Or any combination of the above.
+
+#### Shortcode Examples
+
+Not sure how to use the shortcodes above to get what you want?  Here are a few examples to get you started:
+
+** Example 1 **
+
+Let's say you want to pull a specific post called _"What I love about coffee"_, which has a post ID of 34, somewhere on your About Us page.  Your shortcode should look like this:
+
+`[ic_add_posts ids='34']`
+
+** Example 2 **
+
+Alright, now lets say that you want to pull in all posts from two categories into your WordPress page.  One  category is _WordPress Rocks_ and the other is _WordPress Rolls_.  Plus, you'd like to display them three per page, rather than the default number of posts.  Depending on your category slugs, your shortcode should probably look like this:
+
+`[ic_add_posts category='wordpress-rocks,wordpress-rolls' showposts='3']`
+
+** Example 3 **
+
+Now, you're ambitious and want to try something complex.  Let's say you've got a page called _Plugins Are Awesome_ and, in it, you want to pull in posts that match the following criteria:
+
+* posts from a custom post type called _Testimonials_,
+* posts that are in the _Testimonial Type_ custom taxonomy using the term _Customer_
+* you want to display six testimonials per page,
+* you'd like them displayed in ascending order
+* finally, you've created a custom template to use in presenting these posts and named it `my-posts-in-page-template.php`
+
+Your shortcode might look like this:
+
+`[ic_add_posts showposts='6' post_type='testimonials' tax='testimonial-type' term='customer' order='ASC' template='my-posts-in-page-template.php']`
 
 #### Using Shortcodes within a PHP function
 
@@ -99,6 +130,9 @@ Not likely, but let us know if it does; then we'll know we have something specia
 
 ## Changelog ##
 
+### 1.2.1 ###
+* Added code to allow ignoring, or showing of sticky posts.  By default, sticky posts are ignored, but can be re-enabled using the shortcode `[ic_add_posts ignore_sticky_posts='no']`.
+
 ### 1.2.0 ###
 * Code maintenance to better comply with standards
 * Added post pagination
@@ -135,8 +169,14 @@ Not likely, but let us know if it does; then we'll know we have something specia
 
 ## Upgrade Notice ##
 
+### 1.2.1 ###
+* Small feature update, not critical.
+
 ### 1.2.0 ###
 * Important feature update - please upgrade.
+
+### 1.1.1 ###
+* Small bug fix; please upgrade.
 
 ### 1.1.0 ###
 * Code maintenance & housekeeping - non-critical update.
