@@ -3,8 +3,8 @@ Contributors: dgilfoy, ivycat, sewmyheadon
 Donate link: http://www.ivycat.com/contribute/
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: 1.2.0
+Tested up to: 3.4.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,9 +76,9 @@ Alright, now lets say that you want to pull in all posts from two categories int
 Now, you're ambitious and want to try something complex.  Let's say you've got a page called _Plugins Are Awesome_ and, in it, you want to pull in posts that match the following criteria:
 
 * posts from a custom post type called _Testimonials_,
-* posts that are in the _Testimonial Type_ custom taxonomy using the term _Customer_
+* posts that are in the _Testimonial Type_ custom taxonomy using the term _Customer_,
 * you want to display six testimonials per page,
-* you'd like them displayed in ascending order
+* you'd like them displayed in ascending order,
 * finally, you've created a custom template to use in presenting these posts and named it `my-posts-in-page-template.php`
 
 Your shortcode might look like this:
