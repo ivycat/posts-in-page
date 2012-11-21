@@ -113,6 +113,15 @@ class ICPagePosts {
         if ( isset( $wp_query->query_vars['page'] ) &&  $wp_query->query_vars['page'] > 1 ) {
             $this->args['paged'] = $wp_query->query_vars['page'];
         }
+		
+		if ( ! isset( $this->args['ignore_sticky_posts'] ) ) {
+			$this->args['post__not_in'] = get_option( 'sticky_posts' );
+		}
+		
+		if ( ! isset( $this->args['ignore_sticky_posts'] ) ) {
+			$this->args['post__not_in'] = get_option( 'sticky_posts' );
+		}
+		
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
     }
     
