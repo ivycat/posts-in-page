@@ -9,11 +9,12 @@ if ( !function_exists( 'add_action' ) )
 class ICPagePosts {
 	
 	protected $args = array(
-		'post_type'         => 'post',
-		'post_status'      => 'publish',
-		'orderby'            => 'date',
-		'order'                => 'DESC',
-		'template'          => false
+		'post_type'		=> 'post',
+		'post_status'	=> 'publish',
+		'orderby'		=> 'date',
+		'order'			=> 'DESC',
+		'paginate'		=> false,
+		'template'		=> false
 	); // set defaults for wp_parse_args
 	
 	public function __construct( $atts ) {
@@ -26,16 +27,17 @@ class ICPagePosts {
 	 *	@return string output of template file
 	 */
 	public function output_posts() {
-		if ( !$this->args ) return '';
+		if ( !$this->args ) 
+			return '';
         $page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object 
         $output = '';
         if ( $page_posts->have_posts( ) ):
 			while ( $page_posts->have_posts( ) ):
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
-			$output .= '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate',
+			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate',
 				$this->paginate_links( $page_posts )
-			) . '</div>';
+			) . '</div>' : '';
 		endif;
         wp_reset_postdata( );
         return $output;

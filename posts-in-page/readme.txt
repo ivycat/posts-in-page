@@ -4,7 +4,7 @@ Donate link: http://www.ivycat.com/contribute/
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,7 @@ To 'pull' posts into a page, you can either:
 * `[ic_add_posts tax='taxonomy' term='term']` - limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work
 * `[ic_add_posts template='template-in-theme-dir.php']` - In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.
 * `[ic_add_posts ignore_sticky_posts='no']` - Show sticky posts too (they're ignored by default).
+* `[ic_add_posts paginate='yes']` - use pagination links (off by default)
 
 Or any combination of the above.
 
@@ -125,6 +126,9 @@ Not likely, but let us know if it does; then we'll know we have something specia
 2. Embed shortcodes directly in your template using `do_shortcode`.
 
 == Changelog ==
+
+= 1.2.2 = 
+* Added pagination, tweaked to turn off by default.
 
 = 1.2.1 =
 * Added code to allow ignoring, or showing of sticky posts.  By default, sticky posts are ignored, but can be re-enabled using the shortcode `[ic_add_posts ignore_sticky_posts='no']`.
