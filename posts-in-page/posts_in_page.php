@@ -41,32 +41,32 @@ if ( ! defined( 'POSTPAGE_URL' ) )
 require_once 'lib/page_posts.php';
 
 class ICAddPostsToPage {
-    
-    public function __construct( ) {
-        add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page' ) );
-        add_shortcode( 'ic_add_post', array( &$this, 'post_in_page' ) );
-        add_action( 'admin_menu', array( &$this, 'plugin_page_init' ) );
-        add_filter( 'plugin_action_links_'. plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links' ), 10, 4 );
-    }
-    
+	
+	public function __construct( ) {
+		add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page' ) );
+		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page' ) );
+		add_action( 'admin_menu', array( &$this, 'plugin_page_init' ) );
+		add_filter( 'plugin_action_links_'. plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links' ), 10, 4 );
+	}
+	
 	/**
 	 * 	Add settings link on plugins page.
 	 */
-    public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
-        if ( is_plugin_active( $plugin_file ) )
-            $actions[] = '<a href="' . admin_url('options-general.php?page=posts_in_page') . '">' . __( ' Help', 'posts_in_page' ) . '</a>';
-        return apply_filters( 'post_in_page_actions', $actions );
-    }
+	public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
+		if ( is_plugin_active( $plugin_file ) )
+			$actions[] = '<a href="' . admin_url('options-general.php?page=posts_in_page') . '">' . __( ' Help', 'posts_in_page' ) . '</a>';
+		return apply_filters( 'post_in_page_actions', $actions );
+	}
   
 	/**
 	 * 	Main Shortcode
 	 *
 	 * 	@param array $atts An array of shortcode parameters.  None required
 	 */
-    public function posts_in_page( $atts ) {
-        $posts = new ICPagePosts( $atts );
+	public function posts_in_page( $atts ) {
+		$posts = new ICPagePosts( $atts );
 		return $posts->output_posts( );
-    }
+	}
 	
 	/**
 	 * 	Deprecated Shortcode (routing to posts in page function now )
@@ -74,40 +74,40 @@ class ICAddPostsToPage {
 	 * 	@todo Remove this depreciated function.
 	 */
 	public function post_in_page( $atts ) {
-        return self::posts_in_page( $atts );
+		return self::posts_in_page( $atts );
 	}
 	
 	/**
 	 *  Init Plugin, add menu page and setup hooks to load assets on the plugin options page
 	 */
-    public function plugin_page_init() {
-        if ( ! current_user_can( 'administrator' ) )
+	public function plugin_page_init() {
+		if ( ! current_user_can( 'administrator' ) )
 			return;
 		
-        $hooks = array( );
-        $hooks[] = add_options_page( __( 'Posts In Page' ), __( 'Posts In Page' ), 'read', 'posts_in_page', 
-            array( $this, 'plugin_page' ) );
+		$hooks = array( );
+		$hooks[] = add_options_page( __( 'Posts In Page' ), __( 'Posts In Page' ), 'read', 'posts_in_page', 
+			array( $this, 'plugin_page' ) );
 		
-        foreach ( $hooks as $hook ) {
-            add_action( "admin_print_styles-{$hook}", array( $this, 'load_assets' ) );
-        }
-    }
+		foreach ( $hooks as $hook ) {
+			add_action( "admin_print_styles-{$hook}", array( $this, 'load_assets' ) );
+		}
+	}
 
 	/**
 	 * Enqueue Plugin Assets (Scripts and Styles)
 	 */
-    public function load_assets( ) {
-        wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. '/assets/post-page_styles.css' );
-        wp_enqueue_script( 'postpagescript', POSTPAGE_URL. '/assets/post-page_scripts.js' );
-    }
+	public function load_assets( ) {
+		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. '/assets/post-page_styles.css' );
+		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. '/assets/post-page_scripts.js' );
+	}
 	
 	/**
 	 * Plugin Setting page - includes view for the page
 	 */
-    public function plugin_page( ) {
-        require_once 'assets/posts_in_page_help_view.php';
-    }
-    
+	public function plugin_page( ) {
+		require_once 'assets/posts_in_page_help_view.php';
+	}
+	
 }
 
 /**

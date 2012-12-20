@@ -1,234 +1,234 @@
 #posts-in-page-settings h2 span {
-    display:block;
-    width: 150px;
-    float: right;
+	display:block;
+	width: 150px;
+	float: right;
 }
-      
+	  
 #side-sortables {
-    min-height: 300px;
-    padding: 0;
-    width: 280px;
-    color: #333333;
+	min-height: 300px;
+	padding: 0;
+	width: 280px;
+	color: #333333;
 }
 .postbox {
-    background-color: #F5F5F5;
-    background-image: -moz-linear-gradient(center top , #F9F9F9, #F5F5F5);
-    border-color: #DFDFDF;
-    border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 1px 0 #FFFFFF inset;
-    min-width: 255px;
-    position: relative;
-    border-style: solid;
-    border-width: 1px;
-    line-height: 1;
-    margin-bottom: 20px;
-    padding: 0;
+	background-color: #F5F5F5;
+	background-image: -moz-linear-gradient(center top , #F9F9F9, #F5F5F5);
+	border-color: #DFDFDF;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 0 1px 0 #FFFFFF inset;
+	min-width: 255px;
+	position: relative;
+	border-style: solid;
+	border-width: 1px;
+	line-height: 1;
+	margin-bottom: 20px;
+	padding: 0;
 }
 .postbox .handlediv {
-    cursor: pointer;
-    float: right;
-    height: 30px;
-    width: 27px;
+	cursor: pointer;
+	float: right;
+	height: 30px;
+	width: 27px;
 }
 .postbox h3 {
-    font-size: 15px;
-    font-weight: normal;
-    line-height: 1;
-    margin: 0;
-    padding: 7px 10px;
-    color: #464646;
-    font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
-    text-shadow: 0 1px 0 #FFFFFF;
-    background-color: #F1F1F1;
-    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
-    border-bottom-color: #DFDFDF;
-    box-shadow: 0 1px 0 #FFFFFF;
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 1;
+	margin: 0;
+	padding: 7px 10px;
+	color: #464646;
+	font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+	text-shadow: 0 1px 0 #FFFFFF;
+	background-color: #F1F1F1;
+	background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
+	border-bottom-color: #DFDFDF;
+	box-shadow: 0 1px 0 #FFFFFF;
 }
 .postbox h4 {
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1;
-    margin: 0;
-    padding: 7px 0px;
-    color: #464646;
-    text-align: left;
-    text-shadow: 0 1px 0 #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1;
+	margin: 0;
+	padding: 7px 0;
+	color: #464646;
+	text-align: left;
+	text-shadow: 0 1px 0 #FFFFFF;
 }
 .postbox .inside {
-    margin: 6px 0 8px;
-    position: relative;
-    line-height: 1.4em;
-    padding:0 ;
+	margin: 6px 0 8px;
+	position: relative;
+	line-height: 1.4em;
+	padding:0 ;
 }
 
 .postbox .inside_wrap{
-    margin:0 15px;
+	margin:0 15px;
 }
 .postbox .inside_wrap ul,
 .postbox .inside_wrap p {
-    margin-top:0;
-    font-size:13px;margin-bottom:0.7em;
+	margin-top:0;
+	font-size:13px;margin-bottom:0.7em;
 }
 .postbox .inside_wrap ul {
-    list-style:disc;
-    margin-left:15px;
+	list-style:disc;
+	margin-left:15px;
 
 }
 .postbox ul{
-    list-style-type: none;
-    padding: 0;
-    margin-top: 0;
+	list-style-type: none;
+	padding: 0;
+	margin-top: 0;
 }
 .postbox ul li.img{
-    text-align: center;
-    background: #ffffff;
-    padding: 10px 0 ;
+	text-align: center;
+	background: #ffffff;
+	padding: 10px 0 ;
 }
 .postbox a{
-    color: #628C29;
-    text-decoration: none;
+	color: #628C29;
+	text-decoration: none;
 }
 .postbox a:hover{
-    color: #8EC73C;
+	color: #8EC73C;
 }
 
 .postbox .ivy_social li {
-    list-style-type:none;
-    text-indent:-9999px;
-    display:inline;
+	list-style-type:none;
+	text-indent:-9999px;
+	display:inline;
 }
 .postbox .ivy_social li a {
-    display:block;
-    float:left;
-    width:16px;
-    height:16px;
-    margin:0 12px;
+	display:block;
+	float:left;
+	width:16px;
+	height:16px;
+	margin:0 12px;
 }
 .postbox .ivy_social li.ic_fb a {
-    background: url("facebook.png") no-repeat top left;
+	background: url("facebook.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_tw a {
-    background: url("twitter.png") no-repeat top left;
+	background: url("twitter.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_li a { 
-    background: url("linkedin.png") no-repeat top left;
+	background: url("linkedin.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_mc a {
-    background: url("email.png") no-repeat top left;
+	background: url("email.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_rss a {
-    background: url("feed.png") no-repeat top left;
+	background: url("feed.png") no-repeat top left;
 }
 #body-wrap { 
-    margin-top: 25px;
+	margin-top: 25px;
 }
 #body-wrap inside {
-    padding: 10px;
+	padding: 10px;
 }
 #body-wrap .hndle h3 ul {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 #body-wrap .hndle{
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 #body-wrap .hndle a{   
-    font-size: 18px;
+	font-size: 18px;
 }
 #body-wrap .hndle li.current-menu-tab a{   
-    font-size: 21px;
-    font-weight: bold;
+	font-size: 21px;
+	font-weight: bold;
 }
 #posts-in-page-settings #body-wrap{
-    width: 55%;
-    float:left;
+	width: 55%;
+	float:left;
 }
 #posts-in-page-settings #sidebar-wrap{
-    width: 35%;
-    float:left;
-    margin: 25px 0 0 20px;
+	width: 35%;
+	float:left;
+	margin: 25px 0 0 20px;
 }
 #posts-in-page-settings .top-menu{
-    width: 100%;
+	width: 100%;
 }
 
 #posts-in-page-settings .top-menu li{
-    margin-bottom: 0px;
-    text-align: center;
+	margin-bottom: 0px;
+	text-align: center;
 }
 #posts-in-page-settings .settings{
-    padding: 10px;
+	padding: 10px;
 }
 #posts-in-page-settings .help{
-    margin-top: 20px;
-    padding: 10px;
+	margin-top: 20px;
+	padding: 10px;
 }
 .clearfix:before, .clearfix:after {
-    content: ""; display: table;
-    }
+	content: ""; display: table;
+	}
 .clearfix:after {
-    clear: both;
-    }
+	clear: both;
+	}
 .clearfix {
-    *zoom: 1;
-    }
+	*zoom: 1;
+	}
 #ivycat_donate form input[type="image"] {
-    margin:0 auto;
-    display:block;
-    }
+	margin:0 auto;
+	display:block;
+	}
 
 /* MailChimp Form Embed Code - Slim - 08/17/2011 */
 #mc_embed_signup form {
-    display:block; position:relative; text-align:left; padding:10px 0 10px 0;width: 250px;
-    }
+	display:block; position:relative; text-align:left; padding:10px 0 10px 0;width: 250px;
+	}
 #mc_embed_signup h2 {
-    font-weight:bold; padding:0; margin:15px 0; font-size:1.4em;
-    }
+	font-weight:bold; padding:0; margin:15px 0; font-size:1.4em;
+	}
 #mc_embed_signup input {
-    border:1px solid #999; -webkit-appearance:none;
+	border:1px solid #999; -webkit-appearance:none;
 }
 #mc_embed_signup input[type=checkbox] {
-    -webkit-appearance:checkbox;
+	-webkit-appearance:checkbox;
 }
 #mc_embed_signup input[type=radio] {
-    -webkit-appearance:radio;
+	-webkit-appearance:radio;
 }
 #mc_embed_signup input:focus {
-    border-color:#333;
+	border-color:#333;
 }
 #mc_embed_signup .button {
-    clear:both; background-color: #aaa; border: 0 none; border-radius:4px; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: bold; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding:0; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto;
-    }
+	clear:both; background-color: #aaa; border: 0 none; border-radius:4px; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: bold; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding:0; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto;
+	}
 #mc_embed_signup .button:hover {
-    background-color:#777;
+	background-color:#777;
 }
 #mc_embed_signup .small-meta {
-    font-size: 11px;
-    }
+	font-size: 11px;
+	}
 #mc_embed_signup .nowrap {
-    white-space:nowrap;
-    }     
+	white-space:nowrap;
+	}     
 #mc_embed_signup label {
-    display:block; font-size:14px; padding-bottom:10px; font-weight:bold;color:#464646
-    }
+	display:block; font-size:14px; padding-bottom:10px; font-weight:bold;color:#464646
+	}
 #mc_embed_signup input.email {
-    display:block; padding:8px 0; margin:0 0 10px 0; text-indent:5px; width:58%; min-width:130px;float:left;
-    }
+	display:block; padding:8px 0; margin:0 0 10px 0; text-indent:5px; width:58%; min-width:130px;float:left;
+	}
 #mc_embed_signup input.button {
-    display:block; clear:none; background:#628C29; width:35%; margin:0 0 10px 0; min-width:90px;float:right;text-shadow:0 1px 0 #666;
-    }
+	display:block; clear:none; background:#628C29; width:35%; margin:0 0 10px 0; min-width:90px;float:right;text-shadow:0 1px 0 #666;
+	}
 #mc_embed_signup div#mce-responses {
-    float:left; top:-1.4em; padding:0em .5em 0em .5em; overflow:hidden; width:90%;margin: 0 5%; clear: both;}
+	float:left; top:-1.4em; padding:0em .5em 0em .5em; overflow:hidden; width:90%;margin: 0 5%; clear: both;}
 #mc_embed_signup div.response {
-    margin:1em 0; padding:1em .5em .5em 0; font-weight:bold; float:left; top:-1.5em; z-index:1; width:80%;
-    }
+	margin:1em 0; padding:1em .5em .5em 0; font-weight:bold; float:left; top:-1.5em; z-index:1; width:80%;
+	}
 #mc_embed_signup #mce-error-response {
-    display:none;
-    }
+	display:none;
+	}
 #mc_embed_signup #mce-success-response {
-    color:#529214; display:none;
-    }
+	color:#529214; display:none;
+	}
 #mc_embed_signup label.error {
-    display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;
-    }
+	display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;
+	}
 
 
