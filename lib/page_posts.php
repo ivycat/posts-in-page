@@ -103,8 +103,7 @@ class ICPagePosts {
 		
 		// get posts with a certain tag
 		if ( isset( $atts['tag'] ) ) {
-			$tags = explode( ',', $atts['tag'] );
-			$this->args['tag'] = ( count( $tags ) > 1 ) ? $tags : $atts['tag'];
+			$this->args['tag'] = $atts['tag'];
 		}
 		
 		// show number of posts (default is 10, showposts or posts_per_page are both valid, only one is needed)
