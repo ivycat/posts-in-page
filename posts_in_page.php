@@ -11,7 +11,7 @@
  *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
  ------------------------------------------------------------------------
-	IvyCat Posts in Page, Copyright 2012 IvyCat, Inc. (admins@ivycat.com)
+	IvyCat Posts in Page, Copyright 2012 -2013 IvyCat, Inc. (admins@ivycat.com)
 	
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ class ICAddPostsToPage {
 	}
   
 	/**
-	 * 	Main Shortcode
+	 * 	Main shortcode
 	 *
 	 * 	@param array $atts An array of shortcode parameters.  None required
 	 */
@@ -69,7 +69,7 @@ class ICAddPostsToPage {
 	}
 	
 	/**
-	 * 	Deprecated Shortcode (routing to posts in page function now )
+	 * 	Deprecated shortcode (routing to posts in page function now)
 	 *
 	 * 	@todo Remove this depreciated function.
 	 */
@@ -78,7 +78,7 @@ class ICAddPostsToPage {
 	}
 	
 	/**
-	 *  Init Plugin, add menu page and setup hooks to load assets on the plugin options page
+	 *  Init plugin, add menu page, and setup hooks to load assets on the plugin options page
 	 */
 	public function plugin_page_init() {
 		if ( ! current_user_can( 'administrator' ) )
@@ -94,7 +94,7 @@ class ICAddPostsToPage {
 	}
 
 	/**
-	 * Enqueue Plugin Assets (Scripts and Styles)
+	 * Enqueue plugin assets (scripts & styles)
 	 */
 	public function load_assets( ) {
 		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. '/assets/post-page_styles.css' );
@@ -102,7 +102,7 @@ class ICAddPostsToPage {
 	}
 	
 	/**
-	 * Plugin Setting page - includes view for the page
+	 * Plugin Settings page - includes view for the page
 	 */
 	public function plugin_page( ) {
 		require_once 'assets/posts_in_page_help_view.php';
