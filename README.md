@@ -130,6 +130,10 @@ Not likely, but let us know if it does; then we'll know we have something specia
 
 ## Changelog ##
 
+### 1.2.2 ###
+* Added pagination, tweaked to turn off by default.
+* Bug fixes.
+
 ### 1.2.1 ###
 * Added code to allow ignoring, or showing of sticky posts.  By default, sticky posts are ignored, but can be re-enabled using the shortcode `[ic_add_posts ignore_sticky_posts='no']`.
 
@@ -168,6 +172,9 @@ Not likely, but let us know if it does; then we'll know we have something specia
 * Added single post or specific post capabilities.
 
 ## Upgrade Notice ##
+
+### 1.2.2 ###
+* Small bug fixes for tags, pagination; not critical.
 
 ### 1.2.1 ###
 * Small feature update, not critical.
