@@ -106,6 +106,31 @@ class ICPagePosts {
 			$this->args['tag'] = $atts['tag'];
 		}
 		
+        // exclude posts with certain category by name (slug)
+        if ( isset( $atts['exclude_category'] ) ) {
+            $category = $atts['exclude_category'];
+            if( preg_match( '`,`', $category ) ) { // multiple
+                $category = explode( ',', $category );
+            
+                foreach( $category AS $cat ) {
+                    $term = get_category_by_slug( $cat );
+                    $exclude[] = '-' . $term->term_id;
+                }
+                $category = implode( ',', $exclude );
+
+            } else { // single
+                $term = get_category_by_slug( $category );
+                $category = '-' . $term->term_id;
+            }
+
+            if( !is_null( $this->args['cat'] ) ) { // merge lists
+                $this->args['cat'] .= ',' . $category;
+            }
+            $this->args['cat'] = $category;
+            // unset our unneeded variables
+            unset( $category, $term, $exclude );
+        }
+
 		// show number of posts (default is 10, showposts or posts_per_page are both valid, only one is needed)
 		if ( isset( $atts['showposts'] ) )
 			$this->args[ 'posts_per_page' ] = $atts['showposts'];
