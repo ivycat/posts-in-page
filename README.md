@@ -48,10 +48,12 @@ To 'pull' posts into a page, you can either:
 * `[ic_add_posts showposts='5']` - limit number of posts (or override default setting)
 * `[ic_add_posts orderby='title' order='ASC']` - orderby title - supports all WP orderby variables.  Order is optional, WP default is 'DESC'.
 * `[ic_add_posts category='category-slug']` - Show posts within a specific category.  Uses slugs, can have multiple but separate by commas. 	 category-1,category2, etc (no spaces.)
+* `[ic_add_posts exclude_category'category-slug']` - Exclude posts within specific category. Uses slugs, can have multiple but seperate by commas.      category-1,category2, etc (no spaces.)
 * `[ic_add_posts tag='tag-slug']`  - Show posts using a specific tag.  Like categories, it uses slugs, and can accommodate multiple tags separate by commas. 	 tag-1,tag-2, etc (no spaces.)
 * `[ic_add_posts tax='taxonomy' term='term']` - limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work
 * `[ic_add_posts template='template-in-theme-dir.php']` - In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.
 * `[ic_add_posts ignore_sticky_posts='no']` - Show sticky posts too (they're ignored by default).
+* `[ic_add_posts paginate='yes']` - use pagination links (off by default)
 
 Or any combination of the above.
 
