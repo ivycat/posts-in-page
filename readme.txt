@@ -1,10 +1,10 @@
 === Posts in Page ===
-Contributors: dgilfoy, ivycat, sewmyheadon
+Contributors: sewmyheadon, ivycat, gehidore, dgilfoy
 Donate link: http://www.ivycat.com/contribute/
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 1.2.2
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,7 +48,7 @@ To 'pull' posts into a page, you can either:
 * `[ic_add_posts showposts='5']` - limit number of posts (or override default setting)
 * `[ic_add_posts orderby='title' order='ASC']` - orderby title - supports all WP orderby variables.  Order is optional, WP default is 'DESC'.
 * `[ic_add_posts category='category-slug']` - Show posts within a specific category.  Uses slugs, can have multiple but separate by commas. 	 category-1,category2, etc (no spaces.)
-* `[ic_add_posts exclude_category'category-slug']` - Exclude posts within specific category. Uses slugs, can have multiple but seperate by commas.      category-1,category2, etc (no spaces.)
+* `[ic_add_posts exclude_category='category-slug']` - Exclude posts within specific category. Uses slugs, can have multiple slugs seperated by commas.      category-1,category2, etc (no spaces.)
 * `[ic_add_posts tag='tag-slug']`  - Show posts using a specific tag.  Like categories, it uses slugs, and can accommodate multiple tags separate by commas. 	 tag-1,tag-2, etc (no spaces.)
 * `[ic_add_posts tax='taxonomy' term='term']` - limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work
 * `[ic_add_posts template='template-in-theme-dir.php']` - In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.
@@ -128,6 +128,12 @@ Not likely, but let us know if it does; then we'll know we have something specia
 
 == Changelog ==
 
+= 1.2.4 = 
+* now you can set `more_tag=""` to remove the `[...] &hellip;` that unfortunetly shows up as `&hellip`
+
+= 1.2.3 = 
+* Added minor doc tweaks.
+
 = 1.2.2 = 
 * Added pagination, tweaked to turn off by default.
 * Bug fixes.
@@ -170,6 +176,12 @@ Not likely, but let us know if it does; then we'll know we have something specia
 * Added single post or specific post capabilities.
 
 == Upgrade Notice ==
+
+= 1.2.4 = 
+* Presentational fixes: clean up whitespace, extra tabs, add in customization of more tag.
+
+= 1.2.3 = 
+* Housekeeping only; not urgent.
 
 = 1.2.2 =
 * Small bug fixes for tags, pagination; not critical.
