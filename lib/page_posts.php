@@ -9,13 +9,13 @@ if ( !function_exists( 'add_action' ) )
 class ICPagePosts {
 
 	protected $args = array(
-		'post_type'   => 'post',
-		'post_status' => 'publish',
-		'orderby'     => 'date',
-		'order'       => 'DESC',
-		'paginate'    => false,
-		'template'    => false,
-		'label_next'   => 'Next',
+		'post_type'      => 'post',
+		'post_status'    => 'publish',
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'paginate'       => false,
+		'template'       => false,
+		'label_next'     => 'Next',
 		'label_previous' => 'Previous',
 	); // set defaults for wp_parse_args
 
