@@ -59,8 +59,8 @@
                     </div>
                     <h4>Other ways you can help:</h4>
                     <ul>
-                        <li><a href="http://wordpress.org/extend/plugins/page-specific-sidebars/">Rate this plugin on WordPress.org</a></li>
-                        <li><a href="http://twitter.com/home/?status=Check%20out%20the%20Page%20Specific%20Sidebar%20WordPress%20plugin%20from%20IvyCat!%20http%3A%2F%2Fbit.ly%2FOtLVlu">Tweet about this plugin</li>
+                        <li><a href="http://wordpress.org/plugins/posts-in-page/">Rate this plugin on WordPress.org</a></li>
+                        <li><a href="http://twitter.com/home/?status=Check%20out%20the%20Posts%20in%20Page%20WordPress%20plugin%20from%20IvyCat!%20http%3A%2F%2Fbit.ly%2F1bmI8pS">Tweet about this plugin</a></li>
                     </ul>
                 </div>
 			</div>
