@@ -33,12 +33,14 @@ class ICPagePosts {
 			return '';
 		$page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
 		$output = '';
-		if ( $page_posts->have_posts() ):
+		if ( $page_posts->have_posts() ) {
 			while ( $page_posts->have_posts() ):
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
 			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate', $this->paginate_links( $page_posts ) ) . '</div>' : '';
-		endif;
+		} else {
+			$output = $this->args['not_found_message'];
+		}
 		wp_reset_postdata();
 
 		remove_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ) );
@@ -153,6 +155,11 @@ class ICPagePosts {
 		if ( isset( $this->args['more_tag'] ) ) {
 			add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ), 1 );
 		}
+
+		if ( ! isset( $this->args['not_found_message'] ) ) {
+			$this->args['not_found_message'] = '';
+		}
+		$this->args['not_found_message'] = wp_kses_post( $this->args['not_found_message'] );
 
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
 
