@@ -148,7 +148,7 @@ class ICPagePosts {
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
-		if ( isset( $this->args['ignore_sticky_posts'] ) && 'no' == $this->args['ignore_sticky_posts'] ) {
+		if ( isset( $this->args['ignore_sticky_posts'] ) && 'yes' == $this->args['make_sticky_posts_sticky'] ) {
 			unset( $this->args['ignore_sticky_posts'] );
 		}
 
