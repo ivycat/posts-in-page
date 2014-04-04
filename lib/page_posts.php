@@ -148,7 +148,7 @@ class ICPagePosts {
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
-		if ( isset( $this->args['ignore_sticky_posts'] ) && 'yes' == $this->args['make_sticky_posts_sticky'] ) {
+		if ( isset( $this->args['ignore_sticky_posts'] ) && isset( $this->args['make_sticky_posts_sticky'] ) ) {
 			unset( $this->args['ignore_sticky_posts'] );
 		}
 
@@ -159,7 +159,6 @@ class ICPagePosts {
 		if ( ! isset( $this->args['not_found_message'] ) ) {
 			$this->args['not_found_message'] = '';
 		}
-		$this->args['not_found_message'] = wp_kses_post( $this->args['not_found_message'] );
 
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
 
