@@ -160,6 +160,42 @@ class ICPagePosts {
 			$this->args['not_found_message'] = '';
 		}
 
+		if ( isset( $atts['date'] ) ) {
+			if( preg_match( '`-`', $atts['date'] ) ) { 
+				$date_data = explode('-', $atts['date']);
+			} 
+			else {
+				$date_data[0] = $atts['date'];
+				$date_data[1] = 0;
+			}
+			switch( $date_data[0] ) {
+				case "today":
+					$today = getdate( time() - ( $date_data[1]*60*60*24 ) );
+					$this->args['date_query'] = array ( 
+						'year'  => $today["year"],
+						'month' => $today["mon"],
+						'day'   => $today["mday"], );
+					break;
+				case "week":
+					$week = date( 'W' ) - $date_data[1];
+					$year = date( 'Y' );
+					$this->args['date_query'] = array ( 
+						'year' => $year,
+						'week' => $week, );
+					break;
+				case "year":
+					$year = date( 'Y' ) - $date_data[1];
+					$this->args['date_query'] = array ( 
+						'year'  => $year, );					
+					break;
+				case "month":
+					$month = date ('m') - $date_data[1];
+					$this->args['date_query'] = array (
+						'monthnum' => $month,	);
+					break;
+			}
+		}
+
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
 
 	}
