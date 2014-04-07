@@ -177,7 +177,6 @@ class ICPagePosts {
 
 		if ( isset( $atts['exclude_ids'] ) ) {
 			$exclude_posts = explode(  ',', $atts['exclude_ids'] );
-			AJs_log_me($this->args);
 			if ( isset( $this->args['post__not_in'] ) ) {
 				$this->args['post__not_in'] = array_merge( $this->args['post__not_in'], $exclude_posts );	
 			} else {
@@ -220,9 +219,7 @@ class ICPagePosts {
 					break;
 			}
 		}
-		AJs_log_me($this->args);
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
-
 	}
 
 	/**
