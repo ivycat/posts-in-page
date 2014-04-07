@@ -54,10 +54,25 @@ class ICPagePosts {
 		$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
 		$total_pages = $posts->max_num_pages;
 		$per_page = $posts->query_vars['posts_per_page'];
-		$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0	) ? $posts->query_vars['paged'] : 1;
-		$prev = ( $curr_page && $curr_page > 1 ) ? '<li><a href="'.$page_url.'?page='. ( $curr_page-1 ).'">'.$this->args['label_previous'].'</a></li>' : '';
-		$next = ( $curr_page && $curr_page < $total_pages ) ? '<li><a href="'.$page_url.'?page='. ( $curr_page+1 ).'">'.$this->args['label_next'].'</a></li>' : '';
-		return '<ul>' . $prev . $next . '</ul>';
+		$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0) ? $posts->query_vars['paged'] : 1;
+		$prev = ( $curr_page && $curr_page > 1 ) ? '<a href="'.$page_url.'?page='. ( $curr_page-1 ).'">Previous</a>' : '';
+		$middle = "";
+		$page_number = 0;
+		while ( $page_number < $total_pages ) {
+			$page_number  = $page_number + 1;
+			$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0) ? $posts->query_vars['paged'] : 1;
+			If ($curr_page == $page_number) {
+				// this is the current page
+				$middle = $middle . " ".$page_number ;
+			} 
+			else {
+				$middle = $middle . " <a href=".$page_url.$page_number.">".$page_number."</a>";
+			}
+		}
+		$next = ( $curr_page && $curr_page < $total_pages ) ? ' <a href="'.$page_url.'?page='. ( $curr_page+1 ).'">Next</a>' : '';
+		$output = '<center><p>' . $prev . $middle . $next. '</p></center>';
+
+		return $output;
 	}
 
 	/**
@@ -160,6 +175,16 @@ class ICPagePosts {
 			$this->args['not_found_message'] = '';
 		}
 
+		if ( isset( $atts['exclude_ids'] ) ) {
+			$exclude_posts = explode(  ',', $atts['exclude_ids'] );
+			AJs_log_me($this->args);
+			if ( isset( $this->args['post__not_in'] ) ) {
+				$this->args['post__not_in'] = array_merge( $this->args['post__not_in'], $exclude_posts );	
+			} else {
+				$this->args['post__not_in'] = $exclude_posts;	
+			}
+		}
+
 		if ( isset( $atts['date'] ) ) {
 			if( preg_match( '`-`', $atts['date'] ) ) { 
 				$date_data = explode('-', $atts['date']);
@@ -183,19 +208,19 @@ class ICPagePosts {
 						'year' => $year,
 						'week' => $week, );
 					break;
-				case "year":
-					$year = date( 'Y' ) - $date_data[1];
-					$this->args['date_query'] = array ( 
-						'year'  => $year, );					
-					break;
 				case "month":
 					$month = date ('m') - $date_data[1];
 					$this->args['date_query'] = array (
 						'monthnum' => $month,	);
 					break;
+				case "year":
+					$year = date( 'Y' ) - $date_data[1];
+					$this->args['date_query'] = array ( 
+						'year'  => $year, );					
+					break;
 			}
 		}
-
+		AJs_log_me($this->args);
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
 
 	}
