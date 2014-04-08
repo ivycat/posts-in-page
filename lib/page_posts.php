@@ -39,7 +39,7 @@ class ICPagePosts {
 			endwhile;
 			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate', $this->paginate_links( $page_posts ) ) . '</div>' : '';
 		} else {
-			$output = $this->args['not_found_message'];
+			$output = $this->args['not_found'];
 		}
 		wp_reset_postdata();
 
@@ -163,7 +163,7 @@ class ICPagePosts {
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
-		if ( isset( $this->args['ignore_sticky_posts'] ) && isset( $this->args['make_sticky_posts_sticky'] ) ) {
+		if ( isset( $this->args['ignore_sticky_posts'] ) && isset( $this->args['make_sticky'] ) ) {
 			unset( $this->args['ignore_sticky_posts'] );
 		}
 
@@ -174,6 +174,8 @@ class ICPagePosts {
 		if ( ! isset( $this->args['not_found_message'] ) ) {
 			$this->args['not_found_message'] = '';
 		}
+		$this->args['none_found'] = '<p>'.$this->args['none_found'].'</p>';
+
 
 		if ( isset( $atts['exclude_ids'] ) ) {
 			$exclude_posts = explode(  ',', $atts['exclude_ids'] );
