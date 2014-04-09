@@ -39,7 +39,7 @@ class ICPagePosts {
 			endwhile;
 			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate', $this->paginate_links( $page_posts ) ) . '</div>' : '';
 		} else {
-			$output = $this->args['not_found'];
+			$output = $this->args['none_found'];
 		}
 		wp_reset_postdata();
 
@@ -171,8 +171,8 @@ class ICPagePosts {
 			add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ), 1 );
 		}
 
-		if ( ! isset( $this->args['not_found_message'] ) ) {
-			$this->args['not_found_message'] = '';
+		if ( ! isset( $this->args['none_found'] ) ) {
+			$this->args['none_found'] = '';
 		}
 		$this->args['none_found'] = '<p>'.$this->args['none_found'].'</p>';
 
