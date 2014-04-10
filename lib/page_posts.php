@@ -54,26 +54,12 @@ class ICPagePosts {
 		$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
 		$total_pages = $posts->max_num_pages;
 		$per_page = $posts->query_vars['posts_per_page'];
-		$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0) ? $posts->query_vars['paged'] : 1;
-		$prev = ( $curr_page && $curr_page > 1 ) ? '<a href="'.$page_url.'?page='. ( $curr_page-1 ).'">Previous</a>' : '';
-		$middle = "";
-		$page_number = 0;
-		while ( $page_number < $total_pages ) {
-			$page_number  = $page_number + 1;
-			$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0) ? $posts->query_vars['paged'] : 1;
-			If ($curr_page == $page_number) {
-				// this is the current page
-				$middle = $middle . " ".$page_number ;
-			} 
-			else {
-				$middle = $middle . " <a href=".$page_url.$page_number.">".$page_number."</a>";
-			}
-		}
-		$next = ( $curr_page && $curr_page < $total_pages ) ? ' <a href="'.$page_url.'?page='. ( $curr_page+1 ).'">Next</a>' : '';
-		$output = '<center><p>' . $prev . $middle . $next. '</p></center>';
-
-		return $output;
+		$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0	) ? $posts->query_vars['paged'] : 1;
+		$prev = ( $curr_page && $curr_page > 1 ) ? '<li><a href="'.$page_url.'?page='. ( $curr_page-1 ).'">'.$this->args['label_previous'].'</a></li>' : '';
+		$next = ( $curr_page && $curr_page < $total_pages ) ? '<li><a href="'.$page_url.'?page='. ( $curr_page+1 ).'">'.$this->args['label_next'].'</a></li>' : '';
+		return '<ul>' . $prev . $next . '</ul>';
 	}
+
 
 	/**
 	 *	Build additional Arguments for the WP_Query object
