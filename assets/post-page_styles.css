@@ -3,6 +3,11 @@
 	width: 150px;
 	float: right;
 }
+
+#posts-in-page-settings ul {
+	list-style: inherit;
+	margin-left: 1.5em; 
+}
 	  
 #side-sortables {
 	min-height: 300px;

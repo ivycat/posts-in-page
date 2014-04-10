@@ -1,0 +1,23 @@
+{
+  "name": "Posts-in-Page",
+  "version": "1.2.5",
+  "description": "Easily add one or more posts to any page using simple shortcodes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amallory/Posts-in-Page.git"
+  },
+  "author": "IvyCat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amallory/Posts-in-Page/issues"
+  },
+  "homepage": "https://github.com/amallory/Posts-in-Page",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-wp-i18n": "^0.4.3"
+  }
+}
