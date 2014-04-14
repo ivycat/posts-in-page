@@ -1,17 +1,14 @@
 {
-  "name": "Posts-in-Page",
+  "name": "posts-in-page",
   "version": "1.2.5",
   "description": "Easily add one or more posts to any page using simple shortcodes.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
+  "main": "Gruntfile.js",
+"repository": {
     "type": "git",
-    "url": "git://github.com/amallory/Posts-in-Page.git"
+    "url": "git://github.com/ivycat/Posts-in-Page.git"
   },
   "author": "IvyCat",
-  "license": "ISC",
+  "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/amallory/Posts-in-Page/issues"
   },

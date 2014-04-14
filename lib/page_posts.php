@@ -17,6 +17,7 @@ class ICPagePosts {
 		'template'       => false,
 		'label_next'     => 'Next',
 		'label_previous' => 'Previous',
+		'none_found'     => '',
 	); // set defaults for wp_parse_args
 
 	public function __construct( $atts ) {
@@ -39,7 +40,7 @@ class ICPagePosts {
 			endwhile;
 			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate', $this->paginate_links( $page_posts ) ) . '</div>' : '';
 		} else {
-			$output = $this->args['none_found'];
+			$output = '<div class="post hentry ivycat-post"><span class="pip-not-found">' . esc_html( $this->args['none_found'] ) . '</span></div>';
 		}
 		wp_reset_postdata();
 
@@ -149,19 +150,11 @@ class ICPagePosts {
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
-		if ( isset( $this->args['ignore_sticky_posts'] ) && isset( $this->args['make_sticky'] ) ) {
-			unset( $this->args['ignore_sticky_posts'] );
-		}
+		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
 
 		if ( isset( $this->args['more_tag'] ) ) {
 			add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ), 1 );
 		}
-
-		if ( ! isset( $this->args['none_found'] ) ) {
-			$this->args['none_found'] = '';
-		}
-		$this->args['none_found'] = '<p>'.$this->args['none_found'].'</p>';
-
 
 		if ( isset( $atts['exclude_ids'] ) ) {
 			$exclude_posts = explode(  ',', $atts['exclude_ids'] );
@@ -208,6 +201,16 @@ class ICPagePosts {
 			}
 		}
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
+	}
+
+	/**
+	*	Sets a shortcode boolian value to a real boolian
+	*
+	*	@return bool
+	*/
+	public function shortcode_bool( $var ) {
+		$falsey = array( 'false', '0', 'no', 'n' );
+		return ( ! $var || in_array( strtolower( $var ), $falsey ) ) ? false : true;
 	}
 
 	/**
