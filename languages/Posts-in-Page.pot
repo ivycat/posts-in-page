@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Posts in Page 1.2.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/posts_in_page\n"
-"POT-Creation-Date: 2014-04-15 01:33:01+00:00\n"
+"POT-Creation-Date: 2014-04-15 18:55:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -109,6 +109,14 @@ msgid ""
 "template files, you can drop the following WordPress function in your "
 "template files, replacing the <code>[shortcode]</code> part with your, "
 "custom shortcode."
+msgstr ""
+
+#: lib/page_posts.php:25
+msgid "Next"
+msgstr ""
+
+#: lib/page_posts.php:26
+msgid "Previous"
 msgstr ""
 
 #: posts_in_page.php:60

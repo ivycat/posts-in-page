@@ -8,20 +8,24 @@ if ( !function_exists( 'add_action' ) )
 
 class ICPagePosts {
 
-	protected $args = array(
-		'post_type'      => 'post',
-		'post_status'    => 'publish',
-		'orderby'        => 'date',
-		'order'          => 'DESC',
-		'paginate'       => false,
-		'template'       => false,
-		'label_next'     => 'Next',
-		'label_previous' => 'Previous',
-		'none_found'     => '',
-	); // set defaults for wp_parse_args
+	protected $args = array();
 
-	public function __construct( $atts ) {
-		self::set_args( $atts );
+	public function __construct() {
+		$this->set_default_args(); //set default args
+	}
+
+	protected function set_default_args() {
+		$this->args = array(
+			'post_type'      => 'post',
+			'post_status'    => 'publish',
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'paginate'       => false,
+			'template'       => false,
+			'label_next'     => __( 'Next', 'posts-in-page' ),
+			'label_previous' => __( 'Previous', 'posts-in-page' ),
+			'none_found'     => '',
+		);
 	}
 
 	/**
@@ -158,46 +162,51 @@ class ICPagePosts {
 		if ( isset( $atts['exclude_ids'] ) ) {
 			$exclude_posts = explode(  ',', $atts['exclude_ids'] );
 			if ( isset( $this->args['post__not_in'] ) ) {
-				$this->args['post__not_in'] = array_merge( $this->args['post__not_in'], $exclude_posts );	
+				$this->args['post__not_in'] = array_merge( $this->args['post__not_in'], $exclude_posts );
 			} else {
-				$this->args['post__not_in'] = $exclude_posts;	
+				$this->args['post__not_in'] = $exclude_posts;
 			}
 		}
 
+		$current_time_value = current_time( 'timestamp' );
 		if ( isset( $atts['date'] ) ) {
-			if( preg_match( '`-`', $atts['date'] ) ) { 
+			if( preg_match( '`-`', $atts['date'] ) ) {
 				$date_data = explode('-', $atts['date']);
-			} 
+			}
 			else {
 				$date_data[0] = $atts['date'];
 				$date_data[1] = 0;
 			}
 			switch( $date_data[0] ) {
 				case "today":
-					$today = getdate( current_time('timestamp') - ( $date_data[1]*60*60*24 ) );
-					$this->args['date_query'] = array ( 
+					$today = getdate( $current_time_value - ( $date_data[1] * DAY_IN_SECONDS ) );
+					$this->args['date_query'] = array (
 						'year'  => $today["year"],
 						'month' => $today["mon"],
-						'day'   => $today["mday"], );
+						'day'   => $today["mday"],
+						);
 					break;
 				case "week":
-					$week = date( 'W', current_time('timestamp') - $date_data[1]*60*60*24*7 );
-					$year = date( 'Y', current_time('timestamp') - $date_data[1]*60*60*24*7 );
-					$this->args['date_query'] = array ( 
+					$week = date( 'W', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
+					$year = date( 'Y', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
+					$this->args['date_query'] = array (
 						'year' => $year,
-						'week' => $week, );
+						'week' => $week,
+						);
 					break;
 				case "month":
-					$month = date( 'm', strtotime( ( strval( -$date_data[1] ) . ' Months' ), current_time('timestamp') ) );
-					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Months' ), current_time('timestamp') ) );
+					$month = date( 'm', strtotime( ( strval( -$date_data[1] ) . ' Months' ), $current_time_value ) );
+					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Months' ), $current_time_value ) );
 					$this->args['date_query'] = array (
 						'monthnum'	=> $month,
-						'year'		=> $year,		);
+						'year'		=> $year,
+						);
 					break;
 				case "year":
-					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Years' ), current_time('timestamp') ) );
-					$this->args['date_query'] = array ( 
-						'year'  => $year, );					
+					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Years' ), $current_time_value ) );
+					$this->args['date_query'] = array (
+						'year'  => $year,
+						);
 					break;
 			}
 		}

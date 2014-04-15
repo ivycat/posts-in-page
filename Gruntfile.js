@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 			target: {
 				options: {
 					domainPath: '/languages',
+					potFilename: 'posts-in-page.pot',
 					type: 'wp-plugin'
 					}
 				}
