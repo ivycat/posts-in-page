@@ -9,8 +9,8 @@
  *  version: 1.2.4
  *  License: GNU General Public License v2.0
  *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
- *	Text Domain: posts-in-page
- *	Domain Path: /languages
+ *  Text Domain: posts-in-page
+ *  Domain Path: /languages
 
  ------------------------------------------------------------------------
 	IvyCat Posts in Page, Copyright 2012 -2013 IvyCat, Inc. (admins@ivycat.com)
