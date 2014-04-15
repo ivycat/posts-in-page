@@ -10,8 +10,9 @@ class ICPagePosts {
 
 	protected $args = array();
 
-	public function __construct() {
+	public function __construct( $atts ) {
 		$this->set_default_args(); //set default args
+		$this::set_args( $atts );
 	}
 
 	protected function set_default_args() {
@@ -77,7 +78,8 @@ class ICPagePosts {
 		// parse the arguments using the defaults
 		$this->args = wp_parse_args( $atts, $this->args );
 		// multiple post types are indicated, pass as an array
-		if( preg_match( '`,`', $this->args['post_type'] ) ){
+		AJs_log_me($atts);
+		if( strpos( '`,`', $this->args['post_type'] ) ){
 			$post_types = explode( ',', $this->args['post_type'] );
 			$this->args['post_type'] = $post_types;
 		}
@@ -118,7 +120,7 @@ class ICPagePosts {
 		// exclude posts with certain category by name (slug)
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
-			if( preg_match( '`,`', $category ) ) { // multiple
+			if( stripos( '`,`', $category ) ) { // multiple
 				$category = explode( ',', $category );
 
 				foreach( $category AS $cat ) {
@@ -170,11 +172,8 @@ class ICPagePosts {
 
 		$current_time_value = current_time( 'timestamp' );
 		if ( isset( $atts['date'] ) ) {
-			if( preg_match( '`-`', $atts['date'] ) ) {
-				$date_data = explode('-', $atts['date']);
-			}
-			else {
-				$date_data[0] = $atts['date'];
+			$date_data = explode('-', $atts['date']);
+			if ( ! isset( $date_data[1] ) ) {
 				$date_data[1] = 0;
 			}
 			switch( $date_data[0] ) {
@@ -210,6 +209,7 @@ class ICPagePosts {
 					break;
 			}
 		}
+		AJs_log_me($this->args);
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
 	}
 
