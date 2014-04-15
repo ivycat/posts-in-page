@@ -72,7 +72,6 @@ class ICPagePosts {
 		$this->args['posts_per_page'] = get_option( 'posts_per_page' );
 		// parse the arguments using the defaults
 		$this->args = wp_parse_args( $atts, $this->args );
-
 		// multiple post types are indicated, pass as an array
 		if( preg_match( '`,`', $this->args['post_type'] ) ){
 			$post_types = explode( ',', $this->args['post_type'] );
@@ -175,26 +174,28 @@ class ICPagePosts {
 			}
 			switch( $date_data[0] ) {
 				case "today":
-					$today = getdate( time() - ( $date_data[1]*60*60*24 ) );
+					$today = getdate( current_time('timestamp') - ( $date_data[1]*60*60*24 ) );
 					$this->args['date_query'] = array ( 
 						'year'  => $today["year"],
 						'month' => $today["mon"],
 						'day'   => $today["mday"], );
 					break;
 				case "week":
-					$week = date( 'W' ) - $date_data[1];
-					$year = date( 'Y' );
+					$week = date( 'W', current_time('timestamp') - $date_data[1]*60*60*24*7 );
+					$year = date( 'Y', current_time('timestamp') - $date_data[1]*60*60*24*7 );
 					$this->args['date_query'] = array ( 
 						'year' => $year,
 						'week' => $week, );
 					break;
 				case "month":
-					$month = date ('m') - $date_data[1];
+					$month = date( 'm', strtotime( ( strval( -$date_data[1] ) . ' Months' ), current_time('timestamp') ) );
+					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Months' ), current_time('timestamp') ) );
 					$this->args['date_query'] = array (
-						'monthnum' => $month,	);
+						'monthnum'	=> $month,
+						'year'		=> $year,		);
 					break;
 				case "year":
-					$year = date( 'Y' ) - $date_data[1];
+					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Years' ), current_time('timestamp') ) );
 					$this->args['date_query'] = array ( 
 						'year'  => $year, );					
 					break;

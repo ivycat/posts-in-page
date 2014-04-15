@@ -30,7 +30,7 @@
 					<li><code>[ic_add_posts ignore_sticky_posts='no']</code> - <?php _e( "Show sticky posts too (they're ignored by default)", 'posts-in-page' ); ?></li>
 					<li><code>[ic_add_posts paginate='yes']</code> - <?php _e( 'use pagination links (off by default)', 'posts-in-page' ); ?></li>
 					<li><code>[ic_add_posts offset='3']</code> - <?php _e( 'Display posts from the 4th one', 'posts-in-page' ); ?></li>
-					<li><code>[ic_add_posts Date='today']</code> - <?php _e( "Show's post from today, 'today-1' show's posts from yesterday, 'today-2' two days ago, etc. Also 'week(-n)' shows posts from n weeks ago. Also available 'month(-n)'  and 'year(-n)'", 'posts-in-page' ); ?></li>
+					<li><code>[ic_add_posts Date='today']</code> - <?php _e( "Show's post associated (published) on specified date period, today, 'today-1' show's posts published yesterday, 'today-2' shows posts published two days ago, etc. Also 'week(-n)' shows posts n weeks ago. Also available 'month(-n)' and 'year(-n)'", 'posts-in-page' ); ?></li>
 					<li><code>[ic_add_posts exclude_ids='25,15']</code> - <?php _e( 'exclude by post ID one or more.', 'posts-in-page' ); ?></li>
 					<li><code>[ic_add_posts none_found='No Posts Found']</code> - <?php _e( 'Custom message to display if no posts are found', 'posts-in-page' ); ?></li>
 				</ul>
