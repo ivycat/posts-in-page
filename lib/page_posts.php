@@ -12,7 +12,7 @@ class ICPagePosts {
 
 	public function __construct( $atts ) {
 		$this->set_default_args(); //set default args
-		$this::set_args( $atts );
+		$this->set_args( $atts );
 	}
 
 	protected function set_default_args() {
