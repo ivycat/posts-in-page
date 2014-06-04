@@ -8,19 +8,25 @@ if ( !function_exists( 'add_action' ) )
 
 class ICPagePosts {
 
-	protected $args = array(
-		'post_type'      => 'post',
-		'post_status'    => 'publish',
-		'orderby'        => 'date',
-		'order'          => 'DESC',
-		'paginate'       => false,
-		'template'       => false,
-		'label_next'     => 'Next',
-		'label_previous' => 'Previous',
-	); // set defaults for wp_parse_args
+	protected $args = array();
 
 	public function __construct( $atts ) {
-		self::set_args( $atts );
+		$this->set_default_args(); //set default args
+		$this->set_args( $atts );
+	}
+
+	protected function set_default_args() {
+		$this->args = array(
+			'post_type'      => 'post',
+			'post_status'    => 'publish',
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'paginate'       => false,
+			'template'       => false,
+			'label_next'     => __( 'Next', 'posts-in-page' ),
+			'label_previous' => __( 'Previous', 'posts-in-page' ),
+			'none_found'     => '',
+		);
 	}
 
 	/**
@@ -33,12 +39,14 @@ class ICPagePosts {
 			return '';
 		$page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
 		$output = '';
-		if ( $page_posts->have_posts() ):
+		if ( $page_posts->have_posts() ) {
 			while ( $page_posts->have_posts() ):
 			$output .= self::add_template_part( $page_posts );
 			endwhile;
 			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate', $this->paginate_links( $page_posts ) ) . '</div>' : '';
-		endif;
+		} else {
+			$output = '<div class="post hentry ivycat-post"><span class="pip-not-found">' . esc_html( $this->args['none_found'] ) . '</span></div>';
+		}
 		wp_reset_postdata();
 
 		remove_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ) );
@@ -58,6 +66,7 @@ class ICPagePosts {
 		return '<ul>' . $prev . $next . '</ul>';
 	}
 
+
 	/**
 	 *	Build additional Arguments for the WP_Query object
 	 *
@@ -68,9 +77,8 @@ class ICPagePosts {
 		$this->args['posts_per_page'] = get_option( 'posts_per_page' );
 		// parse the arguments using the defaults
 		$this->args = wp_parse_args( $atts, $this->args );
-
 		// multiple post types are indicated, pass as an array
-		if( preg_match( '`,`', $this->args['post_type'] ) ){
+		if ( strpos( ',', $this->args['post_type'] ) ) {
 			$post_types = explode( ',', $this->args['post_type'] );
 			$this->args['post_type'] = $post_types;
 		}
@@ -111,7 +119,7 @@ class ICPagePosts {
 		// exclude posts with certain category by name (slug)
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
-			if( preg_match( '`,`', $category ) ) { // multiple
+			if( strpos( ',', $category ) ) { // multiple
 				$category = explode( ',', $category );
 
 				foreach( $category AS $cat ) {
@@ -146,16 +154,71 @@ class ICPagePosts {
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
-		if ( ! isset( $this->args['ignore_sticky_posts'] ) ) {
-			$this->args['post__not_in'] = get_option( 'sticky_posts' );
-		}
+		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
 
 		if ( isset( $this->args['more_tag'] ) ) {
 			add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ), 1 );
 		}
 
-		$this->args = apply_filters( 'posts_in_page_args', $this->args );
+		if ( isset( $atts['exclude_ids'] ) ) {
+			$exclude_posts = explode(  ',', $atts['exclude_ids'] );
+			if ( isset( $this->args['post__not_in'] ) ) {
+				$this->args['post__not_in'] = array_merge( $this->args['post__not_in'], $exclude_posts );
+			} else {
+				$this->args['post__not_in'] = $exclude_posts;
+			}
+		}
 
+		$current_time_value = current_time( 'timestamp' );
+		if ( isset( $atts['date'] ) ) {
+			$date_data = explode( '-', $atts['date'] );
+			if ( ! isset( $date_data[1] ) ) {
+				$date_data[1] = 0;
+			}
+			switch( $date_data[0] ) {
+				case "today":
+					$today = getdate( $current_time_value - ( $date_data[1] * DAY_IN_SECONDS ) );
+					$this->args['date_query'] = array (
+						'year'  => $today["year"],
+						'month' => $today["mon"],
+						'day'   => $today["mday"],
+						);
+					break;
+				case "week":
+					$week = date( 'W', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
+					$year = date( 'Y', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
+					$this->args['date_query'] = array (
+						'year' => $year,
+						'week' => $week,
+						);
+					break;
+				case "month":
+					$month = date( 'm', strtotime( ( strval( -$date_data[1] ) . ' Months' ), $current_time_value ) );
+					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Months' ), $current_time_value ) );
+					$this->args['date_query'] = array (
+						'monthnum'	=> $month,
+						'year'		=> $year,
+						);
+					break;
+				case "year":
+					$year = date( 'Y', strtotime( ( strval( -$date_data[1] ) . ' Years' ), $current_time_value ) );
+					$this->args['date_query'] = array (
+						'year'  => $year,
+						);
+					break;
+			}
+		}
+		$this->args = apply_filters( 'posts_in_page_args', $this->args );
+	}
+
+	/**
+	*	Sets a shortcode boolian value to a real boolian
+	*
+	*	@return bool
+	*/
+	public function shortcode_bool( $var ) {
+		$falsey = array( 'false', '0', 'no', 'n' );
+		return ( ! $var || in_array( strtolower( $var ), $falsey ) ) ? false : true;
 	}
 
 	/**
