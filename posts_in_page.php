@@ -9,6 +9,8 @@
  *  version: 1.2.4
  *  License: GNU General Public License v2.0
  *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ *  Text Domain: posts-in-page
+ *  Domain Path: /languages
 
  ------------------------------------------------------------------------
 	IvyCat Posts in Page, Copyright 2012 -2013 IvyCat, Inc. (admins@ivycat.com)
@@ -47,6 +49,7 @@ class ICAddPostsToPage {
 		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page' ) );
 		add_action( 'admin_menu', array( &$this, 'plugin_page_init' ) );
 		add_filter( 'plugin_action_links_'. plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links' ), 10, 4 );
+		load_plugin_textdomain( 'posts-in-page', false, dirname( plugin_basename( __FILE__ ) ). '/languages' );
 	}
 
 	/**
@@ -54,7 +57,7 @@ class ICAddPostsToPage {
 	 */
 	public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
 		if ( is_plugin_active( $plugin_file ) )
-			$actions[] = '<a href="' . admin_url('options-general.php?page=posts_in_page') . '">' . __( ' Help', 'posts_in_page' ) . '</a>';
+			$actions[] = '<a href="' . admin_url('options-general.php?page=posts_in_page') . '">' . __( ' Help', 'posts-in-page' ) . '</a>';
 		return apply_filters( 'post_in_page_actions', $actions );
 	}
 
@@ -85,7 +88,7 @@ class ICAddPostsToPage {
 			return;
 
 		$hooks = array( );
-		$hooks[] = add_options_page( __( 'Posts In Page' ), __( 'Posts In Page' ), 'read', 'posts_in_page', 
+		$hooks[] = add_options_page( __( 'Posts In Page', 'posts-in-page' ) , __( 'Posts In Page', 'posts-in-page' ), 'read', 'posts_in_page', 
 			array( $this, 'plugin_page' ) );
 
 		foreach ( $hooks as $hook ) {
@@ -97,8 +100,8 @@ class ICAddPostsToPage {
 	 * Enqueue plugin assets (scripts & styles)
 	 */
 	public function load_assets( ) {
-		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. '/assets/post-page_styles.css' );
-		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. '/assets/post-page_scripts.js' );
+		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. 'assets/post-page_styles.css' );
+		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. 'assets/post-page_scripts.js' );
 	}
 
 	/**
