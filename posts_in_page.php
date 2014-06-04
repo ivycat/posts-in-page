@@ -1,32 +1,19 @@
 <?php
-
 /**
- *  Plugin Name: Posts in Page
- *  Plugin URI: http://www.ivycat.com/wordpress/wordpress-plugins/posts-in-page/
- *  Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
- *  Author: IvyCat Web Services
- *  Author URI: http://www.ivycat.com
- *  version: 1.2.4
- *  License: GNU General Public License v2.0
- *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
-
- ------------------------------------------------------------------------
-	IvyCat Posts in Page, Copyright 2012 -2013 IvyCat, Inc. (admins@ivycat.com)
-
-	This program is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation; either version 2 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
+ * Plugin Name: Posts in Page
+ * Plugin URI: http://www.ivycat.com/wordpress/wordpress-plugins/posts-in-page/
+ * Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
+ * Version: 1.3.0
+ * Author: IvyCat, Inc
+ * Author URI: http://www.ivycat.com
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: posts-in-page
+ *
+ * @package PostsInPage
+ * @author Eric Amundson <eric@ivycat.com>
+ * @copyright Copyright (c) 2014, IvyCat, Inc.
+ * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( !function_exists( 'add_action' ) )
