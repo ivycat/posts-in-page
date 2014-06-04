@@ -124,7 +124,7 @@ msgid " Help"
 msgstr ""
 
 #: posts_in_page.php:91
-msgid "Posts In Page"
+msgid "Posts in Page"
 msgstr ""
 
 #: posts_loop_template.php:18

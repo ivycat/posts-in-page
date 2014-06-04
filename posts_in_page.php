@@ -75,7 +75,7 @@ class ICAddPostsToPage {
 			return;
 
 		$hooks = array( );
-		$hooks[] = add_options_page( __( 'Posts In Page', 'posts-in-page' ) , __( 'Posts In Page', 'posts-in-page' ), 'read', 'posts_in_page', 
+		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ) , __( 'Posts In Page', 'posts-in-page' ), 'read', 'posts_in_page', 
 			array( $this, 'plugin_page' ) );
 
 		foreach ( $hooks as $hook ) {
