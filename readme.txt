@@ -1,5 +1,5 @@
 === Posts in Page ===
-Contributors: ivycat, sewmyheadon, jasonm4563, bradyvercher, gehidore, dgilfoy
+Contributors: ivycat, sewmyheadon, jasonm4563, pjackson1972, anne-p, gehidore, dgilfoy
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
 Tested up to: 3.9.1
