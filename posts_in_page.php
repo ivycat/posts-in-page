@@ -86,15 +86,15 @@ class ICAddPostsToPage {
 	 * Enqueue plugin assets (scripts & styles)
 	 */
 	public function load_assets( ) {
-		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. 'assets/post-page_styles.css' );
-		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. 'assets/post-page_scripts.js' );
+		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. 'admin/assets/css/post-page_styles.css' );
+		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. 'admin/assets/js/post-page_scripts.js' );
 	}
 
 	/**
 	 * Plugin Settings page - includes view for the page
 	 */
 	public function plugin_page( ) {
-		require_once 'assets/posts-in-page-help-view.php';
+		require_once 'admin/views/help-main.php';
 	}
 
 }
