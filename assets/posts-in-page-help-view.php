@@ -62,57 +62,57 @@
 							<td><?php _e( 'limit number of posts (or override default setting)', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Change post order </td>
 							<td><code>[ic_add_posts orderby='title' order='ASC']</code></td>
 							<td><?php _e( 'orderby title - supports all WP orderby variables.  Order is optional, WP default', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Specify categories</td>
 							<td><code>[ic_add_posts category='category-slug']</code></td>
 							<td><?php _e( 'Show posts within a specific category.  Uses slugs, can have multiple but separate by commas.      category-1,category2, etc (no spaces.)', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Specify tags</td>
 							<td><code>[ic_add_posts tag='tag-slug']</code></td>
 							<td><?php _e( 'Show posts using a specific tag.  Like categories, it uses slugs, and can accommodate multiple tags separate by commas.     tag-1,tag-2, etc (no spaces.)', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Specify custom taxonomy</td>
 							<td><code>[ic_add_posts tax='taxonomy' term='term']</code></td>
 							<td><?php _e( 'limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Change output template</td>
 							<td><code>[ic_add_posts template='template-in-theme-dir.php']</code></td>
 							<td><?php _e( 'In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory.', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Sticky posts</td>
 							<td><code>[ic_add_posts ignore_sticky_posts='no']</code></td>
 							<td><?php _e( "Show sticky posts too (they're ignored by default)", 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Pagination</td>
 							<td><code>[ic_add_posts paginate='yes']</code></td>
 							<td><?php _e( 'use pagination links (off by default)', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Post offset</td>
 							<td><code>[ic_add_posts offset='3']</code></td>
 							<td><?php _e( 'Display posts from the 4th one', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Dates</td>
 							<td><code>[ic_add_posts Date='today']</code></td>
 							<td><?php _e( "Show's post associated (published) on specified date period, today, 'today-1' show's posts published yesterday, 'today-2' shows posts published two days ago, etc. Also 'week(-n)' shows posts n weeks ago. Also available 'month(-n)' and 'year(-n)'", 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Post IDs</td>
 							<td><code>[ic_add_posts exclude_ids='25,15']</code></td>
 							<td><?php _e( 'exclude by post ID one or more.', 'posts-in-page' ); ?></td>
 						</tr>
 						<tr>
-							<td> </td>
+							<td>Custom error message</td>
 							<td><code>[ic_add_posts none_found='No Posts Found']</code></td>
 							<td><?php _e( 'Custom message to display if no posts are found', 'posts-in-page' ); ?></td>
 					</tbody>
