@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  Plugin Name: Posts in Page
  *  Plugin URI: http://www.ivycat.com/wordpress/wordpress-plugins/posts-in-page/
@@ -12,7 +11,7 @@
  *  Text Domain: posts-in-page
  *  Domain Path: /languages
  *  
- * @package PostsInPage
+ * @package Posts_in_Page
  * @author Eric Amundson <eric@ivycat.com>
  * @copyright Copyright (c) 2014, IvyCat, Inc.
  * @license http://www.gnu.org/licenses/gpl-2.0.html
@@ -75,7 +74,7 @@ class ICAddPostsToPage {
 			return;
 
 		$hooks = array( );
-		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ) , __( 'Posts In Page', 'posts-in-page' ), 'read', 'posts_in_page', 
+		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ) , __( 'Posts in Page', 'posts-in-page' ), 'read', 'posts_in_page', 
 			array( $this, 'plugin_page' ) );
 
 		foreach ( $hooks as $hook ) {
@@ -95,7 +94,7 @@ class ICAddPostsToPage {
 	 * Plugin Settings page - includes view for the page
 	 */
 	public function plugin_page( ) {
-		require_once 'assets/posts_in_page_help_view.php';
+		require_once 'assets/posts-in-page-help-view.php';
 	}
 
 }

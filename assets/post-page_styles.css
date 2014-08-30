@@ -36,13 +36,13 @@
 	width: 27px;
 }
 .postbox h3 {
-	font-size: 15px;
+	//font-size: 15px;
 	font-weight: normal;
 	line-height: 1;
 	margin: 0;
 	padding: 7px 10px;
 	color: #464646;
-	font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+	//font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
 	text-shadow: 0 1px 0 #FFFFFF;
 	background-color: #F1F1F1;
 	background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
@@ -50,7 +50,7 @@
 	box-shadow: 0 1px 0 #FFFFFF;
 }
 .postbox h4 {
-	font-size: 14px;
+	//font-size: 14px;
 	font-weight: bold;
 	line-height: 1;
 	margin: 0;
@@ -72,7 +72,8 @@
 .postbox .inside_wrap ul,
 .postbox .inside_wrap p {
 	margin-top:0;
-	font-size:13px;margin-bottom:0.7em;
+	font-size:13px;
+	margin-bottom:0.7em;
 }
 .postbox .inside_wrap ul {
 	list-style:disc;
@@ -144,7 +145,6 @@
 	font-weight: bold;
 }
 #posts-in-page-settings #body-wrap{
-	width: 55%;
 	float:left;
 }
 #posts-in-page-settings #sidebar-wrap{
@@ -164,7 +164,7 @@
 	padding: 10px;
 }
 #posts-in-page-settings .help{
-	margin-top: 20px;
+	//margin-top: 20px;
 	padding: 10px;
 }
 .clearfix:before, .clearfix:after {
