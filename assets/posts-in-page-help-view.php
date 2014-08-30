@@ -1,3 +1,12 @@
+<?php
+/**
+ * @package Posts_in_Page
+ * @author Eric Amundson <eric@ivycat.com>
+ * @copyright Copyright (c) 2014, IvyCat, Inc.
+ * @license http://www.gnu.org/licenses/gpl-2.0.html
+ */ 
+?>
+
 <div class="wrap" id="posts-in-page-settings">
 	<div id="icon-options-general" class="icon32"></div>
 	<h2>Posts in Page</h2>

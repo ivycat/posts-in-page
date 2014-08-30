@@ -1,3 +1,11 @@
+<?php
+/**
+ * @package Posts_in_Page
+ * @author Eric Amundson <eric@ivycat.com>
+ * @copyright Copyright (c) 2014, IvyCat, Inc.
+ * @license http://www.gnu.org/licenses/gpl-2.0.html
+ */ 
+?>
 <div id="side-sortables" class="meta-box-sortables ui-sortable">
     
     <div class="meta-box-sortables" style="min-height: 0">
