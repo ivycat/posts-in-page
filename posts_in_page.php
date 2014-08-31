@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  Plugin Name: Posts in Page
  *  Plugin URI: http://www.ivycat.com/wordpress/wordpress-plugins/posts-in-page/
@@ -12,7 +11,7 @@
  *  Text Domain: posts-in-page
  *  Domain Path: /languages
  *  
- * @package PostsInPage
+ * @package Posts_in_Page
  * @author Eric Amundson <eric@ivycat.com>
  * @copyright Copyright (c) 2014, IvyCat, Inc.
  * @license http://www.gnu.org/licenses/gpl-2.0.html
@@ -27,7 +26,7 @@ if ( ! defined( 'POSTSPAGE_DIR' ) )
 if ( ! defined( 'POSTPAGE_URL' ) )
 	define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
 
-require_once 'lib/page_posts.php';
+require_once 'includes/class-page-posts.php';
 
 class ICAddPostsToPage {
 
@@ -75,7 +74,7 @@ class ICAddPostsToPage {
 			return;
 
 		$hooks = array( );
-		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ) , __( 'Posts In Page', 'posts-in-page' ), 'read', 'posts_in_page', 
+		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ) , __( 'Posts in Page', 'posts-in-page' ), 'read', 'posts_in_page', 
 			array( $this, 'plugin_page' ) );
 
 		foreach ( $hooks as $hook ) {
@@ -87,15 +86,15 @@ class ICAddPostsToPage {
 	 * Enqueue plugin assets (scripts & styles)
 	 */
 	public function load_assets( ) {
-		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. 'assets/post-page_styles.css' );
-		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. 'assets/post-page_scripts.js' );
+		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. 'admin/assets/css/post-page_styles.css' );
+		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. 'admin/assets/js/post-page_scripts.js' );
 	}
 
 	/**
 	 * Plugin Settings page - includes view for the page
 	 */
 	public function plugin_page( ) {
-		require_once 'assets/posts_in_page_help_view.php';
+		require_once 'admin/views/help-main.php';
 	}
 
 }

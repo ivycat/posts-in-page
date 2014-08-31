@@ -21,8 +21,7 @@
 		<?php endif; ?>
 		<?php
 			$tags_list = get_the_tag_list( '', ', ' );
-			if ( $tags_list ):
-		?>
+			if ( $tags_list ):	?>
 			<span class="tag-links">
 				<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'posts-in-page' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
 			</span>
