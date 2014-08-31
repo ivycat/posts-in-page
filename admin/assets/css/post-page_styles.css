@@ -14,6 +14,9 @@
 	padding: 0;
 	color: #333;
 }
+.meta-box-sortables {
+	
+}
 .postbox {
 	background-color: #F5F5F5;
 	background-image: -moz-linear-gradient(center top , #F9F9F9, #F5F5F5);
@@ -105,19 +108,19 @@
 	margin:0 12px;
 }
 .postbox .ivy_social li.ic_fb a {
-	background: url("facebook.png") no-repeat top left;
+	background: url("../images/facebook.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_tw a {
-	background: url("twitter.png") no-repeat top left;
+	background: url("../images/twitter.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_li a { 
-	background: url("linkedin.png") no-repeat top left;
+	background: url("../images/linkedin.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_mc a {
-	background: url("email.png") no-repeat top left;
+	background: url("../images/email.png") no-repeat top left;
 }
 .postbox .ivy_social li.ic_rss a {
-	background: url("feed.png") no-repeat top left;
+	background: url("../images/feed.png") no-repeat top left;
 }
 #body-wrap inside {
 	padding: 10px;
@@ -155,10 +158,6 @@
 	}
 .clearfix {
 	*zoom: 1;
-	}
-#ivycat_donate form input[type="image"] {
-	margin:0 auto;
-	display:block;
 	}
 
 /* MailChimp Form Embed Code - Slim - 08/17/2011 */
