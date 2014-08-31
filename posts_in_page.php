@@ -26,7 +26,7 @@ if ( ! defined( 'POSTSPAGE_DIR' ) )
 if ( ! defined( 'POSTPAGE_URL' ) )
 	define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
 
-require_once 'lib/page_posts.php';
+require_once 'includes/class-page-posts.php';
 
 class ICAddPostsToPage {
 

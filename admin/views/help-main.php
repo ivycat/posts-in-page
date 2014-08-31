@@ -126,6 +126,6 @@
 			<pre><code>&lt;?php echo do_shortcode("[shortcode]"); ?&gt;</code></pre>
 		</div> <!-- / .help -->
 	<div id="sidebar-wrap">
-		<?php require_once 'desc.php'; ?>
+		<?php require_once 'help-secondary.php'; ?>
 	</div>
 </div>
