@@ -8,6 +8,7 @@
 
 	<!-- This is the output of the EXCERPT -->
 	<div class="entry-summary">
+		<!-- To display full content including images and html, rather than just an excerpt, replace the_excerpt(); with the_content();  below. -->
 		<?php the_excerpt(); ?>
 	</div>
 
