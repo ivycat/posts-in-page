@@ -1,8 +1,8 @@
 === Posts in Page ===
-Contributors: ivycat, sewmyheadon, jasonm4563, bradyvercher, gehidore, dgilfoy
+Contributors: ivycat, sewmyheadon, jasonm4563, pjackson1972, anne-p, gehidore, dgilfoy
 Tags: shortcode, pages, posts, custom post types
 Requires at least: 3.0
-Tested up to: 3.9.1
+Tested up to: 4.0
 Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

@@ -12,15 +12,14 @@
 #side-sortables {
 	min-height: 300px;
 	padding: 0;
-	width: 280px;
-	color: #333333;
+	color: #333;
 }
 .postbox {
 	background-color: #F5F5F5;
 	background-image: -moz-linear-gradient(center top , #F9F9F9, #F5F5F5);
 	border-color: #DFDFDF;
 	border-radius: 3px 3px 3px 3px;
-	box-shadow: 0 1px 0 #FFFFFF inset;
+	box-shadow: 0 1px 0 #FFF inset;
 	min-width: 255px;
 	position: relative;
 	border-style: solid;
@@ -36,28 +35,23 @@
 	width: 27px;
 }
 .postbox h3 {
-	font-size: 15px;
-	font-weight: normal;
 	line-height: 1;
 	margin: 0;
 	padding: 7px 10px;
 	color: #464646;
-	font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
-	text-shadow: 0 1px 0 #FFFFFF;
+	text-shadow: 0 1px 0 #FFF;
 	background-color: #F1F1F1;
 	background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
 	border-bottom-color: #DFDFDF;
-	box-shadow: 0 1px 0 #FFFFFF;
+	box-shadow: 0 1px 0 #FFF;
 }
 .postbox h4 {
-	font-size: 14px;
-	font-weight: bold;
 	line-height: 1;
 	margin: 0;
 	padding: 7px 0;
 	color: #464646;
 	text-align: left;
-	text-shadow: 0 1px 0 #FFFFFF;
+	text-shadow: 0 1px 0 #FFF;
 }
 .postbox .inside {
 	margin: 6px 0 8px;
@@ -72,7 +66,8 @@
 .postbox .inside_wrap ul,
 .postbox .inside_wrap p {
 	margin-top:0;
-	font-size:13px;margin-bottom:0.7em;
+	/*font-size:13px;*/
+	margin-bottom:0.7em;
 }
 .postbox .inside_wrap ul {
 	list-style:disc;
@@ -86,7 +81,7 @@
 }
 .postbox ul li.img{
 	text-align: center;
-	background: #ffffff;
+	background: #FFF;
 	padding: 10px 0 ;
 }
 .postbox a{
@@ -124,9 +119,6 @@
 .postbox .ivy_social li.ic_rss a {
 	background: url("feed.png") no-repeat top left;
 }
-#body-wrap { 
-	margin-top: 25px;
-}
 #body-wrap inside {
 	padding: 10px;
 }
@@ -136,37 +128,25 @@
 #body-wrap .hndle{
 	margin-bottom: 10px;
 }
-#body-wrap .hndle a{   
-	font-size: 18px;
-}
 #body-wrap .hndle li.current-menu-tab a{   
 	font-size: 21px;
 	font-weight: bold;
 }
 #posts-in-page-settings #body-wrap{
-	width: 55%;
 	float:left;
 }
 #posts-in-page-settings #sidebar-wrap{
-	width: 35%;
 	float:left;
-	margin: 25px 0 0 20px;
 }
 #posts-in-page-settings .top-menu{
 	width: 100%;
 }
-
 #posts-in-page-settings .top-menu li{
 	margin-bottom: 0px;
 	text-align: center;
 }
-#posts-in-page-settings .settings{
-	padding: 10px;
-}
-#posts-in-page-settings .help{
-	margin-top: 20px;
-	padding: 10px;
-}
+
+/* Clearfix */
 .clearfix:before, .clearfix:after {
 	content: ""; display: table;
 	}
@@ -201,7 +181,7 @@
 	border-color:#333;
 }
 #mc_embed_signup .button {
-	clear:both; background-color: #aaa; border: 0 none; border-radius:4px; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: bold; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding:0; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto;
+	clear:both; background-color: #aaa; border: 0 none; border-radius:4px; color: #FFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: bold; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding:0; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto;
 	}
 #mc_embed_signup .button:hover {
 	background-color:#777;
@@ -235,5 +215,3 @@
 #mc_embed_signup label.error {
 	display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;
 	}
-
-
