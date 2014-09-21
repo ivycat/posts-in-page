@@ -150,8 +150,11 @@ class ICPagePosts {
 			$this->args['paged'] = $wp_query->query_vars['page'];
 		}
 
-		if ( ! isset( $this->args['ignore_sticky_posts'] ) ) {
-			$this->args['post__not_in'] = get_option( 'sticky_posts' );
+		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
+                        ( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
+                            strtolower( $this->args['ignore_sticky_posts'] ) === 'false') ) ){
+                    
+                    $this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
 		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
