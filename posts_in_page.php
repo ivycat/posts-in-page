@@ -1,11 +1,11 @@
 <?php
 /**
  *  Plugin Name: Posts in Page
- *  Plugin URI: http://www.ivycat.com/wordpress/wordpress-plugins/posts-in-page/
+ *  Plugin URI: https://ivycat.com/wordpress/wordpress-plugins/posts-in-page/
  *  Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
  *  Version: 1.3.0
  *  Author: IvyCat, Inc.
- *  Author URI: http://www.ivycat.com
+ *  Author URI: https://ivycat.com
  *  License: GNU General Public License v2.0
  *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
  *  Text Domain: posts-in-page
@@ -13,7 +13,7 @@
  *  
  * @package Posts_in_Page
  * @author Eric Amundson <eric@ivycat.com>
- * @copyright Copyright (c) 2014, IvyCat, Inc.
+ * @copyright Copyright (c) 2017, IvyCat, Inc.
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 

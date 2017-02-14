@@ -1,8 +1,8 @@
 # Posts in Page #
-**Contributors:** ivycat, sewmyheadon, jasonm4563, pjackson1972, anne-p, gehidore, dgilfoy  
+**Contributors:** ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
 **Tags:** shortcode, pages, posts, custom post types  
 **Requires at least:** 3.0  
-**Tested up to:** 4.0  
+**Tested up to:** 4.7.2  
 **Stable tag:** 1.3.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -17,11 +17,9 @@ Supports categories, tags, custom post types, custom taxonomies, and more.
 
 You can get all of the same functionality provided by this plugin by modifying your theme's template files; this plugin just makes it easy for anyone to _pull_ posts into other areas of the site without having to modify theme files.
 
-Plugin is depending upon your theme's styling; version 1.x of this plugin _does not_ contain native styles. 
+This is a minimal plugin, function over form. Plugin is theme-agnostic and depends upon your theme's styling; version 1.x of this plugin _does not_ contain native styles. 
 
-This is a minimal plugin, function over form.  If you would like to extend it, or would like us to extend it in later versions, please post feature suggestions in the plugin's [support forum](http://wordpress.org/support/plugin/posts-in-page) or [contact us](http://www.ivycat.com/contact/).
-
-Give us feedback and contribute to this plugin on its [GitHub page](https://github.com/ivycat/Posts-in-Page)
+If you would like to extend it, or would like us to extend it in later versions, please post feature suggestions in the plugin's [support forum](https://wordpress.org/support/plugin/posts-in-page) or on its [GitHub page](https://github.com/ivycat/Posts-in-Page).
 
 ## Installation ##
 
@@ -36,8 +34,8 @@ You can install from within WordPress using the Plugin/Add New feature, or if yo
 
 To 'pull' posts into a page, you can either:
 
-1. place a shortcode in the editor window of the page you're editing, or 
-1. modify a theme template file using the shortcode in a PHP function.
+1. Place a shortcode in the editor window of the page you're editing, or 
+1. Modify a theme template file using the shortcode in a PHP function.
 
 #### Using Shortcodes in the WordPress editor
 
@@ -116,11 +114,11 @@ Absolutely.
 ### How about with custom taxonomies?
 
 You bet.
-###
+
 ### Will it make me coffee?
 
 Not likely, but let us know if it does; then we'll know we have something special.
-###
+
 ## Screenshots ##
 
 ###1. Embed a shortcode into a page and it will automatically pull in the post(s) you need.###
@@ -131,6 +129,11 @@ Not likely, but let us know if it does; then we'll know we have something specia
 
 
 ## Changelog ##
+
+### 1.3.0 ###
+* file reorganization
+* Admin UI cleanup
+* Security: Fixed directory traversal vulnerability
 
 ### 1.2.4 ###
 * now you can set `more_tag=""` to remove the `[...] &hellip;` that unfortunetly shows up as `&hellip`
@@ -180,6 +183,9 @@ Not likely, but let us know if it does; then we'll know we have something specia
 * Added single post or specific post capabilities.
 
 ## Upgrade Notice ##
+
+### 1.3.0 ###
+*** Security and bug fix update. Recommend updating ASAP.
 
 ### 1.2.4 ###
 *** Presentational fixes:** clean up whitespace, extra tabs, add in customization of more tag.  
