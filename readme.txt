@@ -19,7 +19,7 @@ You can get all of the same functionality provided by this plugin by modifying y
 
 Plugin is depending upon your theme's styling; version 1.x of this plugin _does not_ contain native styles. 
 
-This is a minimal plugin, function over form.  If you would like to extend it, or would like us to extend it in later versions, please post feature suggestions in the plugin's [support forum](http://wordpress.org/support/plugin/posts-in-page) or [contact us](http://www.ivycat.com/contact/).
+This is a minimal plugin, function over form.  If you would like to extend it, or would like us to extend it in later versions, please post feature suggestions in the plugin's [support forum](https://wordpress.org/support/plugin/posts-in-page) or [contact us](https://ivycat.com/contact/).
 
 Give us feedback and contribute to this plugin on its [GitHub page](https://github.com/ivycat/Posts-in-Page)
 

@@ -2,7 +2,7 @@
 /**
  * @package Posts_in_Page
  * @author Eric Amundson <eric@ivycat.com>
- * @copyright Copyright (c) 2014, IvyCat, Inc.
+ * @copyright Copyright (c) 2017, IvyCat, Inc.
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */ 
 ?>
@@ -14,7 +14,7 @@
 			<div class="inside">
 				<div class="inside_wrap">
 					<h4>Questions, bugs, or great ideas?</h4>
-					<p><a href="http://wordpress.org/support/plugin/posts-in-page">Visit our plugin support page</a>.</p>
+					<p><a href="https://wordpress.org/support/plugin/posts-in-page">Visit our plugin support page</a>.</p>
 				</div>
 			</div>
 		</div>
@@ -74,11 +74,11 @@
 		</h3>
 		<div class="inside">
 			<div class="inside_wrap">
-				<h4><a href="http://www.ivycat.com/contact/">Contact us</a> if you need:</h4>
+				<h4><a href="https://ivycat.com/contact/">Contact us</a> if you need:</h4>
 				<ul class="link-list">
-					<li><a href="http://www.ivycat.com/hosting/web-hosting">WordPress Hosting</a></li>
-					<li><a href="http://www.ivycat.com/wordpress/wordpress-support-maintenance/">WordPress Maintenance &amp; Support</a></li>
-					<li><a href="http://www.ivycat.com/hosting/web-hosting">WordPress Development</a></li>
+					<li><a href="https://ivycat.com/hosting/web-hosting">WordPress Hosting</a></li>
+					<li><a href="https://ivycat.com/wordpress/wordpress-support-maintenance/">WordPress Maintenance &amp; Support</a></li>
+					<li><a href="https://ivycat.com/hosting/web-hosting">WordPress Development</a></li>
 				</ul>
 			</div>
 		 </div>
