@@ -92,6 +92,11 @@
 						<td><?php _e( "Show sticky posts too (they're ignored by default)", 'posts-in-page' ); ?></td>
 					</tr>
 					<tr>
+						<td>Post status</td>
+						<td><code>[ic_add_posts post_status='private']</code></td>
+						<td><?php _e( "Show posts with the specified status(es); the default is to only show posts with status 'publish'.  To choose more than one status, separate them with commas.  For example: <code>post_status='private,publish'</code>.", 'posts-in-page' ); ?></td>
+					</tr>
+					<tr>
 						<td>Pagination</td>
 						<td><code>[ic_add_posts paginate='yes']</code></td>
 						<td><?php _e( 'use pagination links (off by default)', 'posts-in-page' ); ?></td>

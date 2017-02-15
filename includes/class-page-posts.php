@@ -116,6 +116,11 @@ class ICPagePosts {
 			$this->args['tag'] = $atts['tag'];
 		}
 
+        // override default post_type argument ('publish')
+        if ( isset( $atts['post_status'] ) ) {
+            $this->args['post_status'] = $atts['post_status'];
+        }
+
 		// exclude posts with certain category by name (slug)
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
