@@ -228,10 +228,10 @@ class ICPagePosts {
 	}
 
 	/**
-	*	Sets a shortcode boolean value to a real boolean
-	*
-	*	@return bool
-	*/
+	 *	Sets a shortcode boolean value to a real boolean
+	 *
+	 *	@return bool
+	 */
 	public function shortcode_bool( $var ) {
 		$falsey = array( 'false', '0', 'no', 'n' );
 		return ( ! $var || in_array( strtolower( $var ), $falsey ) ) ? false : true;
