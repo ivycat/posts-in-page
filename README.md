@@ -1,11 +1,11 @@
 # Posts in Page #
-**Contributors:** ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
-**Tags:** shortcode, pages, posts, custom post types, taxonomy, terms
-**Requires at least:** 3.0
-**Tested up to:** 4.7.2
-**Stable tag:** 1.3.0
-**License:** GPLv2 or later
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+* **Contributors:** ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
+* **Tags:** shortcode, pages, posts, custom post types, taxonomy, terms
+* **Requires at least:** 3.0
+* **Tested up to:** 4.7.2
+* **Stable tag:** 1.3.0
+* **License:** GPLv2 or later
+* **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 Easily add one or more posts to any page using simple shortcodes.
 
@@ -62,19 +62,19 @@ Or any combination of the above.
 
 Not sure how to use the shortcodes above to get what you want?  Here are a few examples to get you started:
 
-** Example 1 **
+**Example 1**
 
 Let's say you want to pull a specific post called _"What I love about coffee"_, which has a post ID of 34, somewhere on your About Us page.  Your shortcode should look like this:
 
 `[ic_add_posts ids='34']`
 
-** Example 2 **
+**Example 2**
 
 Alright, now lets say that you want to pull in all posts from two categories into your WordPress page.  One  category is _WordPress Rocks_ and the other is _WordPress Rolls_.  Plus, you'd like to display them three per page, rather than the default number of posts.  Depending on your category slugs, your shortcode should probably look like this:
 
 `[ic_add_posts category='wordpress-rocks,wordpress-rolls' showposts='3']`
 
-** Example 3 **
+**Example 3**
 
 Now, you're ambitious and want to try something complex.  Let's say you've got a page called _Plugins Are Awesome_ and, in it, you want to pull in posts that match the following criteria:
 
