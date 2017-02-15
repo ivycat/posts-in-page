@@ -101,7 +101,7 @@ class ICPagePosts {
 			$this->args['cat'] = $atts['cats'];
 		}
 
-		// Do a tex query, tax and term a required.
+		// Do a tax query, tax and term a required.
 		if ( isset( $atts['tax'] ) ) {
 			if ( isset( $atts['term'] ) ) {
 				$terms = explode( ',', $atts['term'] );
