@@ -17,14 +17,17 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-if ( !function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	wp_die( 'You are trying to access this file in a manner not allowed.', 'Direct Access Forbidden', array( 'response' => '403' ) );
+}
 
-if ( ! defined( 'POSTSPAGE_DIR' ) )
+if ( ! defined( 'POSTSPAGE_DIR' ) ) {
 	define( 'POSTSPAGE_DIR', plugin_dir_path( __FILE__ ) );
+}
 
-if ( ! defined( 'POSTPAGE_URL' ) )
+if ( ! defined( 'POSTPAGE_URL' ) ) {
 	define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
+}
 
 require_once 'includes/class-page-posts.php';
 
@@ -34,16 +37,17 @@ class ICAddPostsToPage {
 		add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page' ) );
 		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page' ) );
 		add_action( 'admin_menu', array( &$this, 'plugin_page_init' ) );
-		add_filter( 'plugin_action_links_'. plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links' ), 10, 4 );
-		load_plugin_textdomain( 'posts-in-page', false, dirname( plugin_basename( __FILE__ ) ). '/languages' );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links' ), 10, 4 );
+		load_plugin_textdomain( 'posts-in-page', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
 	 * 	Add settings link on plugins page.
 	 */
 	public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
-		if ( is_plugin_active( $plugin_file ) )
-			$actions[] = '<a href="' . admin_url('options-general.php?page=posts_in_page') . '">' . __( ' Help', 'posts-in-page' ) . '</a>';
+		if ( is_plugin_active( $plugin_file ) ) {
+					$actions[] = '<a href="' . admin_url( 'options-general.php?page=posts_in_page' ) . '">' . __( ' Help', 'posts-in-page' ) . '</a>';
+		}
 		return apply_filters( 'post_in_page_actions', $actions );
 	}
 
@@ -70,11 +74,12 @@ class ICAddPostsToPage {
 	 *  Init plugin, add menu page, and setup hooks to load assets on the plugin options page
 	 */
 	public function plugin_page_init() {
-		if ( ! current_user_can( 'administrator' ) )
-			return;
+		if ( ! current_user_can( 'administrator' ) ) {
+					return;
+		}
 
 		$hooks = array( );
-		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ) , __( 'Posts in Page', 'posts-in-page' ), 'read', 'posts_in_page', 
+		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ), __( 'Posts in Page', 'posts-in-page' ), 'read', 'posts_in_page', 
 			array( $this, 'plugin_page' ) );
 
 		foreach ( $hooks as $hook ) {
@@ -86,8 +91,8 @@ class ICAddPostsToPage {
 	 * Enqueue plugin assets (scripts & styles)
 	 */
 	public function load_assets( ) {
-		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL. 'admin/assets/css/post-page_styles.css' );
-		wp_enqueue_script( 'postpagescript', POSTPAGE_URL. 'admin/assets/js/post-page_scripts.js' );
+		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL . 'admin/assets/css/post-page_styles.css' );
+		wp_enqueue_script( 'postpagescript', POSTPAGE_URL . 'admin/assets/js/post-page_scripts.js' );
 	}
 
 	/**
