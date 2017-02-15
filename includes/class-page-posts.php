@@ -192,15 +192,15 @@ class ICPagePosts {
 				$date_data[1] = 0;
 			}
 			switch ( $date_data[0] ) {
-				case "today":
+				case 'today':
 					$today = getdate( $current_time_value - ( $date_data[1] * DAY_IN_SECONDS ) );
 					$this->args['date_query'] = array(
-						'year'  => $today["year"],
-						'month' => $today["mon"],
-						'day'   => $today["mday"],
+						'year'  => $today['year'],
+						'month' => $today['mon'],
+						'day'   => $today['mday'],
 						);
 					break;
-				case "week":
+				case 'week':
 					$week = date( 'W', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
 					$year = date( 'Y', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
 					$this->args['date_query'] = array(
@@ -208,7 +208,7 @@ class ICPagePosts {
 						'week' => $week,
 						);
 					break;
-				case "month":
+				case 'month':
 					$month = date( 'm', strtotime( ( strval( - $date_data[1] ) . ' Months' ), $current_time_value ) );
 					$year = date( 'Y', strtotime( ( strval( - $date_data[1] ) . ' Months' ), $current_time_value ) );
 					$this->args['date_query'] = array(
@@ -216,7 +216,7 @@ class ICPagePosts {
 						'year'		=> $year,
 						);
 					break;
-				case "year":
+				case 'year':
 					$year = date( 'Y', strtotime( ( strval( - $date_data[1] ) . ' Years' ), $current_time_value ) );
 					$this->args['date_query'] = array(
 						'year'  => $year,
