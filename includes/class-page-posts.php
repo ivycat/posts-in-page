@@ -231,7 +231,7 @@ class ICPagePosts {
 	 */
 	protected function has_theme_template() {
  
-		if (!empty($this->args['template'])){
+		if ( !empty( $this->args['template'] ) ) {
 
 			$template_file = get_stylesheet_directory()  . '/' . $this->args['template'];
 
@@ -239,7 +239,7 @@ class ICPagePosts {
 
 			$path_parts = pathinfo($template_file);
 
-			if ($template_file != get_stylesheet_directory() . '/' . $path_parts['filename'] . '.' . $path_parts['extension']){
+			if ( $template_file != get_stylesheet_directory() . '/' . $path_parts['filename'] . '.' . $path_parts['extension'] ){
 
 				$template_file = get_stylesheet_directory() . '/posts_loop_template.php';
 
