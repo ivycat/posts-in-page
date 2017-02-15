@@ -220,7 +220,7 @@ class ICPagePosts {
 	}
 
 	/**
-	*	Sets a shortcode boolian value to a real boolian
+	*	Sets a shortcode boolean value to a real boolean
 	*
 	*	@return bool
 	*/
@@ -232,7 +232,7 @@ class ICPagePosts {
 	/**
 	 *	Tests if a theme has a theme template file that exists
 	 *
-	 *	@return true if template exists, false otherwise.
+	 *	@return bool|true if template exists, false otherwise.
 	 */
 	protected function has_theme_template() {
  
