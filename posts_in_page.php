@@ -17,14 +17,17 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	wp_die( 'You are trying to access this file in a manner not allowed.', 'Direct Access Forbidden', array( 'response' => '403' ) );
+}
 
-if ( ! defined( 'POSTSPAGE_DIR' ) )
+if ( ! defined( 'POSTSPAGE_DIR' ) ) {
 	define( 'POSTSPAGE_DIR', plugin_dir_path( __FILE__ ) );
+}
 
-if ( ! defined( 'POSTPAGE_URL' ) )
+if ( ! defined( 'POSTPAGE_URL' ) ) {
 	define( 'POSTPAGE_URL', plugin_dir_url( __FILE__ ) );
+}
 
 require_once 'includes/class-page-posts.php';
 
@@ -42,8 +45,9 @@ class ICAddPostsToPage {
 	 * 	Add settings link on plugins page.
 	 */
 	public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
-		if ( is_plugin_active( $plugin_file ) )
-			$actions[] = '<a href="' . admin_url( 'options-general.php?page=posts_in_page' ) . '">' . __( ' Help', 'posts-in-page' ) . '</a>';
+		if ( is_plugin_active( $plugin_file ) ) {
+					$actions[] = '<a href="' . admin_url( 'options-general.php?page=posts_in_page' ) . '">' . __( ' Help', 'posts-in-page' ) . '</a>';
+		}
 		return apply_filters( 'post_in_page_actions', $actions );
 	}
 

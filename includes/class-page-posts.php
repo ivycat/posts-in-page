@@ -164,10 +164,10 @@ class ICPagePosts {
 		}
 
 		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
-                        ( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
-                            strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
+						( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
+							strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
                     
-                    $this->args['post__not_in'] = get_option( 'sticky_posts' );
+					$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
 		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
@@ -228,10 +228,10 @@ class ICPagePosts {
 	}
 
 	/**
-	*	Sets a shortcode boolian value to a real boolian
-	*
-	*	@return bool
-	*/
+	 *	Sets a shortcode boolian value to a real boolian
+	 *
+	 *	@return bool
+	 */
 	public function shortcode_bool( $var ) {
 		$falsey = array( 'false', '0', 'no', 'n' );
 		return ( ! $var || in_array( strtolower( $var ), $falsey ) ) ? false : true;
