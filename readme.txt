@@ -54,6 +54,7 @@ To 'pull' posts into a page, you can either:
 * `[ic_add_posts ignore_sticky_posts='no']` - Show sticky posts too (they're ignored by default).
 * `[ic_add_posts paginate='yes']` - use pagination links (off by default)
 * `[ic_add_posts label_next='Next' label_previous='Previous']` - Customize 'Next' and 'Previous' labels used by pagination
+* `[ic_add_posts post_status='private']` - Show posts with the specified status; the default shows only posts with 'publish' status. To select multiple statuses, separate them with commas like so: `post_status='private,publish'`.
 
 Or any combination of the above.
 
