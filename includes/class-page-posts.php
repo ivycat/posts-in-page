@@ -230,10 +230,25 @@ class ICPagePosts {
 	 *	@return true if template exists, false otherwise.
 	 */
 	protected function has_theme_template() {
-		$template_file = ( $this->args['template'] )
-			? get_stylesheet_directory()  . '/' . $this->args['template'] // use specified template file
-			: get_stylesheet_directory() . '/posts_loop_template.php'; // use default template file
+ 
+		if (!empty($this->args['template'])){
 
+			$template_file = get_stylesheet_directory()  . '/' . $this->args['template'];
+
+			// check for traversal attack by getting the basename without the path and reassembling. If it looks wrong, go with the default
+
+			$path_parts = pathinfo($template_file);
+
+			if ($template_file != get_stylesheet_directory() . '/' . $path_parts['filename'] . '.' . $path_parts['extension']){
+
+				$template_file = get_stylesheet_directory() . '/posts_loop_template.php';
+
+			}
+		}
+		else {
+			$template_file = get_stylesheet_directory() . '/posts_loop_template.php'; // use default template file
+		}
+	 
 		return ( file_exists( $template_file ) ) ? $template_file : false;
 	}
 
