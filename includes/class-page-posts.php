@@ -240,7 +240,7 @@ class ICPagePosts {
 	/**
 	 *	Tests if a theme has a theme template file that exists
 	 *
-	 *	@return bool|true if template exists, false otherwise.
+	 *	@return string|true if template exists, false otherwise.
 	 */
 	protected function has_theme_template() {
  
