@@ -1,6 +1,13 @@
 <?php
 /**
- *	Page Posts Class, main workhorse for the ic_add_posts shortcode.
+ * Page posts class, the main workhorse for the ic_add_posts shortcode.
+ *
+ * @package     Posts_in_Page
+ * @author      Eric Amundson <eric@ivycat.com>
+ * @copyright   Copyright (c) 2017, IvyCat, Inc.
+ * @link        https://ivycat.com
+ * @since       1.0.0
+ * @license     GPL-2.0+
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -72,7 +79,7 @@ class ICPagePosts {
 	/**
 	 *	Build additional Arguments for the WP_Query object
 	 *
-	 *	@param array $atts Attritubes for building the $args array.
+	 *	@param array $atts Attributes for building the $args array.
 	 */
 	protected function set_args( $atts ) {
 		global $wp_query;
@@ -101,7 +108,7 @@ class ICPagePosts {
 		if ( isset( $atts['category'] ) ) {
 			$this->args['category_name'] = $atts['category'];
 		} elseif ( isset( $atts['cats'] ) ) {
-// get posts in a certain category by id
+		// get posts in a certain category by id
 			$this->args['cat'] = $atts['cats'];
 		}
 
@@ -129,7 +136,7 @@ class ICPagePosts {
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
 			if ( strpos( ',', $category ) ) {
-// multiple
+			// multiple
 				$category = explode( ',', $category );
 
 				foreach ( $category AS $cat ) {
@@ -139,13 +146,13 @@ class ICPagePosts {
 				$category = implode( ',', $exclude );
 
 			} else {
-// single
+			// single
 				$term = get_category_by_slug( $category );
 				$category = '-' . $term->term_id;
 			}
 
 			if ( ! is_null( $this->args['cat'] ) ) {
-// merge lists
+			// merge lists
 				$this->args['cat'] .= ',' . $category;
 			}
 			$this->args['cat'] = $category;
