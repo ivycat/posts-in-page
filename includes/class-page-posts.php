@@ -44,7 +44,7 @@ class ICPagePosts {
 	 */
 	public function output_posts() {
 		if ( ! $this->args ) {
-					return '';
+			return '';
 		}
 		$page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
 		$output = '';
@@ -101,7 +101,7 @@ class ICPagePosts {
 
 		// Use a specified template
 		if ( isset( $atts['template'] ) ) {
-					$this->args['template'] = $atts['template'];
+			$this->args['template'] = $atts['template'];
 		}
 
 		// get posts in a certain category by name (slug)
@@ -171,10 +171,10 @@ class ICPagePosts {
 		}
 
 		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
-						( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
-							strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
-                    
-					$this->args['post__not_in'] = get_option( 'sticky_posts' );
+				( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
+					strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
+
+			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
 		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
