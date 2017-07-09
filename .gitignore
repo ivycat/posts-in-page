@@ -4,3 +4,4 @@
 *.sublime-workspace
 *.komodotools
 node_modules/**/*
+*.idea/
