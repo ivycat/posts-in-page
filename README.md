@@ -133,6 +133,7 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 * File header housekeeping
 * Code cleanup
 * Fix WPML compatibility issue (thanks @azrall)
+* Document new shortcode functions including `exclude_ids`, `more_tag`
 
 ### 1.3.0 
 * File reorganization / housekeeping
