@@ -2,8 +2,8 @@
 * **Contributors:** ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
 * **Tags:** shortcode, pages, posts, custom post types, taxonomy, terms
 * **Requires at least:** 3.0
-* **Tested up to:** 4.7.2
-* **Stable tag:** 1.3.0
+* **Tested up to:** 4.8
+* **Stable tag:** 1.3.1
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,11 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 2. Embed shortcodes directly in your template using `do_shortcode`.
 
 ## Changelog
+
+### 1.3.1 
+* File header housekeeping
+* Code cleanup
+* Fix WPML compatibility issue (thanks @azrall)
 
 ### 1.3.0 
 * File reorganization / housekeeping

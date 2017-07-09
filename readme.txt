@@ -130,8 +130,9 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 == Changelog ==
 
 = 1.3.1 =
-* Update headers
-* Add feature
+* File header housekeeping
+* Code cleanup
+* Fix WPML compatibility issue (thanks @azrall)
 
 = 1.3.0 =
 * File reorganization / housekeeping
