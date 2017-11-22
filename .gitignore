@@ -4,8 +4,4 @@
 *.sublime-workspace
 *.komodotools
 node_modules/**/*
-.idea/deployment.xml
-.idea/modules.xml
-.idea/posts-in-page.iml
-.idea/vcs.xml
-.idea/workspace.xml
+*.idea/

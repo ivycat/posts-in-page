@@ -1,10 +1,13 @@
 <?php
 /**
- * @package Posts_in_Page
- * @author Eric Amundson <eric@ivycat.com>
- * @copyright Copyright (c) 2017, IvyCat, Inc.
- * @license http://www.gnu.org/licenses/gpl-2.0.html
+ * Main admin help screen located at: Settings > Posts in Page.
  *
+ * @package     Posts_in_Page
+ * @author      Eric Amundson <eric@ivycat.com>
+ * @copyright   Copyright (c) 2017, IvyCat, Inc.
+ * @link        https://ivycat.com
+ * @since       1.0.0
+ * @license     GPL-2.0+
  */ 
 ?>
 

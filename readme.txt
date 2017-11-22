@@ -2,8 +2,8 @@
 Contributors: ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
 Tags: shortcode, pages, posts, custom post types, taxonomy, terms
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 1.3.0
+Tested up to: 4.8
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,10 +42,11 @@ To 'pull' posts into a page, you can either:
 #### Using Shortcodes in the WordPress editor
 
 * `[ic_add_posts]`  - Add all posts to a page (limit to what number posts in WordPress is set to), essentially adds blog "page" to page.
-* `[ic_add_posts ids='1,2,3']` - show one or many posts by specifying the post ID(s) ( specify all post types )
 * `[ic_add_posts post_type='post_type']` - show posts from a custom post type by specifying the post type slug ( must give post type if not a standard post ) add multiple post types by separating with commas (ex. `post_type='post_type1,post_type2'`)
 * `[ic_add_posts showposts='5']` - limit number of posts (or override default setting)
 * `[ic_add_posts orderby='title' order='ASC']` - orderby title - supports all WP orderby variables.  Order is optional, WP default is 'DESC'.
+* `[ic_add_posts ids='1,2,3']` - show one or many posts by specifying the post ID(s) ( specify all post types )
+* `[ic_add_posts exclude_ids='4,5,6']` - exclude specific post ID(s) from the query
 * `[ic_add_posts category='category-slug']` - Show posts within a specific category.  Uses slugs, can have multiple but separate by commas. 	 category-1,category2, etc (no spaces.)
 * `[ic_add_posts exclude_category='category-slug']` - Exclude posts within specific category. Uses slugs, can have multiple slugs seperated by commas.      category-1,category2, etc (no spaces.)
 * `[ic_add_posts tag='tag-slug']`  - Show posts using a specific tag.  Like categories, it uses slugs, and can accommodate multiple tags separate by commas. 	 tag-1,tag-2, etc (no spaces.)
@@ -55,6 +56,7 @@ To 'pull' posts into a page, you can either:
 * `[ic_add_posts paginate='yes']` - use pagination links (off by default)
 * `[ic_add_posts label_next='Next' label_previous='Previous']` - Customize 'Next' and 'Previous' labels used by pagination
 * `[ic_add_posts post_status='private']` - Show posts with the specified status. By default it shows only posts with 'publish' status. To select multiple statuses, separate them with commas like so: `post_status='private,publish'`.
+* `[ic_add_posts more_tag='Read more']` - Set the link text for read more links shown after an excerpt
 
 Or any combination of the above.
 
@@ -128,6 +130,12 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 2. Embed shortcodes directly in your template using `do_shortcode`.
 
 == Changelog ==
+
+= 1.3.1 =
+* File header housekeeping
+* Code cleanup
+* Fix WPML compatibility issue (thanks @azrall)
+* Document new shortcode functions including `exclude_ids`, `more_tag`
 
 = 1.3.0 =
 * File reorganization / housekeeping

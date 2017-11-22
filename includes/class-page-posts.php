@@ -1,6 +1,13 @@
 <?php
 /**
- *	Page Posts Class, main workhorse for the ic_add_posts shortcode.
+ * Page posts class, the main workhorse for the ic_add_posts shortcode.
+ *
+ * @package     Posts_in_Page
+ * @author      Eric Amundson <eric@ivycat.com>
+ * @copyright   Copyright (c) 2017, IvyCat, Inc.
+ * @link        https://ivycat.com
+ * @since       1.0.0
+ * @license     GPL-2.0+
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -37,7 +44,7 @@ class ICPagePosts {
 	 */
 	public function output_posts() {
 		if ( ! $this->args ) {
-					return '';
+			return '';
 		}
 		$page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
 		$output = '';
@@ -58,7 +65,7 @@ class ICPagePosts {
 
 	protected function paginate_links( $posts ) {
 		global $wp_query;
-		$page_url = home_url( '/' . $wp_query->post->post_name . '/' );
+		$page_url = home_url( '/' . get_page_uri( $wp_query->post->ID ) . '/' );
 		$page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
 		$total_pages = $posts->max_num_pages;
 		$per_page = $posts->query_vars['posts_per_page'];
@@ -72,7 +79,7 @@ class ICPagePosts {
 	/**
 	 *	Build additional Arguments for the WP_Query object
 	 *
-	 *	@param array $atts Attritubes for building the $args array.
+	 *	@param array $atts Attributes for building the $args array.
 	 */
 	protected function set_args( $atts ) {
 		global $wp_query;
@@ -80,7 +87,7 @@ class ICPagePosts {
 		// parse the arguments using the defaults
 		$this->args = wp_parse_args( $atts, $this->args );
 		// multiple post types are indicated, pass as an array
-		if ( strpos( $this->args['post_type'], ',' ) ) {
+		if ( strpos( ',', $this->args['post_type'] ) ) {
 			$post_types = explode( ',', $this->args['post_type'] );
 			$this->args['post_type'] = $post_types;
 		}
@@ -94,14 +101,14 @@ class ICPagePosts {
 
 		// Use a specified template
 		if ( isset( $atts['template'] ) ) {
-					$this->args['template'] = $atts['template'];
+			$this->args['template'] = $atts['template'];
 		}
 
 		// get posts in a certain category by name (slug)
 		if ( isset( $atts['category'] ) ) {
 			$this->args['category_name'] = $atts['category'];
 		} elseif ( isset( $atts['cats'] ) ) {
-// get posts in a certain category by id
+		// get posts in a certain category by id
 			$this->args['cat'] = $atts['cats'];
 		}
 
@@ -128,8 +135,8 @@ class ICPagePosts {
 		// exclude posts with certain category by name (slug)
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
-			if ( strpos( $category, ',' ) ) {
-// multiple
+			if ( strpos( ',', $category ) ) {
+			// multiple
 				$category = explode( ',', $category );
 
 				foreach ( $category AS $cat ) {
@@ -139,13 +146,13 @@ class ICPagePosts {
 				$category = implode( ',', $exclude );
 
 			} else {
-// single
+			// single
 				$term = get_category_by_slug( $category );
 				$category = '-' . $term->term_id;
 			}
 
 			if ( ! is_null( $this->args['cat'] ) ) {
-// merge lists
+			// merge lists
 				$this->args['cat'] .= ',' . $category;
 			}
 			$this->args['cat'] = $category;
@@ -164,10 +171,10 @@ class ICPagePosts {
 		}
 
 		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
-						( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
-							strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
-                    
-					$this->args['post__not_in'] = get_option( 'sticky_posts' );
+				( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
+					strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
+
+			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
 
 		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
