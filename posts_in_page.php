@@ -1,14 +1,14 @@
 <?php
 /**
- *  @package Posts_in_Page
- *  @author Eric Amundson <eric@ivycat.com>
- *  @copyright Copyright (c) 2017, IvyCat, Inc.
- *  @license http://www.gnu.org/licenses/gpl-2.0.html
+ * @package Posts_in_Page
+ * @author Eric Amundson <eric@ivycat.com>
+ * @copyright Copyright (c) 2017, IvyCat, Inc.
+ * @license http://www.gnu.org/licenses/gpl-2.0.html
  *
  *  Plugin Name: Posts in Page
  *  Plugin URI: https://ivycat.com/wordpress/wordpress-plugins/posts-in-page/
  *  Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
- *  Version: 1.3.1
+ *  Version: 1.4.0
  *  Author: IvyCat, Inc.
  *  Author URI: https://ivycat.com/wordpress/
  *  Text Domain: posts-in-page
@@ -58,6 +58,7 @@ class ICAddPostsToPage {
 	/**
 	 *    Main shortcode
 	 * @return array
+	 *
 	 * @param array $atts An array of shortcode parameters.  None required
 	 */
 	public function posts_in_page( $atts ) {
@@ -83,7 +84,7 @@ class ICAddPostsToPage {
 			return;
 		}
 
-		$hooks = array();
+		$hooks   = array();
 		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ), __( 'Posts in Page', 'posts-in-page' ), 'read', 'posts_in_page',
 			array( $this, 'plugin_page' ) );
 
