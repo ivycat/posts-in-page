@@ -285,30 +285,32 @@ class ICPagePosts {
 	}
 
 	/**
-	 *    Tests if a theme has a theme template file that exists
+	 *    Tests if a theme has a template file that exists in one of two locations
+	 *    1- posts-in-page directory or 2- theme directory
 	 *
-	 * @return string|true if template exists, false otherwise.
+	 * @return true if template exists, false otherwise.
 	 */
 	protected function has_theme_template() {
 
-		if ( ! empty( $this->args['template'] ) ) {
+		// try default template filename if empty
+		$filename = empty( $this->args['template'] ) ? 'posts_loop_template.php' : $this->args['template'];
 
-			$template_file = get_stylesheet_directory() . '/' . $this->args['template'];
+		// Checking first of two locations - posts-in-page directory
+		$template_file = get_stylesheet_directory() . '/posts-in-page/' . $filename;
 
-			// check for traversal attack by getting the basename without the path and reassembling. If it looks wrong, go with the default
-
-			$path_parts = pathinfo( $template_file );
-
-			if ( $template_file != get_stylesheet_directory() . '/' . $path_parts['filename'] . '.' . $path_parts['extension'] ) {
-
-				$template_file = get_stylesheet_directory() . '/posts_loop_template.php';
-
-			}
+		// check for traversal attack
+		$path_parts = pathinfo( $template_file );
+		if ( $template_file != get_stylesheet_directory() . '/posts-in-page/' . $path_parts['filename'] . '.' . $path_parts['extension'] ) {
+			// something fishy
+			return false;
+		} elseif ( file_exists( $template_file ) ) {
+			return $template_file;
 		} else {
-			$template_file = get_stylesheet_directory() . '/posts_loop_template.php'; // use default template file
+			$template_file = get_stylesheet_directory() . '/' . $filename;
+
+			return ( file_exists( $template_file ) ) ? $template_file : false;
 		}
 
-		return ( file_exists( $template_file ) ) ? $template_file : false;
 	}
 
 	/**
@@ -322,16 +324,36 @@ class ICPagePosts {
 		} else {
 			$ic_posts->the_post();
 		}
-		$output = '';
+		/**
+		 * Because legacy versions of pip forced users to echo content in the filter callback
+		 * we are using both the filters and the output buffer to cover all bases of usage.
+		 */
 		ob_start();
-		$output .= apply_filters( 'posts_in_page_pre_loop', '' );
+		$output_start = apply_filters( 'posts_in_page_pre_loop', '' );
 		require ( $file_path = self::has_theme_template() )
 			? $file_path // use template file in theme
-			: POSTSPAGE_DIR . '/posts_loop_template.php'; // use default plugin template file
-		$output .= ob_get_contents();
-		$output .= apply_filters( 'posts_in_page_post_loop', '' );
+			: POSTSPAGE_DIR . '/templates/posts_loop_template.php'; // use default plugin template file
+		$output_start .= ob_get_clean();
+		/*
+		 * Output buffering to handle legacy versions which forced filter callbacks to echo content rather than return it.
+		 */
+		ob_start();
+		/**
+		 * Standard use of filter
+		 */
+		$output = apply_filters( 'posts_in_page_post_loop', $output_start );
+		/**
+		 * Just in case someone has a legacy callback that doesn't return anything...
+		 */
+		if ( empty( $output ) ) {
+			$output = $output_start;
+		}
+		/**
+		 * Allow for legacy use of filter which forced echoing content
+		 */
+		$output .= ob_get_clean();
 
-		return ob_get_clean();
+		return $output;
 	}
 
 	public function custom_excerpt_more( $more ) {
