@@ -177,8 +177,8 @@ class ICPagePosts {
 		}
 
 		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
-		         ( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
-		           strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
+				 ( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
+				   strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
 
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
