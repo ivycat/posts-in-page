@@ -155,7 +155,7 @@
                                 <tr>
                                     <td>Date Ranges</td>
                                     <td><code>[ic_add_posts from_date='15-01-2016' to_date='31-12-2016']</code></td>
-                                    <td><?php _e( "Shows posts published within a specified absolute date range", 'posts-in-page' ); ?></td>
+                                    <td><?php _e( 'Shows posts published within a specified absolute date range', 'posts-in-page' ); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Read more</td>
@@ -289,8 +289,14 @@
                             <div class="inside_wrap">
                                 <h4>Help make this plugin better</h4>
                                 <ul>
-                                    <li><a href="https://wordpress.org/support/plugin/posts-in-page/reviews/#new-post">Rate <div class="ivycat-rating"> <span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span></div> on
-                                            WordPress.org</a></li>
+                                    <li><a href="https://wordpress.org/support/plugin/posts-in-page/reviews/#new-post">Rate
+                                            <div class="ivycat-rating"><span
+                                                        class="dashicons dashicons-star-filled"></span><span
+                                                        class="dashicons dashicons-star-filled"></span><span
+                                                        class="dashicons dashicons-star-filled"></span><span
+                                                        class="dashicons dashicons-star-filled"></span><span
+                                                        class="dashicons dashicons-star-filled"></span></div>
+                                            on WordPress.org</a></li>
                                     <li>
                                         <a href="https://twitter.com/home/?status=Check%20out%20the%20Posts%20in%20Page%20WordPress%20plugin%20from%20IvyCat!%20http%3A%2F%2Fbit.ly%2F1bmI8pS">Tweet
                                             about Posts in Page</a></li>

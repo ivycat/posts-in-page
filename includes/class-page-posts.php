@@ -122,7 +122,7 @@ class ICPagePosts {
 					array(
 						'taxonomy' => $atts['tax'],
 						'field'    => 'slug',
-						'terms'    => ( count( $terms ) > 1 ) ? $terms : $atts['term']
+						'terms'    => ( count( $terms ) > 1 ) ? $terms : $atts['term'],
 					)
 				);
 			}
