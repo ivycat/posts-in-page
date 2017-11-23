@@ -77,7 +77,7 @@ Let's say you want to pull a specific post called _"What I love about coffee"_, 
 
 **Example 2**
 
-Alright, now lets say that you want to pull in all posts from two categories into your WordPress page.  One  category is _WordPress Rocks_ and the other is _WordPress Rolls_.  Plus, you'd like to display them three per page, rather than the default number of posts.  Depending on your category slugs, your shortcode should probably look like this:
+Alright, now let's say that you want to pull in all posts from two categories into your WordPress page.  One  category is _WordPress Rocks_ and the other is _WordPress Rolls_.  Plus, you'd like to display them three per page, rather than the default number of posts.  Depending on your category slugs, your shortcode should probably look like this:
 
 `[ic_add_posts category='wordpress-rocks,wordpress-rolls' showposts='3']`
 
@@ -178,7 +178,7 @@ Well, it hasn't made _us_ any coffee, but please let us know if it fills your mu
 * Improved and simplified documentation.
 
 ### 1.1.1
-* Code maintenance, fix for category bug, also added ability for multiple post types per shortcode.
+* Code maintenance, fix for category bug, also added the ability for multiple post types per shortcode.
 
 ### 1.1.0
 * Code maintenance, squash non-critical debug notices.
