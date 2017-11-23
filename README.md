@@ -9,6 +9,8 @@
 
 Easily add one or more posts to any page using simple shortcodes.
 
+[![Build Status](https://scrutinizer-ci.com/g/ivycat/posts-in-page/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/ivycat/posts-in-page/build-status/develop)
+
 ## Description
 
 Easily add one or more posts to any page using simple shortcodes. 
