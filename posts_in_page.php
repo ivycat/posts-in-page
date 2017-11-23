@@ -34,12 +34,12 @@ require_once 'includes/class-page-posts.php';
 class ICAddPostsToPage {
 
 	public function __construct() {
-		add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page' ) );
-		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page' ) );
-		add_action( 'admin_menu', array( &$this, 'plugin_page_init' ) );
+		add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page', ) );
+		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page', ) );
+		add_action( 'admin_menu', array( &$this, 'plugin_page_init', ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array(
 			&$this,
-			'plugin_action_links'
+			'plugin_action_links',
 		), 10, 4 );
 		load_plugin_textdomain( 'posts-in-page', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
