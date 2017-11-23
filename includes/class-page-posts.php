@@ -147,6 +147,7 @@ class ICPagePosts {
 
 				foreach ( $category AS $cat ) {
 					$term      = get_category_by_slug( $cat );
+					$exclude = array();
 					$exclude[] = '-' . $term->term_id;
 				}
 				$category = implode( ',', $exclude );
@@ -177,8 +178,8 @@ class ICPagePosts {
 		}
 
 		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
-				 ( strtolower( $this->args['ignore_sticky_posts'] ) === 'no' ||
-				   strtolower( $this->args['ignore_sticky_posts'] ) === 'false' ) ) ) {
+			'no' === ( strtolower( $this->args['ignore_sticky_posts'] ) ||
+			'false' === strtolower( $this->args['ignore_sticky_posts'] ) ) ) ) {
 
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
@@ -330,7 +331,7 @@ class ICPagePosts {
 		 */
 		ob_start();
 		$output_start = apply_filters( 'posts_in_page_pre_loop', '' );
-		require ( $file_path = self::has_theme_template() )
+		require( $file_path = self::has_theme_template() )
 			? $file_path // use template file in theme
 			: POSTSPAGE_DIR . '/templates/posts_loop_template.php'; // use default plugin template file
 		$output_start .= ob_get_clean();
