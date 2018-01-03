@@ -47,12 +47,16 @@ class ICPagePosts {
 			return '';
 		}
 		$page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
+		$post_count = $page_posts->found_posts;
+		$per_page = $page_posts->query_vars['posts_per_page'];
 		$output = '';
 		if ( $page_posts->have_posts() ) {
 			while ( $page_posts->have_posts() ):
-			$output .= self::add_template_part( $page_posts );
+				$output .= self::add_template_part( $page_posts );
 			endwhile;
-			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate', $this->paginate_links( $page_posts ) ) . '</div>' : '';
+			if($post_count > $per_page) {
+				$output .= ($this->args['paginate']) ? '<div class="pip-nav">' . apply_filters('posts_in_page_paginate', $this->paginate_links($page_posts)) . '</div>' : '';
+			}
 		} else {
 			$output = '<div class="post hentry ivycat-post"><span class="pip-not-found">' . esc_html( $this->args['none_found'] ) . '</span></div>';
 		}
