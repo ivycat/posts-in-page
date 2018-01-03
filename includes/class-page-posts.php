@@ -70,8 +70,8 @@ class ICPagePosts {
 		$total_pages = $posts->max_num_pages;
 		$per_page = $posts->query_vars['posts_per_page'];
 		$curr_page = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0 ) ? $posts->query_vars['paged'] : 1;
-		$prev = ( $curr_page && $curr_page > 1 ) ? '<li class="pip-nav-prev"><a href="' . $page_url . '?page=' . ( $curr_page - 1 ) . '">' . $this->args['label_previous'] . '</a></li>' : '';
-		$next = ( $curr_page && $curr_page < $total_pages ) ? '<li class="pip-nav-next"><a href="' . $page_url . '?page=' . ( $curr_page + 1 ) . '">' . $this->args['label_next'] . '</a></li>' : '';
+		$prev = ( $curr_page && $curr_page > 1 ) ? '<li><a href="' . $page_url . '?page=' . ( $curr_page - 1 ) . '">' . $this->args['label_previous'] . '</a></li>' : '';
+		$next = ( $curr_page && $curr_page < $total_pages ) ? '<li><a href="' . $page_url . '?page=' . ( $curr_page + 1 ) . '">' . $this->args['label_next'] . '</a></li>' : '';
 		return '<ul>' . $prev . $next . '</ul>';
 	}
 
