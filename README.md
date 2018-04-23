@@ -3,7 +3,7 @@
 * **Tags:** shortcode, pages, posts, custom post types, taxonomy, terms
 * **Requires at least:** 3.0
 * **Tested up to:** 4.9
-* **Stable tag:** 1.4.0
+* **Stable tag:** 1.3.2
 * **License:** GPLv2 or later
 * **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,6 +140,10 @@ Well, it hasn't made _us_ any coffee, but please let us know if it fills your mu
 2. Embed shortcodes directly in your template using `do_shortcode`.
 
 ## Changelog
+
+### 1.5.0
+* Add templates folder to structure and moved default template there
+* Fix pagination issues #42, 59
 
 ### 1.4.0
 * Fix bug preventing including or excluding multiple post_types or categories

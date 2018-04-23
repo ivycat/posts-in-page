@@ -35,6 +35,7 @@ class ICPagePosts {
 			'label_previous' => __( 'Previous', 'posts-in-page' ),
 			'date_query'     => '',
 			'none_found'     => '',
+         'paged'        => false,
 		);
 	}
 
@@ -47,34 +48,51 @@ class ICPagePosts {
 		if ( ! $this->args ) {
 			return '';
 		}
-		$page_posts = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
+      if ( $this->args['paginate'] ) {
+         $this->args['paged'] = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;     
+      }
+      // commandeering wp_query for pagination quirkiness
+      global $wp_query;
+      $temp = $wp_query;
+      $wp_query= null;
+      $wp_query = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
+
 		$output     = '';
-		if ( $page_posts->have_posts() ) {
-			while ( $page_posts->have_posts() ):
-				$output .= self::add_template_part( $page_posts );
+		if ( have_posts() ) {
+			while ( have_posts() ):
+				$output .= self::add_template_part( $wp_query );
 			endwhile;
-			$output .= ( $this->args['paginate'] ) ? '<div class="pip-nav">' . apply_filters( 'posts_in_page_paginate', $this->paginate_links( $page_posts ) ) . '</div>' : '';
+
+			if ( $this->args['paginate'] ){
+            $output .= apply_filters( 'posts_in_page_paginate', $this->paginate_links() ) ;
+         }
+         
 		} else {
 			$output = '<div class="post hentry ivycat-post"><span class="pip-not-found">' . esc_html( $this->args['none_found'] ) . '</span></div>';
 		}
-		wp_reset_postdata();
+      
+      // restore wp_query
+		$wp_query = null; 
+      $wp_query = $temp;
 
 		remove_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ) );
 
 		return $output;
 	}
+   
 
-	protected function paginate_links( $posts ) {
-		global $wp_query;
-		$page_url    = home_url( '/' . get_page_uri( $wp_query->post->ID ) . '/' );
-		$page        = isset( $_GET['page'] ) ? $_GET['page'] : 1;
-		$total_pages = $posts->max_num_pages;
-		$per_page    = $posts->query_vars['posts_per_page'];
-		$curr_page   = ( isset( $posts->query_vars['paged'] ) && $posts->query_vars['paged'] > 0 ) ? $posts->query_vars['paged'] : 1;
-		$prev        = ( $curr_page && $curr_page > 1 ) ? '<li><a href="' . $page_url . '?page=' . ( $curr_page - 1 ) . '">' . $this->args['label_previous'] . '</a></li>' : '';
-		$next        = ( $curr_page && $curr_page < $total_pages ) ? '<li><a href="' . $page_url . '?page=' . ( $curr_page + 1 ) . '">' . $this->args['label_next'] . '</a></li>' : '';
-
-		return '<ul>' . $prev . $next . '</ul>';
+	protected function paginate_links( ) {
+      
+      $prev = get_previous_posts_link( $this->args['label_previous'] );
+      $next = get_next_posts_link( $this->args['label_next'] );
+      
+      if ($prev || $next) {
+         $prev_link = $prev?"<li class='pip-nav-prev'>$prev</li>":'';
+         $next_link = $next?"<li class='pip-nav-next'>$next</li>":'';
+         return "<div class='pip-nav'>$prev_link $next_link</ul></div>";
+      }
+      return '';
+      
 	}
 
 
@@ -100,6 +118,38 @@ class ICPagePosts {
 			$this->args['post__in']       = $post_ids;
 			$this->args['posts_per_page'] = count( $post_ids );
 		}
+      
+      // Order by handling
+      if (!empty($this->args['custom_orderby'])){
+         //check for 
+         if (strpos( $this->args['custom_orderby'], ',' )){
+            add_filter('posts_orderby', [$this, 'add_custom_orderby'], 20, 2 );
+            // orderby more than one column
+            $orderbys = explode(',',$this->args['custom_orderby']);
+            $order   = explode(',',$this->args['order']);
+            // if not the same number of elements, use first one
+            if (count($order) !== count($orderbys)){
+               $order = $order[0];
+            } 
+            $orderby_array = array();
+            $meta_query_array = array('relation' => 'OR');
+            foreach ($orderbys as $i => $orderby){
+               $orderby = trim($orderby);
+               $orderby_array[$orderby] = is_array($order)?$order[$i]:$order;
+               $meta_query_array[] = array('key' => $orderby,'compare' => '!=', 'value' => 'skjdfksdjf859874874589fsdfa');
+               $meta_query_array[] = array('key' => $orderby,'compare' => 'NOT EXISTS');
+            }
+            $this->args['custom_orderby'] = $orderby_array;
+            $this->args['orderby'] = '';
+            $this->args['order'] = '';
+            $this->args['meta_query'] = $meta_query_array;
+            
+         }
+         else {
+            $this->args['meta_key'] = $this->args['custom_orderby'];
+            $this->args['orderby'] = 'meta_value';
+         }
+      }
 
 		// Use a specified template
 		if ( isset( $atts['template'] ) ) {
@@ -141,12 +191,14 @@ class ICPagePosts {
 		// exclude posts with certain category by name (slug)
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
+
 			if ( strpos( $category, ',' ) ) {
+            
 				// multiple
 				$category = explode( ',', $category );
 
 				foreach ( $category AS $cat ) {
-					$term      = get_category_by_slug( $cat );
+					$term      = get_category_by_slug( trim($cat) );
 					$exclude = array();
 					$exclude[] = '-' . $term->term_id;
 				}
@@ -163,6 +215,7 @@ class ICPagePosts {
 				$this->args['cat'] .= ',' . $category;
 			}
 			$this->args['cat'] = $category;
+
 			// unset our unneeded variables
 			unset( $category, $term, $exclude );
 		}
@@ -272,17 +325,20 @@ class ICPagePosts {
 			}
 		}
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
+
 	}
 
 	/**
-	 *    Sets a shortcode boolean value to a real boolean
+	 * Sets a shortcode boolean value to a real boolean
 	 *
 	 * @return bool
 	 */
 	public function shortcode_bool( $var ) {
+      
 		$falsey = array( 'false', '0', 'no', 'n' );
 
 		return ( ! $var || in_array( strtolower( $var ), $falsey ) ) ? false : true;
+      
 	}
 
 	/**
@@ -295,22 +351,20 @@ class ICPagePosts {
 
 		// try default template filename if empty
 		$filename = empty( $this->args['template'] ) ? 'posts_loop_template.php' : $this->args['template'];
-
-		// Checking first of two locations - posts-in-page directory
-		$template_file = get_stylesheet_directory() . '/posts-in-page/' . $filename;
-
-		// check for traversal attack
-		$path_parts = pathinfo( $template_file );
-		if ( $template_file != get_stylesheet_directory() . '/posts-in-page/' . $path_parts['filename'] . '.' . $path_parts['extension'] ) {
-			// something fishy
-			return false;
-		} elseif ( file_exists( $template_file ) ) {
-			return $template_file;
-		} else {
-			$template_file = get_stylesheet_directory() . '/' . $filename;
-
-			return ( file_exists( $template_file ) ) ? $template_file : false;
-		}
+      
+      // Checking first of two locations - theme root
+      $template_file = get_stylesheet_directory() . '/' . $filename;
+      // check for traversal attack
+      $path_parts = pathinfo( $template_file );
+      if ( $template_file != get_stylesheet_directory() . '/' . 
+            $path_parts['filename'] . '.' . $path_parts['extension']
+            && $template_file != get_stylesheet_directory() . '/posts-in-page/' . 
+               $path_parts['filename'] . '.' . $path_parts['extension']) {
+         // something fishy
+         return false;
+      }
+      
+		return ( file_exists( $template_file ) ) ? $template_file : false;
 
 	}
 
@@ -362,5 +416,22 @@ class ICPagePosts {
 
 		return ' <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . $more_tag . '</a>';
 	}
+   
+   public function add_custom_orderby($order_clause, $wp_query) {
+      if (!empty($this->args['custom_orderby']) && is_array($this->args['custom_orderby'])){
+         $new_clauses = [];
+         $clauses = $wp_query->meta_query->get_clauses();
+         if (!empty($clauses)){
+            foreach ($clauses as $alias => $array){
+               if (array_key_exists($array['key'], $this->args['custom_orderby'])){
+                  $new_clauses[] = $alias.'.meta_value '.$this->args['custom_orderby'][$array['key']];
+                  unset ($this->args['custom_orderby'][$array['key']]);
+               }
+            }
+            return implode (", ",$new_clauses);
+         }
+      }
+      return $order_clause;
+   }
 
 }
