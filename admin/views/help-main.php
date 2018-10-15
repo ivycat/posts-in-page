@@ -254,9 +254,6 @@
                                     <li><a href="https://twitter.com/ivycatweb"><span
                                                     class="dashicons dashicons-twitter"></span> <span
                                                     class="screen-reader-text">Twitter</span></span></a></li>
-                                    <li><a href="https://plus.google.com/+Ivycat"><span
-                                                    class="dashicons dashicons-googleplus"></span> <span
-                                                    class="screen-reader-text">Google+</span></a></li>
                                     <li><a href="https://www.facebook.com/ivycatweb"><span
                                                     class="dashicons dashicons-facebook"></span> <span
                                                     class="screen-reader-text">Facebook</span></a></li>
