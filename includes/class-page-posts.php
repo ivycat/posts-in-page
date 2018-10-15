@@ -131,7 +131,7 @@ class ICPagePosts {
 		if ( isset( $atts['post_status'] ) ) {
 			$this->args['post_status'] = $atts['post_status'];
 		}
-		
+
 		// exclude posts with certain category by name (slug)
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
@@ -151,7 +151,7 @@ class ICPagePosts {
 				$category = '-' . $term->term_id;
 			}
 
-			if ( ! is_null( $this->args['cat'] ) ) {
+			if ( isset( $this->args['cat'] ) && !is_null( $this->args['cat'] ) ) {
 			// merge lists
 				$this->args['cat'] .= ',' . $category;
 			}
@@ -250,7 +250,7 @@ class ICPagePosts {
 	 *	@return string|true if template exists, false otherwise.
 	 */
 	protected function has_theme_template() {
- 
+
 		if ( ! empty( $this->args['template'] ) ) {
 
 			$template_file = get_stylesheet_directory() . '/' . $this->args['template'];
@@ -267,7 +267,7 @@ class ICPagePosts {
 		} else {
 			$template_file = get_stylesheet_directory() . '/posts_loop_template.php'; // use default template file
 		}
-	 
+
 		return ( file_exists( $template_file ) ) ? $template_file : false;
 	}
 
