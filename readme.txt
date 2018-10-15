@@ -2,7 +2,7 @@
 Contributors: ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
 Tags: shortcode, pages, posts, custom post types, taxonomy, terms
 Requires at least: 3.0
-Tested up to: 4.9
+Tested up to: 4.9.8
 Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -143,11 +143,9 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 
 == Changelog ==
 
-= 1.5.0 =
+= 1.4.0 =
 * Add templates folder to structure and moved default template there
 * Fix pagination issues #42, 59
-
-= 1.4.0 =
 * Fix bug preventing including or excluding multiple post_types or categories
 * Add a few new date-based shortcode arguments including `date=` and `from_date=` and `to_date=`
 * Document post format support, new shortcode arguments

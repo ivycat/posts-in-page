@@ -141,11 +141,9 @@ Well, it hasn't made _us_ any coffee, but please let us know if it fills your mu
 
 ## Changelog
 
-### 1.5.0
+### 1.4.0
 * Add templates folder to structure and moved default template there
 * Fix pagination issues #42, 59
-
-### 1.4.0
 * Fix bug preventing including or excluding multiple post_types or categories
 * Add a few new date-based shortcode arguments including `date=` and `from_date=` and `to_date=`
 * Document post format support, new shortcode arguments
