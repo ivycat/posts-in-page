@@ -1,31 +1,27 @@
 # Posts in Page #
-* **Contributors:** ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
-* **Tags:** shortcode, pages, posts, custom post types, taxonomy, terms
-* **Requires at least:** 3.0
-* **Tested up to:** 4.9
-* **Stable tag:** 1.4.0
-* **License:** GPLv2 or later
-* **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+**Contributors:** ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972  
+**Tags:** shortcode, pages, posts, custom post types, taxonomy, terms  
+**Requires at least:** 3.0  
+**Tested up to:** 4.9.8  
+**Stable tag:** 1.4.0  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 Easily add one or more posts to any page using simple shortcodes.
 
-[![Build Status](https://scrutinizer-ci.com/g/ivycat/posts-in-page/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/ivycat/posts-in-page/build-status/develop)
-
-## Description
+## Description ##
 
 Easily add one or more posts to any page using simple shortcodes. 
 
-Supports categories, tags, custom post types, custom taxonomies, post formats, and more.
+Supports categories, tags, custom post types, custom taxonomies, and more.
 
 You can get all of the same functionality provided by this plugin by modifying your theme's template files; this plugin just makes it easy for anyone to _pull_ posts into other areas of the site without having to modify theme files.
 
-This plugin depends upon your theme's styling; version 1.x of this plugin _does not_ contain native styles. 
+Plugin is depending upon your theme's styling; version 1.x of this plugin _does not_ contain native styles. 
 
-This is a minimal plugin, function over form.
+This is a minimal plugin, function over form. Give us feedback, suggestions, bug reports, and any other contributions on the in the plugin's [GitHub repository](https://github.com/ivycat/posts-in-page).
 
-Give us feedback, suggestions, bug reports, and any other contributions on the in the plugin's [GitHub repository](https://github.com/ivycat/posts-in-page).
-
-## Installation
+## Installation ##
 
 You can install from within WordPress using the Plugin/Add New feature, or if you wish to manually install:
 
@@ -38,8 +34,8 @@ You can install from within WordPress using the Plugin/Add New feature, or if yo
 
 To 'pull' posts into a page, you can either:
 
-1. Place a shortcode in the editor window of the page you're editing, or 
-1. Modify a theme template file using the shortcode in a PHP function.
+1. place a shortcode in the editor window of the page you're editing, or 
+1. modify a theme template file using the shortcode in a PHP function.
 
 #### Using Shortcodes in the WordPress editor
 
@@ -71,19 +67,19 @@ Or any combination of the above.
 
 Not sure how to use the shortcodes above to get what you want?  Here are a few examples to get you started:
 
-**Example 1**
+** Example 1 **
 
 Let's say you want to pull a specific post called _"What I love about coffee"_, which has a post ID of 34, somewhere on your About Us page.  Your shortcode should look like this:
 
 `[ic_add_posts ids='34']`
 
-**Example 2**
+** Example 2 **
 
-Alright, now let's say that you want to pull in all posts from two categories into your WordPress page.  One  category is _WordPress Rocks_ and the other is _WordPress Rolls_.  Plus, you'd like to display them three per page, rather than the default number of posts.  Depending on your category slugs, your shortcode should probably look like this:
+Alright, now let's say that you want to pull in all posts from two categories into your WordPress page.  One category is _WordPress Rocks_ and the other is _WordPress Rolls_.  Plus, you'd like to display them three per page, rather than the default number of posts.  Depending on your category slugs, your shortcode should probably look like this:
 
 `[ic_add_posts category='wordpress-rocks,wordpress-rolls' showposts='3']`
 
-**Example 3**
+** Example 3 **
 
 Now, you're ambitious and want to try something complex.  Let's say you've got a page called _Plugins Are Awesome_ and, in it, you want to pull in posts that match the following criteria:
 
@@ -91,7 +87,7 @@ Now, you're ambitious and want to try something complex.  Let's say you've got a
 * posts that are in the _Testimonial Type_ custom taxonomy using the term _Customer_,
 * you want to display six testimonials per page,
 * you'd like them displayed in ascending order,
-* finally, you've created a custom template to use in presenting these posts and named it `my-posts-in-page-template.php`
+* finally, you've created a custom template to use in presenting these posts and named it `my-posts-in-page-template.php`.
 
 Your shortcode might look like this:
 
@@ -103,13 +99,23 @@ If you'd like to use this plugin to pull posts directly into your theme's templa
 
 `<?php echo do_shortcode("[shortcode]"); ?>`
 
-## Frequently Asked Questions 
+### Developer Hooks
 
-### What is the point of this plugin? 
+There are several hooks you can use to filter the output of your template files:
+
+* `posts_in_page_results` - Filter results
+* `posts_in_page_args` - Filter the query arguments
+* `posts_in_page_paginate` - Filter pagination
+* `posts_in_page_pre_loop` - Runs right before the loop (posts_loop_template.php)
+* `posts_in_page_post_loop` - Runs right after the loop
+
+## Frequently Asked Questions ##
+
+### What is the point of this plugin? ###
 
 Some of our clients wanted to output some posts in a specific page without fiddling with templates.
 
-### How do I change the output template
+### How do I change the output template ###
 
 Simply copy the `posts_loop_template.php` to your theme directory and make changes as necessary. 
 
@@ -118,30 +124,30 @@ You can even rename it - but make sure to indicate that in the shortcode using t
 For file housekeeping, you can also create a _posts-in-page_ folder in your theme to store all of your custom templates. It isn't necessary to specify the _posts-in-page_ folder in your shortcode - Posts in Page will find it automatically.
 You can even use multiple templates for use with different shortcodes.
 
-### Does it work with custom post types? 
+### Does it work with custom post types? ###
 
 Absolutely.
 
-### How about with custom taxonomies?
+= How about with custom taxonomies?
 
 You bet.
 
-### How about post formats?
+= Will it make me coffee?
 
-Yup.
+Not likely, but let us know if it does; then we'll *know* we have something special.
 
-### Will it make me coffee?
+## Screenshots ##
 
-Well, it hasn't made _us_ any coffee, but please let us know if it fills your mug and we'll work to develop that feature.
+### 1. Embed a shortcode into a page, and it will automatically pull in the post(s) you need. ###
+![1. Embed a shortcode into a page, and it will automatically pull in the post(s) you need.](http://ps.w.org/posts-in-page/assets/screenshot-1.png)
 
-## Screenshots
+### 2. Embed shortcodes directly in your template using `do_shortcode`. ###
+![2. Embed shortcodes directly in your template using `do_shortcode`.](http://ps.w.org/posts-in-page/assets/screenshot-2.png)
 
-1. Embed a shortcode into a page and it will automatically pull in the post(s) you need.
-2. Embed shortcodes directly in your template using `do_shortcode`.
 
-## Changelog
+## Changelog ##
 
-### 1.4.0
+### 1.4.0 ###
 * Add templates folder to structure and moved default template there
 * Fix pagination issues #42, 59
 * Fix bug preventing including or excluding multiple post_types or categories
@@ -150,113 +156,113 @@ Well, it hasn't made _us_ any coffee, but please let us know if it fills your mu
 * Code cleanup
 * Updates to admin page layout and documentation
 
-### 1.3.1 
+### 1.3.1 ###
 * File header housekeeping
 * Code cleanup
 * Fix WPML compatibility issue (thanks @azrall)
 * Document new shortcode functions including `exclude_ids`, `more_tag`
 
-### 1.3.0 
+### 1.3.0 ###
 * File reorganization / housekeeping
 * Admin UI cleanup
 * Security: Fixed [directory traversal vulnerability](https://www.pluginvulnerabilities.com/2017/02/13/authenticated-local-file-inclusion-lfi-vulnerability-in-posts-in-page/).
 * Added ability to optionally include private posts - Thanks StarsoftAnalysis!
 
-### 1.2.4 
+= 1.2.4 = 
 * now you can set `more_tag=""` to remove the `[...] &hellip;` that unfortunetly shows up as `&hellip`
 
-### 1.2.3 
+= 1.2.3 = 
 * Added minor doc tweaks.
 
-### 1.2.2 
+= 1.2.2 = 
 * Added pagination, tweaked to turn off by default.
 * Bug fixes.
 
-### 1.2.1
+### 1.2.1 ###
 * Added code to allow ignoring, or showing of sticky posts.  By default, sticky posts are ignored, but can be re-enabled using the shortcode `[ic_add_posts ignore_sticky_posts='no']`.
 
-### 1.2.0
+### 1.2.0 ###
 * Code maintenance to better comply with standards
 * Added post pagination
 * Plugin now honors default post reading settings under Settings/Reading in the WordPress Dashboard.
 * Improved and simplified documentation.
 
-### 1.1.1
+### 1.1.1 ###
 * Code maintenance, fix for category bug, also added the ability for multiple post types per shortcode.
 
-### 1.1.0
+### 1.1.0 ###
 * Code maintenance, squash non-critical debug notices.
 
-### 1.0.10
+### 1.0.10 ###
 * Added check for published/private posts.
 
-### 1.0.9
+### 1.0.9 ###
 * Fixed template bug introduced by comments.
 
-### 1.0.8
+### 1.0.8 ###
 * Code cleanup & indentation
 * Added comments and notes to output template file: `posts_loop_template.php`
 
-### 1.0.7
+### 1.0.7 ###
 * Added Help Page under Setting in WP Dashboard.
 
-### 1.0.6
+### 1.0.6 ###
 * More plugin housekeeping.
 
-### 1.0.4
+### 1.0.4 ###
 * Minor housekeeping, added author, updated readme.txt.
 
-### 1.0.3
+### 1.0.3 ###
 * Added single post or specific post capabilities.
 
-# Upgrade Notice #
+## Upgrade Notice ##
 
-### 1.4.0 
+### 1.4.0 ###
 * Bug fixes, new shortcodes, and code improvements. Please upgrade.
 
-### 1.3.0 
+= 1.3.0 = 
 * Important security and version updates. Please upgrade.
 
-### 1.2.4 
+= 1.2.4 = 
 * Presentational fixes: clean up whitespace, extra tabs, add in customization of more tag.
 
-### 1.2.3 
+= 1.2.3 = 
 * Housekeeping only; not urgent.
 
-### 1.2.2
+### 1.2.2 ###
 * Small bug fixes for tags, pagination; not critical.
 
-### 1.2.1
+### 1.2.1 ###
 * Small feature update, not critical.
 
-### 1.2.0
+### 1.2.0 ###
 * Important feature update - please upgrade.
 
-### 1.1.1
+### 1.1.1 ###
 * Small bug fix; please upgrade.
 
-### 1.1.0
+### 1.1.0 ###
 * Code maintenance & housekeeping - non-critical update.
 
-### 1.0.10
+### 1.0.10 ###
 * Added feature - non-critical update.
 
-### 1.0.9
+### 1.0.9 ###
 * Fixed template bug - please update.
 
-### 1.0.8
+### 1.0.8 ###
 * Added features and documentation - non-critical update.
 
-### 1.0.7
+### 1.0.7 ###
 * Added Help Page - non-critical update.
 
-### 1.0.6
+### 1.0.6 ###
 * Plugin housekeeping - non-critical update.
 
-### 1.0.4
+### 1.0.4 ###
 * Minor housekeeping, added author, updated readme.txt. Non-critical update.
 
-### 1.0.3
+### 1.0.3 ###
 * Added single post or specific post capabilities.  Important feature.
 
 
