@@ -201,7 +201,7 @@ class ICPagePosts {
 
 		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
 		         ( 'no' === strtolower( $this->args['ignore_sticky_posts'] ) ||
-		                    'false' === strtolower( $this->args['ignore_sticky_posts'] ) ) ) ) {
+		           'false' === strtolower( $this->args['ignore_sticky_posts'] ) ) ) ) {
 
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
@@ -209,7 +209,7 @@ class ICPagePosts {
 		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
 
 		if ( isset( $this->args['more_tag'] ) ) {
-			add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ), 1 );
+			add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ), 11 );
 		}
 
 		if ( isset( $atts['exclude_ids'] ) ) {
@@ -323,11 +323,12 @@ class ICPagePosts {
 
 		// Checking first of two locations - theme root
 		$template_file = get_stylesheet_directory() . '/' . $filename;
+
 		// check for traversal attack
 		$path_parts = pathinfo( $template_file );
 		if ( $template_file != get_stylesheet_directory() . '/' .
 		                       $path_parts['filename'] . '.' . $path_parts['extension']
-            ) {
+		) {
 			// something fishy
 			return false;
 		}
