@@ -91,7 +91,7 @@ class ICPagePosts {
 		// parse the arguments using the defaults
 		$this->args = wp_parse_args( $atts, $this->args );
 		// multiple post types are indicated, pass as an array
-		if ( strpos( ',', $this->args['post_type'] ) ) {
+		if ( strpos( $this->args['post_type'], ',' ) ) {
 			$post_types = explode( ',', $this->args['post_type'] );
 			$this->args['post_type'] = $post_types;
 		}
