@@ -200,8 +200,8 @@
                         <!-- Toggle -->
 
                         <h2><span><?php esc_attr_e(
-							'Help & Contributing', 'wp_admin_style'
-						); ?></span></h2>
+									'Help & Contributing', 'wp_admin_style'
+								); ?></span></h2>
 
                         <div class="inside">
                             <div class="meta-box-sortables" style="min-height: 0">
@@ -229,8 +229,8 @@
                         <!-- Toggle -->
 
                         <h2 class="hndle"><span><?php esc_attr_e(
-							'Connect with IvyCat!', 'wp_admin_style'
-						); ?></span></h2>
+									'Connect with IvyCat!', 'wp_admin_style'
+								); ?></span></h2>
 
                         <div class="inside">
                             <div class="inside_wrap">
@@ -279,8 +279,8 @@
                         <!-- Toggle -->
 
                         <h2 class="hndle"><span><?php esc_attr_e(
-							'Spread the word', 'wp_admin_style'
-						); ?></span></h2>
+									'Spread the word', 'wp_admin_style'
+								); ?></span></h2>
 
                         <div class="inside">
                             <div class="inside_wrap">
@@ -310,8 +310,8 @@
                         <!-- Toggle -->
 
                         <h2 class="hndle"><span><?php esc_attr_e(
-							'IvyCat Web Services', 'wp_admin_style'
-						); ?></span></h2>
+									'IvyCat Web Services', 'wp_admin_style'
+								); ?></span></h2>
 
                         <div class="inside">
                             <div class="inside_wrap">

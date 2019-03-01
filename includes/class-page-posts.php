@@ -160,31 +160,24 @@ class ICPagePosts {
 		// exclude posts with certain category by name (slug)
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
-
 			if ( strpos( $category, ',' ) ) {
-
 				// multiple
 				$category = explode( ',', $category );
-
 				foreach ( $category AS $cat ) {
-					$term      = get_category_by_slug( trim( $cat ) );
-					$exclude   = array();
+					$term      = get_category_by_slug( $cat );
 					$exclude[] = '-' . $term->term_id;
 				}
 				$category = implode( ',', $exclude );
-
 			} else {
 				// single
 				$term     = get_category_by_slug( $category );
 				$category = '-' . $term->term_id;
 			}
-
-			if ( ! is_null( $this->args['cat'] ) ) {
+			if ( isset( $this->args['cat'] ) && ! is_null( $this->args['cat'] ) ) {
 				// merge lists
 				$this->args['cat'] .= ',' . $category;
 			}
 			$this->args['cat'] = $category;
-
 			// unset our unneeded variables
 			unset( $category, $term, $exclude );
 		}
