@@ -32,9 +32,10 @@ You can install from within WordPress using the Plugin/Add New feature, or if yo
 
 ### Shortcode Usage 
 
-To 'pull' posts into a page, you can either:
+To 'pull' posts into a page, you can:
 
-1. place a shortcode in the editor window of the page you're editing, or 
+1. place a shortcode in the editor window of the page you're editing (Classic Editor),
+1. place a shortcode in a shortcode block on the page you're editing (Gutenberg Editor),
 1. modify a theme template file using the shortcode in a PHP function.
 
 #### Using Shortcodes in the WordPress editor
@@ -49,14 +50,14 @@ To 'pull' posts into a page, you can either:
 * `[ic_add_posts exclude_category='category-slug']` - Exclude posts within specific category. Uses slugs, can list multiple category slugs separated by commas.
 * `[ic_add_posts tag='tag-slug']` - Show posts using a specific tag. Like categories, it uses slugs, and can accommodate multiple tags separated by commas.
 * `[ic_add_posts tax='taxonomy' term='term']` - Limit posts to those that exist in a taxonomy and have a specific term. Both are required for either one to work and you must specify custom post_types.
-* `[ic_add_posts post_format='post-format-status']` - Select post formats. Use 'post-format-' followed by the format type (chat, aside, video, etc.). To pull all posts with the quotes format, you'd use `[ic_add_posts post_format='post-format-quote']`.
+* `[ic_add_posts post_format='post-format-status']` - Select post formats. Use 'post-format-' followed by the format type (chat, aside, video, etc.). Use comma to separate post formats. To pull all posts with the quotes format, you'd use `[ic_add_posts post_format='post-format-quote']`.
 * `[ic_add_posts ignore_sticky_posts='no']` - Show sticky posts too (they're ignored by default).
 * `[ic_add_posts paginate='yes']` - Use pagination links (off by default).
 * `[ic_add_posts label_next='Next' label_previous='Previous']` - Customize 'Next' and 'Previous' labels used by pagination.
 * `[ic_add_posts post_status='private']` - Show posts with the specified status. By default it shows only posts with 'publish' status. To select multiple statuses, separate them with commas like so: `post_status='private,publish'`.
 * `[ic_add_posts more_tag='Read more']` - Set the link text for read more links shown after an excerpt.
 * `[ic_add_posts date='today-1']` - Choose the relative date of included posts. Supports formatting like `date='today-1'` (today minus 1 day), `date='week-2'` (today minus 2 weeks), `date='month-1'` (today minus 1 month), `date='year-1'` (today minus 1 year).
-* `[ic_add_posts from_date='15-01-2016' to_date='31-12-2016' ]` - Shows posts published within a specified absolute date range.
+* `[ic_add_posts from_date='15-01-2016' to_date='31-12-2016']` - Shows posts published within a specified absolute date range.
 * `[ic_add_posts offset='3']` - Displays posts after the offset. An `offset='3'` will show all posts from the 4th one back.
 * `[ic_add_posts none_found='No Posts Found']` - Custom message to display when no posts are found.
 * `[ic_add_posts template='template-in-theme-dir.php']` - In case you want to style your markup, add meta data, etc. Each shortcode can reference a different template. These templates must exist in the theme directory or in a sub-directory named _posts-in-page_.

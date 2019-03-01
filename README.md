@@ -32,9 +32,10 @@ You can install from within WordPress using the Plugin/Add New feature, or if yo
 
 ### Shortcode Usage 
 
-To 'pull' posts into a page, you can either:
+To 'pull' posts into a page, you can:
 
-1. place a shortcode in the editor window of the page you're editing, or 
+1. place a shortcode in the editor window of the page you're editing (Classic Editor), 
+1. place a shortcode in a shortcode block on the page you're editing (Gutenberg Editor),  
 1. modify a theme template file using the shortcode in a PHP function.
 
 #### Using Shortcodes in the WordPress editor
