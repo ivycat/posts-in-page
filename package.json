@@ -1,20 +1,20 @@
 {
-  "name": "posts-in-page",
-  "version": "1.3.1",
-  "description": "Easily add one or more posts to any page using simple shortcodes.",
-  "main": "Gruntfile.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/ivycat/Posts-in-Page.git"
-  },
-  "author": "IvyCat",
-  "license": "GPL-2.0",
-  "bugs": {
-    "url": "https://github.com/ivycat/Posts-in-Page/issues"
-  },
-  "homepage": "https://github.com/ivycat/Posts-in-Page",
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-wp-i18n": "~0.4.7"
-  }
+	"name": "posts-in-page",
+	"version": "1.4.0",
+	"description": "Easily add one or more posts to any page using simple shortcodes.",
+	"main": "Gruntfile.js",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/ivycat/posts-in-page.git"
+	},
+	"author": "IvyCat",
+	"license": "GPL-2.0",
+	"bugs": {
+		"url": "https://github.com/ivycat/posts-in-page/issues"
+	},
+	"homepage": "https://github.com/ivycat/posts-in-page",
+	"devDependencies": {
+		"grunt": "~1.0.1",
+		"grunt-wp-i18n": "~1.0.1"
+	}
 }
