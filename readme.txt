@@ -46,7 +46,8 @@ To 'pull' posts into a page, you can:
 * `[ic_add_posts orderby='title' order='ASC']` - Order the post output using `orderby` - supports all WP [orderby parameters](https://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters).  Order is optional, default is 'DESC'.
 * `[ic_add_posts ids='1,2,3']` - Show one or many posts by specifying the post ID(s) (specify all post types).
 * `[ic_add_posts exclude_ids='4,5,6']` - Exclude specific post ID(s) from the query.
-* `[ic_add_posts category='category-slug']` - Show posts within a specific category.  Uses slugs, can have multiple but separate categories by commas.
+* `[ic_add_posts category='category-slug']` - Show posts within a specific category by category slug. Separate multiple categories with commas.
+* `[ic_add_posts cats='2,13']` - Show posts within a specific category by category IDs. Separate multiple categories with commas.
 * `[ic_add_posts exclude_category='category-slug']` - Exclude posts within specific category. Uses slugs, can list multiple category slugs separated by commas.
 * `[ic_add_posts tag='tag-slug']` - Show posts using a specific tag. Like categories, it uses slugs, and can accommodate multiple tags separated by commas.
 * `[ic_add_posts tax='taxonomy' term='term']` - Limit posts to those that exist in a taxonomy and have a specific term. Both are required for either one to work and you must specify custom post_types.
