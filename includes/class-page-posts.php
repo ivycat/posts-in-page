@@ -50,7 +50,6 @@ class ICPagePosts {
 
 		return $paged;
 	}
-
 	/**
 	 * Spits out the posts, in a gentlemanly way
 	 *
@@ -62,6 +61,7 @@ class ICPagePosts {
 		}
 		if ( $this->args['paginate'] ) {
 			$this->get_paged_query_var();
+			$this->args['paged'] = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		}
 		// commandeering wp_query for pagination quirkiness
 		global $wp_query;

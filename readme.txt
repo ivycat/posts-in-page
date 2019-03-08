@@ -3,7 +3,7 @@ Contributors: ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
 Tags: shortcode, pages, posts, custom post types, taxonomy, terms
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,10 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 
 == Changelog ==
 
+= 1.4.1 =
+* Fix wp_reset_query bug
+* Patch pagination to make it more reliable across themes.
+
 = 1.4.0 =
 * Add templates folder to structure and moved default template there
 * Fix pagination issues #42, 59
@@ -214,6 +218,9 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 * Added single post or specific post capabilities.
 
 == Upgrade Notice ==
+
+= 1.4.1 =
+* Critical bug fixes. Please upgrade.
 
 = 1.4.0 =
 * Bug fixes, new shortcodes, and code improvements. Please upgrade.
