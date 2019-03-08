@@ -39,7 +39,7 @@ class ICPagePosts {
 		);
 	}
 
-	function ovation_get_paged_query_var() {
+	protected function get_paged_query_var() {
 		if ( get_query_var( 'paged' ) ) {
 			$paged = get_query_var( 'paged' );
 		} elseif ( get_query_var( 'page' ) ) {
@@ -61,7 +61,7 @@ class ICPagePosts {
 			return '';
 		}
 		if ( $this->args['paginate'] ) {
-			$this->ovation_get_paged_query_var();
+			$this->get_paged_query_var();
 		}
 		// commandeering wp_query for pagination quirkiness
 		global $wp_query;
