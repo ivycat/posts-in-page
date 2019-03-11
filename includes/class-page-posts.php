@@ -157,7 +157,7 @@ class ICPagePosts {
 		if ( isset( $atts['tax'] ) ) {
 			if ( isset( $atts['term'] ) ) {
 				$terms                   = explode( ',', $atts['term'] );
-				$this->args['tax_query'] = array(
+				$this->args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 					array(
 						'taxonomy' => $atts['tax'],
 						'field'    => 'slug',
