@@ -60,23 +60,26 @@ class ICPagePosts {
 	 * @return string Output of template file.
 	 */
 	public function output_posts() {
+		global $wp_query;
+
 		if ( ! $this->args ) {
 			return '';
 		}
+
 		if ( $this->args['paginate'] ) {
-			$this->args['paged'] = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+			$this->args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 		}
+
 		// Commandeering wp_query for pagination quirkiness.
-		global $wp_query;
 		$temp     = $wp_query;
 		$wp_query = null;
 		$wp_query = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) );
 
 		$output = '';
 		if ( have_posts() ) {
-			while ( have_posts() ) :
+			while ( have_posts() ) {
 				$output .= self::add_template_part( $wp_query );
-			endwhile;
+			}
 
 			if ( $this->args['paginate'] ) {
 				$output .= apply_filters( 'posts_in_page_paginate', $this->paginate_links() );
@@ -88,7 +91,7 @@ class ICPagePosts {
 		// Restore wp_query.
 		$wp_query = null;
 		$wp_query = $temp;
-		wp_reset_query();
+		wp_reset_query(); // phpcs:ignore WordPress.WP.DiscouragedFunctions.wp_reset_query_wp_reset_query
 		remove_filter( 'excerpt_more', array( $this, 'custom_excerpt_more' ) );
 
 		return $output;
