@@ -2,12 +2,12 @@
 /**
  * Page posts class, the main workhorse for the ic_add_posts shortcode.
  *
- * @package     Posts_in_Page
- * @author      Eric Amundson <eric@ivycat.com>
- * @copyright   Copyright (c) 2019, IvyCat, Inc.
- * @link        https://ivycat.com
- * @since       1.0.0
- * @license     GPL-2.0+
+ * @package   Posts_in_Page
+ * @author    Eric Amundson <eric@ivycat.com>
+ * @copyright Copyright (c) 2019, IvyCat, Inc.
+ * @link      https://ivycat.com
+ * @since     1.0.0
+ * @license   GPL-2.0-or-later
  */
 
 if ( ! function_exists( 'add_action' ) ) {

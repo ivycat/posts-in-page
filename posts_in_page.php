@@ -2,10 +2,10 @@
 /**
  * Posts In Page
  *
- * @package Posts_in_Page
- * @author Eric Amundson <eric@ivycat.com>
+ * @package   Posts_in_Page
+ * @author    Eric Amundson <eric@ivycat.com>
  * @copyright Copyright (c) 2019, IvyCat, Inc.
- * @license https://www.gnu.org/licenses/gpl-2.0.html
+ * @license   GPL-2.0-or-later
  *
  * @wordpress-plugin
  * Plugin Name: Posts in Page

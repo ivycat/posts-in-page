@@ -2,12 +2,12 @@
 /**
  * Main admin help screen located at: Settings > Posts in Page.
  *
- * @package     Posts_in_Page
- * @author      Eric Amundson <eric@ivycat.com>
- * @copyright   Copyright (c) 2019, IvyCat, Inc.
- * @link        https://ivycat.com
- * @since       1.0.0
- * @license     GPL-2.0+
+ * @package   Posts_in_Page
+ * @author    Eric Amundson <eric@ivycat.com>
+ * @copyright Copyright (c) 2019, IvyCat, Inc.
+ * @link      https://ivycat.com
+ * @since     1.0.0
+ * @license   GPL-2.0-or-later
  */
 
 ?>
