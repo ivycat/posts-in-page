@@ -3,7 +3,7 @@
  * @package Posts_in_Page
  * @author Eric Amundson <eric@ivycat.com>
  * @copyright Copyright (c) 2019, IvyCat, Inc.
- * @license http://www.gnu.org/licenses/gpl-2.0.html
+ * @license https://www.gnu.org/licenses/gpl-2.0.html
  *
  *  Plugin Name: Posts in Page
  *  Plugin URI: https://ivycat.com/wordpress/wordpress-plugins/posts-in-page/
@@ -14,7 +14,7 @@
  *  Text Domain: posts-in-page
  *  Domain Path: /languages
  *  License: GNU General Public License v2.0
- *  License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ *  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( ! function_exists( 'add_action' ) ) {

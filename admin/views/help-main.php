@@ -260,7 +260,7 @@
                                     <li><a href="https://profiles.wordpress.org/ivycat"><span
                                                     class="dashicons dashicons-wordpress"></span> <span
                                                     class="screen-reader-text">WordPress.org</span></a></li>
-                                    <li class="ic_mc"><a href="http://eepurl.com/b3_65" target="_blank"><span
+                                    <li class="ic_mc"><a href="https://eepurl.com/b3_65" target="_blank"><span
                                                     class="dashicons dashicons-email"></span> <span
                                                     class="screen-reader-text">Sign up for our free newsletter!</span></a>
                                     </li>
@@ -321,7 +321,7 @@
                                     <ul class="link-list">
                                         <li><a href="https://ivycat.com/wordpress/wordpress-support-maintenance/">WP
                                                 Maintenance & Support</a></li>
-                                        <li><a href="http://ivycat.com/web-design/">WordPress Development</a></li>
+                                        <li><a href="https://ivycat.com/web-design/">WordPress Development</a></li>
                                     </ul>
                                 </div>
                             </div>

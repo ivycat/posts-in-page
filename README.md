@@ -5,7 +5,7 @@
 **Tested up to:** 5.1
 **Stable tag:** 1.4.1
 **License:** GPLv2 or later
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html
 
 Easily add one or more posts to any page using simple shortcodes.
 
@@ -141,10 +141,10 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 ## Screenshots ##
 
 ### 1. Embed a shortcode into a page, and it will automatically pull in the post(s) you need. ###
-![1. Embed a shortcode into a page, and it will automatically pull in the post(s) you need.](http://ps.w.org/posts-in-page/assets/screenshot-1.png)
+![1. Embed a shortcode into a page, and it will automatically pull in the post(s) you need.](https://ps.w.org/posts-in-page/assets/screenshot-1.png)
 
 ### 2. Embed shortcodes directly in your template using `do_shortcode`. ###
-![2. Embed shortcodes directly in your template using `do_shortcode`.](http://ps.w.org/posts-in-page/assets/screenshot-2.png)
+![2. Embed shortcodes directly in your template using `do_shortcode`.](https://ps.w.org/posts-in-page/assets/screenshot-2.png)
 
 
 ## Changelog ##
