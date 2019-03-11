@@ -74,7 +74,7 @@ class ICPagePosts {
 
 		$output = '';
 		if ( have_posts() ) {
-			while ( have_posts() ):
+			while ( have_posts() ) :
 				$output .= self::add_template_part( $wp_query );
 			endwhile;
 
@@ -100,7 +100,6 @@ class ICPagePosts {
 	 * @return string
 	 */
 	protected function paginate_links() {
-
 		$prev = get_previous_posts_link( $this->args['label_previous'] );
 		$next = get_next_posts_link( $this->args['label_next'] );
 
@@ -112,7 +111,6 @@ class ICPagePosts {
 		}
 
 		return '';
-
 	}
 
 
@@ -161,7 +159,7 @@ class ICPagePosts {
 						'taxonomy' => $atts['tax'],
 						'field'    => 'slug',
 						'terms'    => ( count( $terms ) > 1 ) ? $terms : $atts['term'],
-					)
+					),
 				);
 			}
 		}
@@ -182,7 +180,7 @@ class ICPagePosts {
 			if ( strpos( $category, ',' ) ) {
 				// Multiple.
 				$category = explode( ',', $category );
-				foreach ( $category AS $cat ) {
+				foreach ( $category as $cat ) {
 					$term      = get_category_by_slug( $cat );
 					$exclude[] = '-' . $term->term_id;
 				}
@@ -211,9 +209,11 @@ class ICPagePosts {
 			$this->args['paged'] = $wp_query->query_vars['page'];
 		}
 
-		if ( ! ( isset( $this->args['ignore_sticky_posts'] ) &&
-		         ( 'no' === strtolower( $this->args['ignore_sticky_posts'] ) ||
-		           'false' === strtolower( $this->args['ignore_sticky_posts'] ) ) ) ) {
+		if (
+			! ( isset( $this->args['ignore_sticky_posts'] ) &&
+			( 'no' === strtolower( $this->args['ignore_sticky_posts'] ) ||
+			'false' === strtolower( $this->args['ignore_sticky_posts'] ) ) )
+		) {
 
 			$this->args['post__not_in'] = get_option( 'sticky_posts' );
 		}
@@ -251,7 +251,7 @@ class ICPagePosts {
 					'inclusive' => true,
 				),
 			);
-		} else if ( isset( $atts['from_date'] ) ) {
+		} elseif ( isset( $atts['from_date'] ) ) {
 			$r_from                   = explode( '-', $atts['from_date'] );
 			$r_to                     = explode( '-', $atts['to_date'] );
 			$this->args['date_query'] = array(
@@ -306,7 +306,6 @@ class ICPagePosts {
 			}
 		}
 		$this->args = apply_filters( 'posts_in_page_args', $this->args );
-
 	}
 
 	/**
@@ -316,11 +315,9 @@ class ICPagePosts {
 	 * @return bool
 	 */
 	public function shortcode_bool( $var ) {
-
 		$falsey = array( 'false', '0', 'no', 'n' );
 
-		return ( ! $var || in_array( strtolower( $var ), $falsey ) ) ? false : true;
-
+		return ( ! $var || in_array( strtolower( $var ), $falsey, true ) ) ? false : true;
 	}
 
 	/**
@@ -330,7 +327,6 @@ class ICPagePosts {
 	 * @return true if template exists, false otherwise.
 	 */
 	protected function has_theme_template() {
-
 		// Try default template filename if empty.
 		$filename = empty( $this->args['template'] ) ? 'posts_loop_template.php' : $this->args['template'];
 
@@ -339,15 +335,12 @@ class ICPagePosts {
 
 		// Check for traversal attack.
 		$path_parts = pathinfo( $template_file );
-		if ( $template_file != get_stylesheet_directory() . '/' .
-		                       $path_parts['filename'] . '.' . $path_parts['extension']
-		) {
+		if ( get_stylesheet_directory() . '/' . $path_parts['filename'] . '.' . $path_parts['extension'] !== $template_file ) {
 			// Something fishy.
 			return false;
 		}
 
 		return ( file_exists( $template_file ) ) ? $template_file : false;
-
 	}
 
 	/**
@@ -367,7 +360,8 @@ class ICPagePosts {
 		// we are using both the filters and the output buffer to cover all bases of usage.
 		ob_start();
 		$output_start = apply_filters( 'posts_in_page_pre_loop', '' );
-		require ( $file_path = self::has_theme_template() )
+		$file_path    = self::has_theme_template();
+		require $file_path
 			? $file_path // Use template file in theme.
 			: POSTSPAGE_DIR . '/templates/posts_loop_template.php'; // Use default plugin template file.
 		$output_start .= ob_get_clean();

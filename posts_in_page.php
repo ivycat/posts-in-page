@@ -41,10 +41,10 @@ class ICAddPostsToPage {
 	 * Constructor method.
 	 */
 	public function __construct() {
-		add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page', ) );
-		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page', ) );
-		add_action( 'admin_menu', array( &$this, 'plugin_page_init', ) );
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links', ), 10, 2 );
+		add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page' ) );
+		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page' ) );
+		add_action( 'admin_menu', array( &$this, 'plugin_page_init' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links' ), 10, 2 );
 		load_plugin_textdomain( 'posts-in-page' );
 	}
 
@@ -96,8 +96,13 @@ class ICAddPostsToPage {
 		}
 
 		$hooks   = array();
-		$hooks[] = add_options_page( __( 'Posts in Page', 'posts-in-page' ), __( 'Posts in Page', 'posts-in-page' ), 'read', 'posts_in_page',
-			array( $this, 'plugin_page' ) );
+		$hooks[] = add_options_page(
+			__( 'Posts in Page', 'posts-in-page' ),
+			__( 'Posts in Page', 'posts-in-page' ),
+			'read',
+			'posts_in_page',
+			array( $this, 'plugin_page' )
+		);
 
 		foreach ( $hooks as $hook ) {
 			add_action( "admin_print_styles-{$hook}", array( $this, 'load_assets' ) );

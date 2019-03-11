@@ -227,9 +227,7 @@
 						<div class="handlediv" title="Click to toggle"><br></div>
 						<!-- Toggle -->
 
-						<h2 class="hndle"><span><?php esc_attr_e(
-									'Connect with IvyCat!', 'posts-in-page'
-								); ?></span></h2>
+						<h2 class="hndle"><span><?php esc_attr_e( 'Connect with IvyCat!', 'posts-in-page' ); ?></span></h2>
 
 						<div class="inside">
 							<div class="inside_wrap">
@@ -277,9 +275,7 @@
 						<div class="handlediv" title="Click to toggle"><br></div>
 						<!-- Toggle -->
 
-						<h2 class="hndle"><span><?php esc_attr_e(
-									'Spread the word', 'posts-in-page'
-								); ?></span></h2>
+						<h2 class="hndle"><span><?php esc_attr_e( 'Spread the word', 'posts-in-page' ); ?></span></h2>
 
 						<div class="inside">
 							<div class="inside_wrap">
@@ -308,9 +304,7 @@
 						<div class="handlediv" title="Click to toggle"><br></div>
 						<!-- Toggle -->
 
-						<h2 class="hndle"><span><?php esc_attr_e(
-									'IvyCat Web Services', 'posts-in-page'
-								); ?></span></h2>
+						<h2 class="hndle"><span><?php esc_attr_e( 'IvyCat Web Services', 'posts-in-page' ); ?></span></h2>
 
 						<div class="inside">
 							<div class="inside_wrap">
