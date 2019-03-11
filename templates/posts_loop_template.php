@@ -63,8 +63,16 @@
 			</span>
 			<span class="meta-sep">|</span>
 		<?php endif; ?>
-		<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'posts-in-page' ), __( '1 Comment', 'posts-in-page' ), __( '% Comments', 'posts-in-page' ) ); ?></span>
-		<?php edit_post_link( __( 'Edit', 'posts-in-page' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
+		<span class="comments-link">
+			<?php
+			comments_popup_link(
+				esc_html__( 'Leave a comment', 'posts-in-page' ),
+				esc_html__( '1 Comment', 'posts-in-page' ),
+				esc_html__( '% Comments', 'posts-in-page' )
+			);
+			?>
+		</span>
+		<?php edit_post_link( esc_html__( 'Edit', 'posts-in-page' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
 	</div>
 </div>
 <!-- // Post Wrap End -->

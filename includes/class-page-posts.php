@@ -118,7 +118,7 @@ class ICPagePosts {
 
 
 	/**
-	 * Build additional Arguments for the WP_Query object
+	 * Build additional arguments for the WP_Query object.
 	 *
 	 * @param array $atts Attributes for building the $args array.
 	 */
@@ -391,7 +391,7 @@ class ICPagePosts {
 	public function custom_excerpt_more( $more ) {
 		$more_tag = $this->args['more_tag'];
 
-		return ' <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . $more_tag . '</a>';
+		return ' <a class="read-more" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . $more_tag . '</a>';
 	}
 
 
