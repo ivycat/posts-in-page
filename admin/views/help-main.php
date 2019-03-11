@@ -15,7 +15,7 @@
 <div class="wrap">
 
 	<div id="icon-options-general" class="icon32"></div>
-	<h1><?php esc_attr_e( 'Posts in Page', 'wp_admin_style' ); ?></h1>
+	<h1><?php esc_attr_e( 'Posts in Page', 'posts-in-page' ); ?></h1>
 
 	<div id="poststuff">
 
@@ -32,7 +32,7 @@
 						<!-- Toggle -->
 
 						<h2 class="hndle">
-							<span><?php esc_attr_e( 'How to use Posts in Page', 'wp_admin_style' ); ?></span>
+							<span><?php esc_attr_e( 'How to use Posts in Page', 'posts-in-page' ); ?></span>
 						</h2>
 
 						<div class="inside">
@@ -200,9 +200,7 @@
 						<div class="handlediv" title="Click to toggle"><br></div>
 						<!-- Toggle -->
 
-						<h2><span><?php esc_attr_e(
-									'Help & Contributing', 'wp_admin_style'
-								); ?></span></h2>
+						<h2><span><?php esc_attr_e( 'Help & Contributing', 'posts-in-page' ); ?></span></h2>
 
 						<div class="inside">
 							<div class="meta-box-sortables" style="min-height: 0">
@@ -230,7 +228,7 @@
 						<!-- Toggle -->
 
 						<h2 class="hndle"><span><?php esc_attr_e(
-									'Connect with IvyCat!', 'wp_admin_style'
+									'Connect with IvyCat!', 'posts-in-page'
 								); ?></span></h2>
 
 						<div class="inside">
@@ -280,7 +278,7 @@
 						<!-- Toggle -->
 
 						<h2 class="hndle"><span><?php esc_attr_e(
-									'Spread the word', 'wp_admin_style'
+									'Spread the word', 'posts-in-page'
 								); ?></span></h2>
 
 						<div class="inside">
@@ -311,7 +309,7 @@
 						<!-- Toggle -->
 
 						<h2 class="hndle"><span><?php esc_attr_e(
-									'IvyCat Web Services', 'wp_admin_style'
+									'IvyCat Web Services', 'posts-in-page'
 								); ?></span></h2>
 
 						<div class="inside">
