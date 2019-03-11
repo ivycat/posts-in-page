@@ -57,7 +57,7 @@ class ICAddPostsToPage {
 	 */
 	public function plugin_action_links( $actions, $plugin_file ) {
 		if ( is_plugin_active( $plugin_file ) ) {
-			$actions[] = '<a href="' . admin_url( 'options-general.php?page=posts_in_page' ) . '">' . __( ' Help', 'posts-in-page' ) . '</a>';
+			$actions[] = '<a href="' . esc_url( admin_url( 'options-general.php?page=posts_in_page' ) ) . '">' . esc_html__( ' Help', 'posts-in-page' ) . '</a>';
 		}
 
 		return apply_filters( 'post_in_page_actions', $actions );
@@ -92,8 +92,8 @@ class ICAddPostsToPage {
 	 */
 	public function plugin_page_init() {
 		$hook = add_options_page(
-			__( 'Posts in Page', 'posts-in-page' ),
-			__( 'Posts in Page', 'posts-in-page' ),
+			esc_html__( 'Posts in Page', 'posts-in-page' ),
+			esc_html__( 'Posts in Page', 'posts-in-page' ),
 			'manage_options',
 			'posts_in_page',
 			array( $this, 'plugin_page' )
