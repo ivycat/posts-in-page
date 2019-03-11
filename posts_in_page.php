@@ -91,22 +91,15 @@ class ICAddPostsToPage {
 	 * Init plugin, add menu page, and setup hooks to load assets on the plugin options page.
 	 */
 	public function plugin_page_init() {
-		if ( ! current_user_can( 'administrator' ) ) {
-			return;
-		}
-
-		$hooks   = array();
-		$hooks[] = add_options_page(
+		$hook = add_options_page(
 			__( 'Posts in Page', 'posts-in-page' ),
 			__( 'Posts in Page', 'posts-in-page' ),
-			'read',
+			'manage_options',
 			'posts_in_page',
 			array( $this, 'plugin_page' )
 		);
 
-		foreach ( $hooks as $hook ) {
-			add_action( "admin_print_styles-{$hook}", array( $this, 'load_assets' ) );
-		}
+		add_action( "admin_print_styles-{$hook}", array( $this, 'load_assets' ) );
 	}
 
 	/**
