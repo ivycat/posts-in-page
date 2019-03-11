@@ -106,8 +106,20 @@ class ICAddPostsToPage {
 	 * Enqueue plugin assets (scripts & styles).
 	 */
 	public function load_assets() {
-		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL . 'admin/assets/css/post-page_styles.css' );
-		wp_enqueue_script( 'postpagescript', POSTPAGE_URL . 'admin/assets/js/post-page_scripts.js' );
+		wp_enqueue_style(
+			'postpagestyle',
+			POSTPAGE_URL . 'admin/assets/css/post-page_styles.css',
+			array(),
+			'20190311'
+		);
+
+		wp_enqueue_script(
+			'postpagescript',
+			POSTPAGE_URL . 'admin/assets/js/post-page_scripts.js',
+			array( 'jquery' ),
+			'20190311',
+			true
+		);
 	}
 
 	/**
