@@ -15,7 +15,6 @@
  * Author: IvyCat, Inc.
  * Author URI: https://ivycat.com/wordpress/
  * Text Domain: posts-in-page
- * Domain Path: /languages
  * License: GNU General Public License v2.0
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -46,7 +45,7 @@ class ICAddPostsToPage {
 		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page', ) );
 		add_action( 'admin_menu', array( &$this, 'plugin_page_init', ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links', ), 10, 2 );
-		load_plugin_textdomain( 'posts-in-page', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'posts-in-page' );
 	}
 
 	/**
