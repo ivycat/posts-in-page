@@ -14,15 +14,30 @@ if ( ! function_exists( 'add_action' ) ) {
 	wp_die( 'You are trying to access this file in a manner not allowed.', 'Direct Access Forbidden', array( 'response' => '403' ) );
 }
 
+/**
+ * Page in posts class.
+ */
 class ICPagePosts {
-
+	/**
+	 * Arguments.
+	 *
+	 * @var array
+	 */
 	protected $args = array();
 
+	/**
+	 * Constructor method.
+	 *
+	 * @param array $atts Shortcode attributes.
+	 */
 	public function __construct( $atts ) {
-		$this->set_default_args(); //set default args
+		$this->set_default_args();
 		$this->set_args( $atts );
 	}
 
+	/**
+	 * Set default arguments.
+	 */
 	protected function set_default_args() {
 		$this->args = array(
 			'post_type'      => 'post',
@@ -40,9 +55,9 @@ class ICPagePosts {
 	}
 
 	/**
-	 * Spits out the posts, in a gentlemanly way
+	 * Spits out the posts, in a gentlemanly way.
 	 *
-	 * @return string output of template file
+	 * @return string Output of template file.
 	 */
 	public function output_posts() {
 		if ( ! $this->args ) {
@@ -51,11 +66,11 @@ class ICPagePosts {
 		if ( $this->args['paginate'] ) {
 			$this->args['paged'] = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		}
-		// commandeering wp_query for pagination quirkiness
+		// Commandeering wp_query for pagination quirkiness.
 		global $wp_query;
 		$temp     = $wp_query;
 		$wp_query = null;
-		$wp_query = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) ); // New WP_Query object
+		$wp_query = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) );
 
 		$output = '';
 		if ( have_posts() ) {
@@ -70,7 +85,7 @@ class ICPagePosts {
 			$output = '<div class="post hentry ivycat-post"><span class="pip-not-found">' . esc_html( $this->args['none_found'] ) . '</span></div>';
 		}
 
-		// restore wp_query
+		// Restore wp_query.
 		$wp_query = null;
 		$wp_query = $temp;
 		wp_reset_query();
@@ -79,7 +94,11 @@ class ICPagePosts {
 		return $output;
 	}
 
-
+	/**
+	 * Retrieve pagination links.
+	 *
+	 * @return string
+	 */
 	protected function paginate_links() {
 
 		$prev = get_previous_posts_link( $this->args['label_previous'] );
@@ -98,38 +117,38 @@ class ICPagePosts {
 
 
 	/**
-	 *    Build additional Arguments for the WP_Query object
+	 * Build additional Arguments for the WP_Query object
 	 *
 	 * @param array $atts Attributes for building the $args array.
 	 */
 	protected function set_args( $atts ) {
 		global $wp_query;
 		$this->args['posts_per_page'] = get_option( 'posts_per_page' );
-		// parse the arguments using the defaults
+		// Parse the arguments using the defaults.
 		$this->args = wp_parse_args( $atts, $this->args );
-		// multiple post types are indicated, pass as an array
+		// Multiple post types are indicated, pass as an array.
 		if ( strpos( $this->args['post_type'], ',' ) ) {
 			$post_types              = explode( ',', $this->args['post_type'] );
 			$this->args['post_type'] = $post_types;
 		}
 
-		// Show specific posts by ID
+		// Show specific posts by ID.
 		if ( isset( $atts['ids'] ) ) {
 			$post_ids                     = explode( ',', $atts['ids'] );
 			$this->args['post__in']       = $post_ids;
 			$this->args['posts_per_page'] = count( $post_ids );
 		}
 
-		// Use a specified template
+		// Use a specified template.
 		if ( isset( $atts['template'] ) ) {
 			$this->args['template'] = $atts['template'];
 		}
 
-		// get posts in a certain category by name (slug)
+		// Get posts in a certain category by name (slug).
 		if ( isset( $atts['category'] ) ) {
 			$this->args['category_name'] = $atts['category'];
 		} elseif ( isset( $atts['cats'] ) ) {
-			// get posts in a certain category by id
+			// Get posts in a certain category by id.
 			$this->args['cat'] = $atts['cats'];
 		}
 
@@ -147,21 +166,21 @@ class ICPagePosts {
 			}
 		}
 
-		// get posts with a certain tag
+		// Get posts with a certain tag.
 		if ( isset( $atts['tag'] ) ) {
 			$this->args['tag'] = $atts['tag'];
 		}
 
-		// override default post_type argument ('publish')
+		// Override default post_type argument ('publish').
 		if ( isset( $atts['post_status'] ) ) {
 			$this->args['post_status'] = $atts['post_status'];
 		}
 
-		// exclude posts with certain category by name (slug)
+		// Exclude posts with certain category by name (slug).
 		if ( isset( $atts['exclude_category'] ) ) {
 			$category = $atts['exclude_category'];
 			if ( strpos( $category, ',' ) ) {
-				// multiple
+				// Multiple.
 				$category = explode( ',', $category );
 				foreach ( $category AS $cat ) {
 					$term      = get_category_by_slug( $cat );
@@ -169,25 +188,25 @@ class ICPagePosts {
 				}
 				$category = implode( ',', $exclude );
 			} else {
-				// single
+				// Single.
 				$term     = get_category_by_slug( $category );
 				$category = '-' . $term->term_id;
 			}
 			if ( isset( $this->args['cat'] ) && ! is_null( $this->args['cat'] ) ) {
-				// merge lists
+				// Merge lists.
 				$this->args['cat'] .= ',' . $category;
 			}
 			$this->args['cat'] = $category;
-			// unset our unneeded variables
+			// Unset our unneeded variables.
 			unset( $category, $term, $exclude );
 		}
 
-		// show number of posts (default is 10, showposts or posts_per_page are both valid, only one is needed)
+		// Show number of posts (default is 10, showposts or posts_per_page are both valid, only one is needed).
 		if ( isset( $atts['showposts'] ) ) {
 			$this->args['posts_per_page'] = $atts['showposts'];
 		}
 
-		// handle pagination (for code, template pagination is in the template)
+		// Handle pagination (for code, template pagination is in the template).
 		if ( isset( $wp_query->query_vars['page'] ) && $wp_query->query_vars['page'] > 1 ) {
 			$this->args['paged'] = $wp_query->query_vars['page'];
 		}
@@ -291,8 +310,9 @@ class ICPagePosts {
 	}
 
 	/**
-	 * Sets a shortcode boolean value to a real boolean
+	 * Sets a shortcode boolean value to a real boolean.
 	 *
+	 * @param mixed $var Value to evaluate to a boolean.
 	 * @return bool
 	 */
 	public function shortcode_bool( $var ) {
@@ -304,25 +324,25 @@ class ICPagePosts {
 	}
 
 	/**
-	 *    Tests if a theme has a template file that exists in one of two locations
-	 *    1- posts-in-page directory or 2- theme directory
+	 * Tests if a theme has a template file that exists in one of two locations
+	 * 1- posts-in-page directory or 2- theme directory.
 	 *
 	 * @return true if template exists, false otherwise.
 	 */
 	protected function has_theme_template() {
 
-		// try default template filename if empty
+		// Try default template filename if empty.
 		$filename = empty( $this->args['template'] ) ? 'posts_loop_template.php' : $this->args['template'];
 
-		// Checking first of two locations - theme root
+		// Checking first of two locations - theme root.
 		$template_file = get_stylesheet_directory() . '/' . $filename;
 
-		// check for traversal attack
+		// Check for traversal attack.
 		$path_parts = pathinfo( $template_file );
 		if ( $template_file != get_stylesheet_directory() . '/' .
 		                       $path_parts['filename'] . '.' . $path_parts['extension']
 		) {
-			// something fishy
+			// Something fishy.
 			return false;
 		}
 
@@ -331,9 +351,11 @@ class ICPagePosts {
 	}
 
 	/**
-	 *    Retrieves the post loop template and returns the output
+	 * Retrieves the post loop template and returns the output.
 	 *
-	 * @return string results of the output
+	 * @param WP_Query $ic_posts Posts in Page query.
+	 * @param bool     $singles  Whether a single post should be set up.
+	 * @return string Results of the output.
 	 */
 	protected function add_template_part( $ic_posts, $singles = false ) {
 		if ( $singles ) {
@@ -341,38 +363,34 @@ class ICPagePosts {
 		} else {
 			$ic_posts->the_post();
 		}
-		/**
-		 * Because legacy versions of pip forced users to echo content in the filter callback
-		 * we are using both the filters and the output buffer to cover all bases of usage.
-		 */
+		// Because legacy versions of pip forced users to echo content in the filter callback
+		// we are using both the filters and the output buffer to cover all bases of usage.
 		ob_start();
 		$output_start = apply_filters( 'posts_in_page_pre_loop', '' );
 		require ( $file_path = self::has_theme_template() )
-			? $file_path // use template file in theme
-			: POSTSPAGE_DIR . '/templates/posts_loop_template.php'; // use default plugin template file
+			? $file_path // Use template file in theme.
+			: POSTSPAGE_DIR . '/templates/posts_loop_template.php'; // Use default plugin template file.
 		$output_start .= ob_get_clean();
-		/*
-		 * Output buffering to handle legacy versions which forced filter callbacks to echo content rather than return it.
-		 */
+		// Output buffering to handle legacy versions which forced filter callbacks to echo content rather than return it.
 		ob_start();
-		/**
-		 * Standard use of filter
-		 */
+		// Standard use of filter.
 		$output = apply_filters( 'posts_in_page_post_loop', $output_start );
-		/**
-		 * Just in case someone has a legacy callback that doesn't return anything...
-		 */
+		// Just in case someone has a legacy callback that doesn't return anything...
 		if ( empty( $output ) ) {
 			$output = $output_start;
 		}
-		/**
-		 * Allow for legacy use of filter which forced echoing content
-		 */
+		// Allow for legacy use of filter which forced echoing content.
 		$output .= ob_get_clean();
 
 		return $output;
 	}
 
+	/**
+	 * Retrieve a custom more link for excerpts.
+	 *
+	 * @param string $more Link text.
+	 * @return string
+	 */
 	public function custom_excerpt_more( $more ) {
 		$more_tag = $this->args['more_tag'];
 

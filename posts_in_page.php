@@ -1,20 +1,23 @@
 <?php
 /**
+ * Posts In Page
+ *
  * @package Posts_in_Page
  * @author Eric Amundson <eric@ivycat.com>
  * @copyright Copyright (c) 2019, IvyCat, Inc.
  * @license https://www.gnu.org/licenses/gpl-2.0.html
  *
- *  Plugin Name: Posts in Page
- *  Plugin URI: https://ivycat.com/wordpress/wordpress-plugins/posts-in-page/
- *  Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
- *  Version: 1.4.1
- *  Author: IvyCat, Inc.
- *  Author URI: https://ivycat.com/wordpress/
- *  Text Domain: posts-in-page
- *  Domain Path: /languages
- *  License: GNU General Public License v2.0
- *  License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * @wordpress-plugin
+ * Plugin Name: Posts in Page
+ * Plugin URI: https://ivycat.com/wordpress/wordpress-plugins/posts-in-page/
+ * Description: Easily add one or more posts to any page using simple shortcodes. Supports categories, tags, custom post types, custom taxonomies, and more.
+ * Version: 1.4.1
+ * Author: IvyCat, Inc.
+ * Author URI: https://ivycat.com/wordpress/
+ * Text Domain: posts-in-page
+ * Domain Path: /languages
+ * License: GNU General Public License v2.0
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( ! function_exists( 'add_action' ) ) {
@@ -31,23 +34,29 @@ if ( ! defined( 'POSTPAGE_URL' ) ) {
 
 require_once 'includes/class-page-posts.php';
 
+/**
+ * Main plugin class.
+ */
 class ICAddPostsToPage {
-
+	/**
+	 * Constructor method.
+	 */
 	public function __construct() {
 		add_shortcode( 'ic_add_posts', array( &$this, 'posts_in_page', ) );
 		add_shortcode( 'ic_add_post', array( &$this, 'post_in_page', ) );
 		add_action( 'admin_menu', array( &$this, 'plugin_page_init', ) );
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array(
-			&$this,
-			'plugin_action_links',
-		), 10, 4 );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( &$this, 'plugin_action_links', ), 10, 2 );
 		load_plugin_textdomain( 'posts-in-page', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
-	 *    Add settings link on plugins page.
+	 * Add settings link on plugins page.
+	 *
+	 * @param string[] $actions     An array of plugin action links. By default this can include 'activate',
+	 *                              'deactivate', and 'delete'.
+	 * @param string   $plugin_file Path to the plugin file relative to the plugins directory.
 	 */
-	public function plugin_action_links( $actions, $plugin_file, $plugin_data, $context ) {
+	public function plugin_action_links( $actions, $plugin_file ) {
 		if ( is_plugin_active( $plugin_file ) ) {
 			$actions[] = '<a href="' . admin_url( 'options-general.php?page=posts_in_page' ) . '">' . __( ' Help', 'posts-in-page' ) . '</a>';
 		}
@@ -56,10 +65,10 @@ class ICAddPostsToPage {
 	}
 
 	/**
-	 *    Main shortcode
-	 * @return array
+	 * Main shortcode.
 	 *
-	 * @param array $atts An array of shortcode parameters.  None required
+	 * @param array $atts An array of shortcode parameters. None required.
+	 * @return array
 	 */
 	public function posts_in_page( $atts ) {
 		$posts = new ICPagePosts( $atts );
@@ -68,16 +77,19 @@ class ICAddPostsToPage {
 	}
 
 	/**
-	 *    Deprecated shortcode (routing to posts in page function now)
+	 * Deprecated shortcode (routing to posts in page function now).
 	 *
-	 * @todo Remove this deprecated function
+	 * @deprecated Deprecated since 1.1.0.
+	 *
+	 * @param array $atts An array of shortcode parameters. None required.
+	 * @return array
 	 */
 	public function post_in_page( $atts ) {
 		return self::posts_in_page( $atts );
 	}
 
 	/**
-	 *  Init plugin, add menu page, and setup hooks to load assets on the plugin options page
+	 * Init plugin, add menu page, and setup hooks to load assets on the plugin options page.
 	 */
 	public function plugin_page_init() {
 		if ( ! current_user_can( 'administrator' ) ) {
@@ -94,7 +106,7 @@ class ICAddPostsToPage {
 	}
 
 	/**
-	 * Enqueue plugin assets (scripts & styles)
+	 * Enqueue plugin assets (scripts & styles).
 	 */
 	public function load_assets() {
 		wp_enqueue_style( 'postpagestyle', POSTPAGE_URL . 'admin/assets/css/post-page_styles.css' );
@@ -102,7 +114,7 @@ class ICAddPostsToPage {
 	}
 
 	/**
-	 * Plugin Settings page - includes view for the page
+	 * Plugin Settings page - includes view for the page.
 	 */
 	public function plugin_page() {
 		require_once 'admin/views/help-main.php';
