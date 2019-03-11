@@ -29,17 +29,37 @@
 
 	<!--	This outputs the post META information -->
 	<div class="entry-utility">
-		<?php if ( count( get_the_category() ) ) : ?>
+		<?php
+		/* translators: used between list items, there is a space after the comma. */
+		$categories_list = get_the_category_list( __( ', ', 'posts-in-page' ) );
+		if ( $categories_list ) :
+			?>
 			<span class="cat-links">
-				<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'posts-in-page' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
+				<?php
+				printf(
+					/* translators: 1: posted in label. 2: list of categories. */
+					'<span class="entry-utility-prep entry-utility-prep-cat-links">%1$s</span> %2$s',
+					esc_html__( 'Posted in', 'posts-in-page' ),
+					$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
+				?>
 			</span>
 			<span class="meta-sep">|</span>
 		<?php endif; ?>
 		<?php
-		$tags_list = get_the_tag_list( '', ', ' );
-		if ( $tags_list ): ?>
+		/* translators: used between list items, there is a space after the comma. */
+		$tags_list = get_the_tag_list( '', __( ', ', 'posts-in-page' ) );
+		if ( $tags_list ) :
+			?>
 			<span class="tag-links">
-				<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'posts-in-page' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
+				<?php
+				printf(
+					/* translators: 1: tagged label. 2: list of tags. */
+					'<span class="entry-utility-prep entry-utility-prep-tag-links">%1$s</span> %2$s',
+					esc_html__( 'Tagged', 'posts-in-page' ),
+					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
+				?>
 			</span>
 			<span class="meta-sep">|</span>
 		<?php endif; ?>

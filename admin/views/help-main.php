@@ -69,113 +69,113 @@
 								<tr>
 									<td>Add all posts</td>
 									<td><code>[ic_add_posts]</code></td>
-									<td><?php _e( 'Add all posts to a page (limit to what number posts in WordPress is set to), essentially adds blog "page" to page.', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Add all posts to a page (limit to what number posts in WordPress is set to), essentially adds blog "page" to page.', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Show posts by Post Type</td>
 									<td><code>[ic_add_posts post_type='post_type']</code></td>
-									<td><?php _e( 'Show posts from a custom post type by specifying the post type slug ( must give post type if not a standard post ) add multiple post types by separating with commas (ex.', 'posts-in-page' ); ?>
+									<td><?php esc_html_e( 'Show posts from a custom post type by specifying the post type slug ( must give post type if not a standard post ) add multiple post types by separating with commas (ex.', 'posts-in-page' ); ?>
 										<code>post_type='post_type1,post_type2'</code>)
 									</td>
 								</tr>
 								<tr>
 									<td>Show specific number of posts</td>
 									<td><code>[ic_add_posts showposts='5']</code></td>
-									<td><?php _e( 'Limit number of posts (or override default setting)', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Limit number of posts (or override default setting)', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Change post order</td>
 									<td><code>[ic_add_posts orderby='title' order='ASC']</code></td>
-									<td><?php _e( 'orderby title - supports all WP orderby variables.  Order is optional, WP default', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'orderby title - supports all WP orderby variables.  Order is optional, WP default', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Show posts by ID</td>
 									<td><code>[ic_add_posts ids='1,2,3']</code></td>
-									<td><?php _e( 'Show one or many posts by specifying the post ID(s) ( specify all post types )', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Show one or many posts by specifying the post ID(s) ( specify all post types )', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Exclude posts by ID</td>
 									<td><code>[ic_add_posts exclude_ids='4,5,6']</code></td>
-									<td><?php _e( 'Exclude one or more posts by specifying the post ID(s) ( specify all post types )', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Exclude one or more posts by specifying the post ID(s) ( specify all post types )', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Include posts from specific categories</td>
 									<td><code>[ic_add_posts category='category-slug']</code></td>
-									<td><?php _e( 'Show posts within a specific category. Uses slugs, can have multiple but separate by commas.      category-1,category2, etc (no spaces.)', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Show posts within a specific category. Uses slugs, can have multiple but separate by commas.      category-1,category2, etc (no spaces.)', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Exclude posts from specific categories</td>
 									<td><code>[ic_add_posts exclude_category='category-slug']</code></td>
-									<td><?php _e( 'Show posts within a specific category. Uses slugs, can have multiple but separate by commas.      category-1,category2, etc (no spaces.)', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Show posts within a specific category. Uses slugs, can have multiple but separate by commas.      category-1,category2, etc (no spaces.)', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Specify tags</td>
 									<td><code>[ic_add_posts tag='tag-slug']</code></td>
-									<td><?php _e( 'Show posts using a specific tag.  Like categories, it uses slugs, and can accommodate multiple tags separate by commas.     tag-1,tag-2, etc (no spaces.)', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Show posts using a specific tag.  Like categories, it uses slugs, and can accommodate multiple tags separate by commas.     tag-1,tag-2, etc (no spaces.)', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Specify custom taxonomy</td>
 									<td><code>[ic_add_posts tax='taxonomy' term='term']</code></td>
-									<td><?php _e( 'Limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Limit posts to those that exist in a taxonomy and have a specific term.  Both are required for either one to work', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Change output template</td>
 									<td><code>[ic_add_posts template='template-in-theme-dir.php']</code></td>
-									<td><?php _e( 'In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory or in a subfolder named posts-in-page.', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'In case you want to style your markup, add meta data, etc.  Each shortcode can reference a different template.  These templates must exist in the theme directory or in a subfolder named posts-in-page.', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Sticky posts</td>
 									<td><code>[ic_add_posts ignore_sticky_posts='no']</code></td>
-									<td><?php _e( "Show sticky posts too (they're ignored by default)", 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( "Show sticky posts too (they're ignored by default)", 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Pagination</td>
 									<td><code>[ic_add_posts paginate='yes']</code></td>
-									<td><?php _e( 'use pagination links (off by default)', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'use pagination links (off by default)', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Pagination - Post navigation links</td>
 									<td><code>[ic_add_posts label_next='Next' label_previous='Previous']</code></td>
-									<td><?php _e( 'Change the post navigation labels', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Change the post navigation labels', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Post status</td>
 									<td><code>[ic_add_posts post_status='private']</code></td>
-									<td><?php _e( "Show posts with the specified status(es); the default is to only show posts with status 'publish'.  To choose more than one status, separate them with commas.  For example: <code>post_status='private,publish'</code>.", 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( "Show posts with the specified status(es); the default is to only show posts with status 'publish'.  To choose more than one status, separate them with commas.  For example: <code>post_status='private,publish'</code>.", 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Post offset</td>
 									<td><code>[ic_add_posts offset='3']</code></td>
-									<td><?php _e( 'Displays posts after the offset. An offset=\'3\' will show all posts from the 4th one onward.', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Displays posts after the offset. An offset=\'3\' will show all posts from the 4th one onward.', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Specific Dates</td>
 									<td><code>[ic_add_posts date='today']</code></td>
-									<td><?php _e( "Shows posts associated (published) on specified date period, today, 'today-1' show's posts published yesterday, 'today-2' shows posts published two days ago, etc. Also 'week(-n)' shows posts n weeks ago. Also available 'month(-n)' and 'year(-n)'", 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( "Shows posts associated (published) on specified date period, today, 'today-1' show's posts published yesterday, 'today-2' shows posts published two days ago, etc. Also 'week(-n)' shows posts n weeks ago. Also available 'month(-n)' and 'year(-n)'", 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Date Ranges</td>
 									<td><code>[ic_add_posts from_date='15-01-2016' to_date='31-12-2016']</code></td>
-									<td><?php _e( 'Shows posts published within a specified absolute date range', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Shows posts published within a specified absolute date range', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Read more</td>
 									<td><code>[ic_add_posts more_tag='Read more...']</code></td>
-									<td><?php _e( 'Set the link text for read more links shown after an excerpt', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Set the link text for read more links shown after an excerpt', 'posts-in-page' ); ?></td>
 								</tr>
 								<tr>
 									<td>Custom error message</td>
 									<td><code>[ic_add_posts none_found='No Posts Found']</code></td>
-									<td><?php _e( 'Custom message to display if no posts are found', 'posts-in-page' ); ?></td>
+									<td><?php esc_html_e( 'Custom message to display if no posts are found', 'posts-in-page' ); ?></td>
 								</tr>
 								</tbody>
 							</table>
-							<p><?php _e( 'Or any combination of the above.', 'posts-in-page' ); ?></p>
+							<p><?php esc_html_e( 'Or any combination of the above.', 'posts-in-page' ); ?></p>
 
 							<h4 name="embed-php-function-wordpress-editor"
-								id="embed-php-function-wordpress-editor"><?php _e( 'Embed a PHP function in a theme template file', 'posts-in-page' ); ?></h4>
+								id="embed-php-function-wordpress-editor"><?php esc_html_e( 'Embed a PHP function in a theme template file', 'posts-in-page' ); ?></h4>
 
-							<p><?php _e( 'If you\'d like to use this plugin to pull posts directly into your theme\'s template files, you can drop the following WordPress function in your template files, replacing the <code>[shortcode]</code> part with your, custom shortcode.', 'posts-in-page' ); ?></p>
+							<p><?php esc_html_e( 'If you\'d like to use this plugin to pull posts directly into your theme\'s template files, you can drop the following WordPress function in your template files, replacing the <code>[shortcode]</code> part with your, custom shortcode.', 'posts-in-page' ); ?></p>
 
 							<pre><code>&lt;?php echo do_shortcode("[shortcode]"); ?&gt;</code></pre>
 						</div>
