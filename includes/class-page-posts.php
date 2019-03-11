@@ -89,7 +89,7 @@ class ICPagePosts {
 		$wp_query = null;
 		$wp_query = $temp;
 		wp_reset_query();
-		remove_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ) );
+		remove_filter( 'excerpt_more', array( $this, 'custom_excerpt_more' ) );
 
 		return $output;
 	}
@@ -221,7 +221,7 @@ class ICPagePosts {
 		$this->args['ignore_sticky_posts'] = isset( $this->args['ignore_sticky_posts'] ) ? $this->shortcode_bool( $this->args['ignore_sticky_posts'] ) : true;
 
 		if ( isset( $this->args['more_tag'] ) ) {
-			add_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ), 11 );
+			add_filter( 'excerpt_more', array( $this, 'custom_excerpt_more' ), 11 );
 		}
 
 		if ( isset( $atts['exclude_ids'] ) ) {
