@@ -54,6 +54,7 @@ class ICAddPostsToPage {
 	 * @param string[] $actions     An array of plugin action links. By default this can include 'activate',
 	 *                              'deactivate', and 'delete'.
 	 * @param string   $plugin_file Path to the plugin file relative to the plugins directory.
+	 * @return string
 	 */
 	public function plugin_action_links( $actions, $plugin_file ) {
 		if ( is_plugin_active( $plugin_file ) ) {
