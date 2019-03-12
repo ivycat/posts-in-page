@@ -39,6 +39,17 @@ class ICPagePosts {
 		);
 	}
 
+	protected function get_paged_query_var() {
+		if ( get_query_var( 'paged' ) ) {
+			$paged = get_query_var( 'paged' );
+		} elseif ( get_query_var( 'page' ) ) {
+			$paged = get_query_var( 'page' );
+		} else {
+			$paged = 1;
+		}
+
+		return $paged;
+	}
 	/**
 	 * Spits out the posts, in a gentlemanly way
 	 *
@@ -49,6 +60,7 @@ class ICPagePosts {
 			return '';
 		}
 		if ( $this->args['paginate'] ) {
+			$this->get_paged_query_var();
 			$this->args['paged'] = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		}
 		// commandeering wp_query for pagination quirkiness
@@ -73,7 +85,7 @@ class ICPagePosts {
 		// restore wp_query
 		$wp_query = null;
 		$wp_query = $temp;
-
+		wp_reset_query();
 		remove_filter( 'excerpt_more', array( &$this, 'custom_excerpt_more' ) );
 
 		return $output;
