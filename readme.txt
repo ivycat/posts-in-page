@@ -3,21 +3,21 @@ Contributors: ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
 Tags: shortcode, pages, posts, custom post types, taxonomy, terms
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Easily add one or more posts to any page using simple shortcodes.
 
 == Description ==
 
-Easily add one or more posts to any page using simple shortcodes. 
+Easily add one or more posts to any page using simple shortcodes.
 
 Supports categories, tags, custom post types, custom taxonomies, and more.
 
 You can get all of the same functionality provided by this plugin by modifying your theme's template files; this plugin just makes it easy for anyone to _pull_ posts into other areas of the site without having to modify theme files.
 
-Plugin is depending upon your theme's styling; version 1.x of this plugin _does not_ contain native styles. 
+Plugin is depending upon your theme's styling; version 1.x of this plugin _does not_ contain native styles.
 
 This is a minimal plugin, function over form. Give us feedback, suggestions, bug reports, and any other contributions on the in the plugin's [GitHub repository](https://github.com/ivycat/posts-in-page).
 
@@ -26,11 +26,11 @@ This is a minimal plugin, function over form. Give us feedback, suggestions, bug
 You can install from within WordPress using the Plugin/Add New feature, or if you wish to manually install:
 
 1. Download the plugin.
-1. Upload the entire `posts-in-page` directory to your plugins folder 
+1. Upload the entire `posts-in-page` directory to your plugins folder
 1. Activate the plugin from the plugin page in your WordPress Dashboard
 1. Start embedding posts in whatever pages you like using shortcodes.
 
-### Shortcode Usage 
+### Shortcode Usage
 
 To 'pull' posts into a page, you can:
 
@@ -119,9 +119,9 @@ Some of our clients wanted to output some posts in a specific page without fiddl
 
 = How do I change the output template =
 
-Simply copy the `posts_loop_template.php` to your theme directory and make changes as necessary. 
+Simply copy the `posts_loop_template.php` to your theme directory and make changes as necessary.
 
-You can even rename it - but make sure to indicate that in the shortcode using the `template='template_name.php'`.  
+You can even rename it - but make sure to indicate that in the shortcode using the `template='template_name.php'`.
 
 For file housekeeping, you can also create a _posts-in-page_ folder in your theme to store all of your custom templates. It isn't necessary to specify the _posts-in-page_ folder in your shortcode - Posts in Page will find it automatically.
 You can even use multiple templates for use with different shortcodes.
@@ -145,6 +145,10 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 
 == Changelog ==
 
+= 1.4.1 =
+* Fix wp_reset_query bug
+* Patch pagination to make it more reliable across themes.
+
 = 1.4.0 =
 * Add templates folder to structure and moved default template there
 * Fix pagination issues #42, 59
@@ -166,13 +170,13 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 * Security: Fixed [directory traversal vulnerability](https://www.pluginvulnerabilities.com/2017/02/13/authenticated-local-file-inclusion-lfi-vulnerability-in-posts-in-page/).
 * Added ability to optionally include private posts - Thanks StarsoftAnalysis!
 
-= 1.2.4 = 
+= 1.2.4 =
 * now you can set `more_tag=""` to remove the `[...] &hellip;` that unfortunetly shows up as `&hellip`
 
-= 1.2.3 = 
+= 1.2.3 =
 * Added minor doc tweaks.
 
-= 1.2.2 = 
+= 1.2.2 =
 * Added pagination, tweaked to turn off by default.
 * Bug fixes.
 
@@ -215,16 +219,19 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 
 == Upgrade Notice ==
 
+= 1.4.1 =
+* Critical bug fixes. Please upgrade.
+
 = 1.4.0 =
 * Bug fixes, new shortcodes, and code improvements. Please upgrade.
 
-= 1.3.0 = 
+= 1.3.0 =
 * Important security and version updates. Please upgrade.
 
-= 1.2.4 = 
+= 1.2.4 =
 * Presentational fixes: clean up whitespace, extra tabs, add in customization of more tag.
 
-= 1.2.3 = 
+= 1.2.3 =
 * Housekeeping only; not urgent.
 
 = 1.2.2 =
@@ -262,5 +269,3 @@ Not likely, but let us know if it does; then we'll *know* we have something spec
 
 = 1.0.3 =
 * Added single post or specific post capabilities.  Important feature.
-
-
