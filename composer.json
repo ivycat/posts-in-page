@@ -1,6 +1,7 @@
 {
   "name": "ivycat/posts-in-page",
-  "description": "description_text",
+  "description": "Easily add one or more posts to any page using simple shortcodes.",
+  "keywords": ["wordpress", "posts-in-page"],
   "minimum-stability": "stable",
   "license": "GPL-2.0-or-later",
   "authors": [
