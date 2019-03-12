@@ -4,4 +4,5 @@
 *.sublime-workspace
 *.komodotools
 node_modules/**/*
+vendor/**/*
 *.idea/
