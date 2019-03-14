@@ -15,7 +15,7 @@
 <div class="wrap">
 
 	<div id="icon-options-general" class="icon32"></div>
-	<h1><?php esc_attr_e( 'Posts in Page', 'posts-in-page' ); ?></h1>
+	<h1><?php esc_html_e( 'Posts in Page', 'posts-in-page' ); ?></h1>
 
 	<div id="poststuff">
 
@@ -32,7 +32,7 @@
 						<!-- Toggle -->
 
 						<h2 class="hndle">
-							<span><?php esc_attr_e( 'How to use Posts in Page', 'posts-in-page' ); ?></span>
+							<span><?php esc_html_e( 'How to use Posts in Page', 'posts-in-page' ); ?></span>
 						</h2>
 
 						<div class="inside">
