@@ -110,7 +110,7 @@ class ICPagePosts {
 			$prev_link = $prev ? "<li class='pip-nav-prev'>$prev</li>" : '';
 			$next_link = $next ? "<li class='pip-nav-next'>$next</li>" : '';
 
-			return "<ul class='pip-nav'>$prev_link $next_link</ul>";
+			return "<div class='pip-nav'><ul>$prev_link $next_link</ul></div>";
 		}
 
 		return '';
