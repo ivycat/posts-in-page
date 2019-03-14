@@ -1,9 +1,9 @@
 === Posts in Page ===
-Contributors: ivycat, sewmyheadon, anvilzephyr, jasonm4563, pjackson1972
+Contributors: ivycat, sewmyheadon, anvilzephyr, bradyvercher, jasonm4563, pjackson1972
 Tags: shortcode, pages, posts, custom post types, taxonomy, terms
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,7 +115,7 @@ There are several hooks you can use to filter the output of your template files:
 
 = What is the point of this plugin? =
 
-It allows you to output or embed the posts in any page without modifying WordPress theme templates.
+Posts in Page makes it easy to output or embed the posts, pages, or custom post types in any page without modifying WordPress theme templates.
 
 = Does it work with Gutenberg? =
 
@@ -157,6 +157,10 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 3. Embed shortcodes directly in your template using `do_shortcode`.
 
 == Changelog ==
+
+= 1.4.3 =
+* Fix issue with missing wrapping pagination div.
+* Fix a few `esc_html_e` instances.
 
 = 1.4.2 =
 * Thanks to Brady Vercher (@bradyvercher) for the thorough code review and fixes.
@@ -240,6 +244,9 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 * Added single post or specific post capabilities.
 
 == Upgrade Notice ==
+
+= 1.4.3 =
+* Pagination bug fix and two minor i18n updates for translatable strings. Please upgrade.
 
 = 1.4.2 =
 * Code review, cleanup. Minor fixes and security updates. Please upgrade.
