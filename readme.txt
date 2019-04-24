@@ -3,7 +3,7 @@ Contributors: ivycat, sewmyheadon, anvilzephyr, bradyvercher, jasonm4563, pjacks
 Tags: shortcode, pages, posts, custom post types, taxonomy, terms
 Requires at least: 3.0
 Tested up to: 5.1
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -158,6 +158,9 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 
 == Changelog ==
 
+= 1.4.4 =
+* Fix issue to prevent fatal errors caused by setting the global query to null.
+
 = 1.4.3 =
 * Fix issue with missing wrapping pagination div.
 * Fix a few `esc_html_e` instances.
@@ -244,6 +247,9 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 * Added single post or specific post capabilities.
 
 == Upgrade Notice ==
+
+= 1.4.4 =
+  * Bug fix - please upgrade for stability.
 
 = 1.4.3 =
 * Pagination bug fix and two minor i18n updates for translatable strings. Please upgrade.

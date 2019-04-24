@@ -3,7 +3,7 @@
 **Tags:** shortcode, pages, posts, custom post types, taxonomy, terms  
 **Requires at least:** 3.0  
 **Tested up to:** 5.1  
-**Stable tag:** 1.4.3  
+**Stable tag:** 1.4.4  
 **License:** GPLv2 or later  
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -174,8 +174,10 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 [missing image]
 
 
-
 ## Changelog 
+
+### 1.4.4
+* Fix issue to prevent fatal errors caused by setting the global query to null.
 
 ### 1.4.3
 * Fix issue with missing wrapping pagination div.
@@ -190,11 +192,9 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 * Escaping output of URLs, translation strings, and more.
 * Updated enqueueing to add version for cache busting, add missing jQuery dependency, load admin script in footer.
 
-
 ### 1.4.1 
 * Fix wp_reset_query bug
 * Patch pagination to make it more reliable across themes.
-
 
 ### 1.4.0 
 * Add templates folder to structure and moved default template there.
@@ -205,13 +205,11 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 * Code cleanup.
 * Updates to admin page layout and documentation.
 
-
 ### 1.3.1 
 * File header housekeeping.
 * Code cleanup.
 * Fix WPML compatibility issue (thanks @azrall).
 * Document new shortcode functions including `exclude_ids`, `more_tag`.
-
 
 ### 1.3.0 
 * File reorganization / housekeeping.
@@ -219,23 +217,18 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 * Security: Fixed [directory traversal vulnerability](https://www.pluginvulnerabilities.com/2017/02/13/authenticated-local-file-inclusion-lfi-vulnerability-in-posts-in-page/).
 * Added ability to optionally include private posts - Thanks, StarsoftAnalysis!
 
-
 ### 1.2.4 
 * now you can set `more_tag=""` to remove the `[...] &hellip;` that unfortunetly shows up as `&hellip`.
 
-
 ### 1.2.3 
 * Added minor doc tweaks.
-
 
 ### 1.2.2 
 * Added pagination, tweaked to turn off by default.
 * Bug fixes.
 
-
 ### 1.2.1 
 * Added code to allow ignoring, or showing of sticky posts.  By default, sticky posts are ignored, but can be re-enabled using the shortcode `[ic_add_posts ignore_sticky_posts='no']`.
-
 
 ### 1.2.0 
 * Code maintenance to better comply with standards.
@@ -243,39 +236,30 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 * Plugin now honors default post reading settings under Settings/Reading in the WordPress Dashboard.
 * Improved and simplified documentation.
 
-
 ### 1.1.1 
 * Code maintenance, fix for category bug, also added the ability for multiple post types per shortcode.
-
 
 ### 1.1.0 
 * Code maintenance, squash non-critical debug notices.
 
-
 ### 1.0.10 
 * Added check for published/private posts.
 
-
 ### 1.0.9 
 * Fixed template bug introduced by comments.
-
 
 ### 1.0.8 
 * Code cleanup & indentation.
 * Added comments and notes to output template file: `posts_loop_template.php`.
 
-
 ### 1.0.7 
 * Added Help Page under Setting in WP Dashboard.
-
 
 ### 1.0.6 
 * More plugin housekeeping.
 
-
 ### 1.0.4 
 * Minor housekeeping, added author, updated readme.txt.
-
 
 ### 1.0.3 
 * Added single post or specific post capabilities.
@@ -283,76 +267,62 @@ We'd love feedback, issues, pull requests, and ideas on the [Posts in Page GitHu
 
 ## Upgrade Notice 
 
+### 1.4.4
+* Bug fix - please upgrade for stability.
+
 ### 1.4.3
 * Pagination bug fix and two minor i18n updates for translatable strings. Please upgrade.
 
 ### 1.4.2 
 * Code review, cleanup. Minor fixes and security updates. Please upgrade.
 
-
 ### 1.4.1 
 * Critical bug fixes. Please upgrade.
-
 
 ### 1.4.0 
 * Bug fixes, new shortcodes, and code improvements. Please upgrade.
 
-
 ### 1.3.0 
 * Important security and version updates. Please upgrade.
-
 
 ### 1.2.4 
 * Presentational fixes: clean up whitespace, extra tabs, add in customization of more tag.
 
-
 ### 1.2.3 
 * Housekeeping only; not urgent.
-
 
 ### 1.2.2 
 * Small bug fixes for tags, pagination; not critical.
 
-
 ### 1.2.1 
 * Small feature update, not critical.
-
 
 ### 1.2.0 
 * Important feature update - please upgrade.
 
-
 ### 1.1.1 
-* Small bug fix; please upgrade.
-
+* Small bug fix - please upgrade.
 
 ### 1.1.0 
 * Code maintenance & housekeeping - non-critical update.
 
-
 ### 1.0.10 
 * Added feature - non-critical update.
-
 
 ### 1.0.9 
 * Fixed template bug - please update.
 
-
 ### 1.0.8 
 * Added features and documentation - non-critical update.
-
 
 ### 1.0.7 
 * Added Help Page - non-critical update.
 
-
 ### 1.0.6 
 * Plugin housekeeping - non-critical update.
 
-
 ### 1.0.4 
 * Minor housekeeping, added author, updated readme.txt. Non-critical update.
-
 
 ### 1.0.3 
 * Added single post or specific post capabilities.  Important feature.
