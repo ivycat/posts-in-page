@@ -72,7 +72,6 @@ class ICPagePosts {
 
 		// Commandeering wp_query for pagination quirkiness.
 		$temp     = $wp_query;
-		$wp_query = null;
 		$wp_query = apply_filters( 'posts_in_page_results', new WP_Query( $this->args ) );
 
 		$output = '';
@@ -89,8 +88,8 @@ class ICPagePosts {
 		}
 
 		// Restore wp_query.
-		$wp_query = null;
 		$wp_query = $temp;
+		unset( $temp );
 		wp_reset_query(); // phpcs:ignore WordPress.WP.DiscouragedFunctions.wp_reset_query_wp_reset_query
 		remove_filter( 'excerpt_more', array( $this, 'custom_excerpt_more' ) );
 
