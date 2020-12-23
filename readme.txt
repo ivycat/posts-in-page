@@ -2,8 +2,8 @@
 Contributors: ivycat, sewmyheadon, anvilzephyr, bradyvercher, jasonm4563, pjackson1972
 Tags: shortcode, pages, posts, custom post types, taxonomy, terms
 Requires at least: 3.0
-Tested up to: 5.1
-Stable tag: 1.4.4
+Tested up to: 5.6
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
