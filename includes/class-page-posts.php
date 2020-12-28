@@ -48,6 +48,8 @@ class ICPagePosts {
 			'template'       => false,
 			'label_next'     => esc_html__( 'Next', 'posts-in-page' ),
 			'label_previous' => esc_html__( 'Previous', 'posts-in-page' ),
+			'end_size'     	 => 1,
+			'mid_size' 		 => 2,
 			'date_query'     => '',
 			'none_found'     => '',
 			'paged'          => false,
@@ -67,7 +69,15 @@ class ICPagePosts {
 		}
 
 		if ( $this->args['paginate'] ) {
-			$this->args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+			//$this->args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+
+	        if (get_query_var('paged')) {
+			    $this->args['paged'] = get_query_var('paged');
+			} elseif (get_query_var('page')) {
+			    $this->args['paged'] = get_query_var('page');
+			} else {
+			    $this->args['paged'] = 1;
+			}
 		}
 
 		// Commandeering wp_query for pagination quirkiness.
@@ -102,17 +112,35 @@ class ICPagePosts {
 	 * @return string
 	 */
 	protected function paginate_links() {
-		$prev = get_previous_posts_link( $this->args['label_previous'] );
-		$next = get_next_posts_link( $this->args['label_next'] );
 
-		if ( $prev || $next ) {
-			$prev_link = $prev ? "<li class='pip-nav-prev'>$prev</li>" : '';
-			$next_link = $next ? "<li class='pip-nav-next'>$next</li>" : '';
 
-			return "<div class='pip-nav'><ul>$prev_link $next_link</ul></div>";
-		}
+		global $wp_query;
+		$args_pagi = array(
+            'base' => add_query_arg( 'paged', '%#%' ),
+            'total' => $wp_query->max_num_pages,
+            'current' => $this->args['paged'],
+            'prev_next' => true,
+            'end_size' => $this->args['end_size'],
+            'mid_size' => $this->args['mid_size'],
+            'prev_text' => $this->args['label_previous'],
+            'next_text' => $this->args['label_next']
+        );
+        $output .= '<div class="post-nav">';
+            $output .= paginate_links( $args_pagi);
+        $output .= '</div>';
+        return $output;
 
-		return '';
+		// $prev = get_previous_posts_link( $this->args['label_previous'] );
+		// $next = get_next_posts_link( $this->args['label_next'] );
+
+		// if ( $prev || $next ) {
+		// 	$prev_link = $prev ? "<li class='pip-nav-prev'>$prev</li>" : '';
+		// 	$next_link = $next ? "<li class='pip-nav-next'>$next</li>" : '';
+
+		// 	return "<div class='pip-nav'><ul>$prev_link $next_link</ul></div>";
+		// }
+
+		// return '';
 	}
 
 
