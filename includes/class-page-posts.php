@@ -314,10 +314,42 @@ class ICPagePosts {
 				case 'week':
 					$week                     = date( 'W', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
 					$year                     = date( 'Y', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
-					$this->args['date_query'] = array(
-						'year' => $year,
-						'week' => $week,
-					);
+					$Month                    = date( 'M', $current_time_value - $date_data[1] * WEEK_IN_SECONDS );
+
+					if( ( $Month == 'Jan' ) && ( $week == 52 || $week == 53 ) ){
+						$year = $year - 1;
+					}
+
+					//if( $week == 52 || $week == 53 ){
+						$dateTime 	= new DateTime();
+					    $dateTime->setISODate($year, $week);
+					    $start_date = $dateTime->format('d-m-Y');
+					    $dateTime->modify('+6 days');
+					    $end_date 	= $dateTime->format('d-m-Y');
+					    $r_from 	= explode( '-', $start_date );
+						$r_to       = explode( '-', $end_date );
+						$this->args['date_query'] = array(
+							array(
+								'after'     => array(
+									'year'  => $r_from[2],
+									'month' => $r_from[1],
+									'day'   => $r_from[0],
+								),
+								'before'    => array(
+									'year'  => $r_to[2],
+									'month' => $r_to[1],
+									'day'   => $r_to[0],
+								),
+								'inclusive' => false,
+							),
+						);
+					// } else {
+					// 	$this->args['date_query'] = array(
+					// 		'year' => $year,
+					// 		'week' => $week,
+					// 	);
+					// }
+					
 					break;
 				case 'month':
 					$month                    = date( 'm', strtotime( ( strval( - $date_data[1] ) . ' Months' ), $current_time_value ) );
