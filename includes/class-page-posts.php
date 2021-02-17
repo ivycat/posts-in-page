@@ -110,9 +110,8 @@ class ICPagePosts {
 	 * @return string
 	 */
 	protected function paginate_links() {
-
-
 		global $wp_query;
+		$output = '';
 		$args_pagi = array(
             'base' => add_query_arg( 'paged', '%#%' ),
             'total' => $wp_query->max_num_pages,
