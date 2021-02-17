@@ -69,8 +69,6 @@ class ICPagePosts {
 		}
 
 		if ( $this->args['paginate'] ) {
-			//$this->args['paged'] = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
-
 	        if (get_query_var('paged')) {
 			    $this->args['paged'] = get_query_var('paged');
 			} elseif (get_query_var('page')) {
@@ -129,18 +127,6 @@ class ICPagePosts {
             $output .= paginate_links( $args_pagi);
         $output .= '</div>';
         return $output;
-
-		// $prev = get_previous_posts_link( $this->args['label_previous'] );
-		// $next = get_next_posts_link( $this->args['label_next'] );
-
-		// if ( $prev || $next ) {
-		// 	$prev_link = $prev ? "<li class='pip-nav-prev'>$prev</li>" : '';
-		// 	$next_link = $next ? "<li class='pip-nav-next'>$next</li>" : '';
-
-		// 	return "<div class='pip-nav'><ul>$prev_link $next_link</ul></div>";
-		// }
-
-		// return '';
 	}
 
 
@@ -320,36 +306,28 @@ class ICPagePosts {
 						$year = $year - 1;
 					}
 
-					//if( $week == 52 || $week == 53 ){
-						$dateTime 	= new DateTime();
-					    $dateTime->setISODate($year, $week);
-					    $start_date = $dateTime->format('d-m-Y');
-					    $dateTime->modify('+6 days');
-					    $end_date 	= $dateTime->format('d-m-Y');
-					    $r_from 	= explode( '-', $start_date );
-						$r_to       = explode( '-', $end_date );
-						$this->args['date_query'] = array(
-							array(
-								'after'     => array(
-									'year'  => $r_from[2],
-									'month' => $r_from[1],
-									'day'   => $r_from[0],
-								),
-								'before'    => array(
-									'year'  => $r_to[2],
-									'month' => $r_to[1],
-									'day'   => $r_to[0],
-								),
-								'inclusive' => false,
+					$dateTime 	= new DateTime();
+				    $dateTime->setISODate($year, $week);
+				    $start_date = $dateTime->format('d-m-Y');
+				    $dateTime->modify('+6 days');
+				    $end_date 	= $dateTime->format('d-m-Y');
+				    $r_from 	= explode( '-', $start_date );
+					$r_to       = explode( '-', $end_date );
+					$this->args['date_query'] = array(
+						array(
+							'after'     => array(
+								'year'  => $r_from[2],
+								'month' => $r_from[1],
+								'day'   => $r_from[0],
 							),
-						);
-					// } else {
-					// 	$this->args['date_query'] = array(
-					// 		'year' => $year,
-					// 		'week' => $week,
-					// 	);
-					// }
-					
+							'before'    => array(
+								'year'  => $r_to[2],
+								'month' => $r_to[1],
+								'day'   => $r_to[0],
+							),
+							'inclusive' => false,
+						),
+					);
 					break;
 				case 'month':
 					$month                    = date( 'm', strtotime( ( strval( - $date_data[1] ) . ' Months' ), $current_time_value ) );
@@ -452,6 +430,4 @@ class ICPagePosts {
 
 		return ' <a class="read-more" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . $more_tag . '</a>';
 	}
-
-
 }
