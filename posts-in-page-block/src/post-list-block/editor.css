@@ -1,0 +1,26 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-posts-in-page-post-list-block {
+	border: 1px dotted #f00;
+}
+
+body{
+	color: blue!important;
+}
+
+.block-editor-block-inspector .components-base-control, .block-editor-block-inspector input{
+	width: 100%;
+}
+
+.components-panel__body .components-panel__row:not(:last-child){
+    padding-bottom: 10px;
+    border-bottom: 1px solid #aeaeae;
+}
+
+.pip-select-term .components-select-control__input{
+	height: 75px!important;
+}

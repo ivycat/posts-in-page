@@ -32,6 +32,7 @@ if ( ! defined( 'POSTPAGE_URL' ) ) {
 }
 
 require_once 'includes/class-page-posts.php';
+require_once 'posts-in-page-block/posts-in-page-block.php';
 
 /**
  * Main plugin class.

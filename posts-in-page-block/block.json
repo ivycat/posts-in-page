@@ -1,0 +1,15 @@
+{
+	"apiVersion": 2,
+	"name": "posts-in-page/post-list-block",
+	"title": "All Post Listing Block",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Example block written with ESNext standard and JSX support – build step required.",
+	"textdomain": "post-list-block",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}
