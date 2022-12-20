@@ -464,6 +464,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
       type: 'string',
       default: 'all'
     },
+    selectedLayout: {
+      type: 'string',
+      default: 'list'
+    },
     selectedTerms: {
       type: 'array',
       default: ''
@@ -557,6 +561,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
       _this.onChangeContent = _this.onChangeContent.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
       _this.onChangeTaxonomy = _this.onChangeTaxonomy.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
       _this.onChangeTerm = _this.onChangeTerm.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
+      _this.onChangeLayout = _this.onChangeLayout.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
       _this.updatePostsPerPage = _this.updatePostsPerPage.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
       _this.updateEnableContent = _this.updateEnableContent.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
       _this.updateEnableExcerpt = _this.updateEnableExcerpt.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
@@ -583,6 +588,28 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
       key: "componentDidMount",
       value: function componentDidMount() {
         var _this2 = this;
+        if (!general.show_date_settings) {
+          this.props.setAttributes({
+            startDate: ''
+          });
+          this.props.setAttributes({
+            endDate: ''
+          });
+          this.props.setAttributes({
+            showPostDates: false
+          });
+          this.props.setAttributes({
+            showBeforeToday: false
+          });
+          this.props.setAttributes({
+            beforeTodayCount: '1'
+          });
+          this.props.setAttributes({
+            beforeTodayPeriod: 'today'
+          });
+          console.log('testttttt');
+        }
+        //console.log('test-'+general.show_date_settings);
         var posttypeOptions = [];
         wp.apiFetch({
           path: '/wp/v2/types'
@@ -663,6 +690,21 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
         this.props.setAttributes({
           selectedTerms: selectedTerms
         });
+      }
+    }, {
+      key: "onChangeLayout",
+      value: function onChangeLayout(selectedLayout) {
+        this.props.setAttributes({
+          selectedLayout: selectedLayout
+        });
+        if (selectedLayout == 'card') {
+          this.props.setAttributes({
+            showExcerpt: true
+          });
+          this.props.setAttributes({
+            showContent: false
+          });
+        }
       }
     }, {
       key: "updatePostsPerPage",
@@ -841,6 +883,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
           selectedPostType = attributes.selectedPostType,
           taxonomies = attributes.taxonomies,
           selectedTaxonomies = attributes.selectedTaxonomies,
+          selectedLayout = attributes.selectedLayout,
           selectedTerms = attributes.selectedTerms,
           postsPerPage = attributes.postsPerPage,
           showContent = attributes.showContent,
@@ -922,6 +965,21 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
           options: uniqueTermValues,
           onChange: this.onChangeTerm
         }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelBody"], {
+          title: 'Layout Settings'
+        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["RadioControl"], {
+          label: "Select Template Layout",
+          help: "Select listing style template.",
+          className: "layout-settings",
+          selected: selectedLayout,
+          options: [{
+            label: 'List',
+            value: 'list'
+          }, {
+            label: 'Card',
+            value: 'card'
+          }],
+          onChange: this.onChangeLayout
+        })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelBody"], {
           title: 'General Settings',
           initialOpen: false
         }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", null, "Number of Posts per Page"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("input", {
@@ -942,9 +1000,13 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
           value: "ID"
         }, "ID"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("option", {
           value: "title"
-        }, "title"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("option", {
+        }, "Title"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("option", {
           value: "date"
-        }, "date"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", null, "Exclude Posts (Use Post IDS)"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("input", {
+        }, "Date"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("option", {
+          value: "author"
+        }, "Author"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("option", {
+          value: "menu_order"
+        }, "Menu Order"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", null, "Exclude Posts (Use Post IDS)"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("input", {
           type: "text",
           onChange: this.onChangeExcludePost,
           value: excludePost
@@ -969,7 +1031,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
         })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelBody"], {
           title: 'Content Display Settings',
           initialOpen: false
-        }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", null, "Show Content"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["FormToggle"], {
+        }, selectedLayout != 'card' && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", null, "Show Content"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["FormToggle"], {
           checked: showContent,
           onChange: this.updateEnableContent
         })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", null, "Show Excerpt"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["FormToggle"], {
@@ -992,7 +1054,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
           type: "text",
           onChange: this.updatePreviousText,
           value: previousText
-        })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelBody"], {
+        })))), general.show_date_settings && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelBody"], {
           title: 'Date Settings',
           initialOpen: false
         }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])("label", null, "Show Posts within specific dates")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_7__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_12__["FormToggle"], {
@@ -1034,6 +1096,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_8__["registerBlockType"])('pos
           attributes: {
             selectedPostType: selectedPostType,
             selectedTaxonomies: selectedTaxonomies,
+            selectedLayout: selectedLayout,
             selectedTerms: selectedTerms,
             postsPerPage: postsPerPage,
             showContent: showContent,

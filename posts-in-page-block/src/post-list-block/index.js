@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {  } from '@wordpress/editor';
 import { Fragment, Component  } from '@wordpress/element';
-import { PanelBody, PanelRow, SelectControl, ToggleControl, Tooltip, RangeControl, FormToggle, DateTimePicker } from '@wordpress/components';
+import { PanelBody, PanelRow, SelectControl, ToggleControl, Tooltip, RangeControl, FormToggle, DateTimePicker, RadioControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 
 //import registerBlockType from wp.blocks;
@@ -30,6 +30,10 @@ registerBlockType('posts-in-page-block/post-list-block', {
         selectedTaxonomies:{
             type: 'string',
             default: 'all'
+        },
+        selectedLayout:{
+            type: 'string',
+            default: 'list'
         },
         selectedTerms:{
             type: 'array',
@@ -120,6 +124,7 @@ registerBlockType('posts-in-page-block/post-list-block', {
             this.onChangeContent = this.onChangeContent.bind(this);
             this.onChangeTaxonomy = this.onChangeTaxonomy.bind(this);
             this.onChangeTerm = this.onChangeTerm.bind(this);
+            this.onChangeLayout = this.onChangeLayout.bind(this);
             this.updatePostsPerPage = this.updatePostsPerPage.bind(this);
             this.updateEnableContent = this.updateEnableContent.bind(this);
             this.updateEnableExcerpt = this.updateEnableExcerpt.bind(this);
@@ -142,6 +147,16 @@ registerBlockType('posts-in-page-block/post-list-block', {
             this.updateIgnoreStickyPosts = this.updateIgnoreStickyPosts.bind(this);
         }
         componentDidMount() {
+            if( !general.show_date_settings ){
+                this.props.setAttributes({ startDate : '' });
+                this.props.setAttributes({ endDate : '' });
+                this.props.setAttributes({ showPostDates : false });
+                this.props.setAttributes({ showBeforeToday : false });
+                this.props.setAttributes({ beforeTodayCount : '1' });
+                this.props.setAttributes({ beforeTodayPeriod : 'today' });
+                console.log('testttttt');
+            }
+            //console.log('test-'+general.show_date_settings);
             let posttypeOptions = [];
             wp.apiFetch( { path: '/wp/v2/types' } )
             .then( posttypes => {
@@ -187,6 +202,13 @@ registerBlockType('posts-in-page-block/post-list-block', {
         }
         onChangeTerm(selectedTerms) {
             this.props.setAttributes({ selectedTerms: selectedTerms });
+        }
+        onChangeLayout( selectedLayout ){
+            this.props.setAttributes({ selectedLayout: selectedLayout });
+            if( selectedLayout == 'card' ){
+                this.props.setAttributes({ showExcerpt: true });
+                this.props.setAttributes({ showContent: false });
+            }
         }
         updatePostsPerPage(e) {
             this.props.setAttributes({ postsPerPage: e.target.value });
@@ -272,7 +294,7 @@ registerBlockType('posts-in-page-block/post-list-block', {
         render() {
             const { postTypesState } = this.state;
             const { attributes } = this.props;
-            const {postTypes, selectedPostType, taxonomies, selectedTaxonomies, selectedTerms, postsPerPage, showContent, showExcerpt, showFeaturedImage, showPagination, nextText, previousText, order, orderBy, excludePost, includePost, offset, ignoreStickyPosts, termsList, noPostFoundText, showPostDates, startDate, endDate, showBeforeToday, beforeTodayCount, beforeTodayPeriod} = attributes;
+            const {postTypes, selectedPostType, taxonomies, selectedTaxonomies, selectedLayout, selectedTerms, postsPerPage, showContent, showExcerpt, showFeaturedImage, showPagination, nextText, previousText, order, orderBy, excludePost, includePost, offset, ignoreStickyPosts, termsList, noPostFoundText, showPostDates, startDate, endDate, showBeforeToday, beforeTodayCount, beforeTodayPeriod} = attributes;
             if(postTypes){
                 var postTypeArray = Object.values(postTypes);  
             }
@@ -335,6 +357,21 @@ registerBlockType('posts-in-page-block/post-list-block', {
                             />
                         </PanelRow>}
                     </PanelBody>
+
+                    <PanelBody title={'Layout Settings'} >
+                        <RadioControl
+                            label="Select Template Layout"
+                            help="Select listing style template."
+                            className="layout-settings"
+                            selected={selectedLayout}
+                            options={ [
+                                { label: 'List', value: 'list' },
+                                { label: 'Card', value: 'card' },
+                            ] }
+                            onChange={this.onChangeLayout}
+                        />
+                    </PanelBody>
+                    
                     <PanelBody title={'General Settings'} initialOpen={ false }>
                         <PanelRow>
                             <label>Number of Posts per Page</label>
@@ -355,8 +392,10 @@ registerBlockType('posts-in-page-block/post-list-block', {
                             <label>Order By</label>
                             <select onChange={ this.onOrderByChange } value={ orderBy }>
                                 <option value='ID'>ID</option>
-                                <option value='title'>title</option>
-                                <option value='date'>date</option>
+                                <option value='title'>Title</option>
+                                <option value='date'>Date</option>
+                                <option value='author'>Author</option>
+                                <option value='menu_order'>Menu Order</option>
                             </select>
                         </PanelRow>
                         <PanelRow>
@@ -400,13 +439,14 @@ registerBlockType('posts-in-page-block/post-list-block', {
                         </PanelRow>
                     </PanelBody>
                     <PanelBody title={'Content Display Settings'} initialOpen={ false }>
-                        <PanelRow>
+                        { selectedLayout!='card' && <PanelRow>
                             <label>Show Content</label>
                             <FormToggle
                                 checked={ showContent }
                                 onChange={ this.updateEnableContent } 
                             />
                         </PanelRow>
+                        }
                         <PanelRow>
                             <label>Show Excerpt</label>
                             <FormToggle
@@ -451,7 +491,7 @@ registerBlockType('posts-in-page-block/post-list-block', {
                             </div>
                         </PanelRow>}
                     </PanelBody>
-                    <PanelBody title={'Date Settings'} initialOpen={ false }>
+                    {general.show_date_settings && <PanelBody title={'Date Settings'} initialOpen={ false }>
                         <PanelRow>
                             <label>Show Posts within specific dates</label>
                         </PanelRow>
@@ -512,12 +552,13 @@ registerBlockType('posts-in-page-block/post-list-block', {
                             <label className="CustomDateText">{labelText}</label>
                         </PanelRow>}
                     </PanelBody>
+                    }
                 </InspectorControls>,
                 <Fragment>
                     <ServerSideRender 
                         block="posts-in-page-block/post-list-block" 
                         attributes={ 
-                            {selectedPostType, selectedTaxonomies, selectedTerms, postsPerPage, showContent, showExcerpt, showFeaturedImage, showPagination, nextText, previousText, order, orderBy, excludePost, includePost, offset, ignoreStickyPosts, noPostFoundText, showPostDates, startDate, endDate, showBeforeToday, beforeTodayCount, beforeTodayPeriod } 
+                            {selectedPostType, selectedTaxonomies, selectedLayout, selectedTerms, postsPerPage, showContent, showExcerpt, showFeaturedImage, showPagination, nextText, previousText, order, orderBy, excludePost, includePost, offset, ignoreStickyPosts, noPostFoundText, showPostDates, startDate, endDate, showBeforeToday, beforeTodayCount, beforeTodayPeriod } 
                         } 
                     />
                 </Fragment>

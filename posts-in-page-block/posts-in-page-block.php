@@ -31,10 +31,15 @@ function posts_block_init() {
 	wp_register_script('post-list-block-editor-js', plugins_url( $index_js, __FILE__ ), $script_asset['dependencies'], $script_asset['version'] );
 	wp_set_script_translations( 'post-list-block-editor-js', 'post-list-block' );
 
+	$settings_args = array(
+        'show_date_settings' => get_option( 'PIP_show_date_settings' ),
+    );
+    wp_localize_script( 'post-list-block-editor-js', 'general', $settings_args );
+
 	$editor_css = 'src/post-list-block/editor.css';
 	wp_register_style( 'post-list-block-editor', plugins_url( $editor_css, __FILE__ ), array() );
 
-	$style_css = 'build/style-index.css';
+	$style_css = 'src/post-list-block/style.css';
 	wp_register_style( 'post-list-block', plugins_url( $style_css, __FILE__ ), array() );
 
 	register_block_type( 'posts-in-page-block/post-list-block', array(
@@ -49,6 +54,10 @@ function posts_block_init() {
 		        'selectedTaxonomies'=> array(
 		            'type'=> 'string',
 		            'default'=> 'all'
+	        	),
+				'selectedLayout'=> array(
+		            'type'=> 'string',
+		            'default'=> 'list'
 	        	),
 	        	'selectedTerms'=> array(
 		            'type'=> 'array',
@@ -145,7 +154,7 @@ function render_posts_block ( $attributes ){
 		);
 	}
 
-	if( $attributes['showPostDates'] ){
+	if( $attributes['showPostDates'] && get_option( 'PIP_show_date_settings' ) ){
 
 		$startDate = $attributes['startDate'] ? strtotime($attributes['startDate']) : '';
 		$endDate = $attributes['endDate'] ? strtotime($attributes['endDate']) : '';
@@ -164,7 +173,7 @@ function render_posts_block ( $attributes ){
 		}
 	}
 
-	if( $attributes['showBeforeToday'] ){
+	if( $attributes['showBeforeToday'] && get_option( 'PIP_show_date_settings' ) ){
 			$current_time_value = current_time( 'timestamp' );
 			switch ( $attributes['beforeTodayPeriod'] ) {
 				case 'today':
@@ -257,24 +266,32 @@ function render_posts_block ( $attributes ){
 		'paged'      => $paged,
 	);
 	$postslist = new WP_Query( $args_testimonial );
-
+//echo'<pre>';print_r($args_testimonial);
 	ob_start();
+
 	if ( $postslist->have_posts() ) {
-        while ( $postslist->have_posts() ) {
-        	$postslist->the_post(); 
-			$file = get_stylesheet_directory() . '/posts-in-page-template.php';
-		?>
-			<div class="posts-in-page">
-		<?php
+		if( file_exists($file) ){
+			?>
+			<div class="posts-in-page-wrapper default-theme-template">
+			<?php
+		} else {
+			?>
+			<div class="posts-in-page-wrapper default-<?php echo $attributes['selectedLayout']; ?>-template">
+			<?php
+		}
+			while ( $postslist->have_posts() ) {
+				$postslist->the_post(); 
 				if( file_exists($file) ){
 					include ($file);
-				} else {
-					include ( 'templates/posts-in-page-template.php' );
+				} elseif ( $attributes['selectedLayout'] == 'list' ) {
+					include ( 'templates/posts-in-page-list-template.php' );
+				} else {	
+					include ( 'templates/posts-in-page-card-template.php' );
 				}
-		?>
-			</div>
+			}
+			?>
+		</div>
 		<?php
-		}
 
 		if ( $attributes['showPagination'] ) {
 			$total_rows = max( 0, $postslist->found_posts - $attributes['offset'] );
@@ -388,3 +405,67 @@ class all_terms
 add_action('rest_api_init', function () {
     $all_terms = new all_terms;
 });
+
+
+
+
+
+
+
+
+
+
+/*
+*
+* Settings Page
+*
+*/
+
+add_action( 'admin_menu', 'PIP_plugin_create_menu' );
+function PIP_plugin_create_menu() {
+	add_menu_page( 'Post In Page Settings', 'Post In Page Settings', 'administrator', __FILE__, 'PIP_settings_page', 'dashicons-rest-api' );
+	add_action( 'admin_init', 'register_PIP_plugin_settings' );
+}
+
+/**
+ * Register settings.
+ *
+ * @since    1.0.0
+ */
+function register_PIP_plugin_settings() {
+	// register our settings.
+	$envs = array( 'live', 'staging' );
+	register_setting( 'PIP-plugin-settings-group', 'PIP_env' );
+	foreach ( $envs as $env ) {
+		register_setting( 'PIP-plugin-settings-group', 'PIP_show_date_settings' );
+	}
+}
+
+/**
+ * Callback for a settings Menu page.
+ *
+ * @since    1.0.0
+ */
+function PIP_settings_page() {
+	?>
+	<div class="wrap">
+	<h3>Post In Page Sitewide Settings</h3>
+	<form id="PIP-settings-form" method="post" action="options.php">
+	   <?php settings_fields( 'PIP-plugin-settings-group' ); ?>
+	   <?php do_settings_sections( 'PIP-plugin-settings-group' ); ?>
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">Show date settings</th>
+					<?php
+					$value = get_option( 'PIP_show_date_settings' ) == '1' ? '0' : '1';
+					?>
+					<td><input type="checkbox" name="PIP_show_date_settings" value="<?php echo $value; ?>" <?php checked( 1, get_option( 'PIP_show_date_settings' ), true ); ?>/><lable>  Show date settings</lable></td>
+				</tr>
+			</table>
+		<div class="button-notice-wrapper">
+		   <?php submit_button( __( 'Save Settings', 'textdomain' ), 'primary', 'nwmls-api-save-settings' ); ?>
+		</div>
+	</form>
+	</div>
+	<?php
+}

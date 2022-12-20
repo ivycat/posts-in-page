@@ -1,0 +1,29 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-posts-in-page-post-list-block {
+	background-color: var(--wp-admin-theme-color);
+	color: #fff;
+	padding: 2px;
+}
+
+.posts-in-page-wrapper.default-card-template{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.posts-in-page-wrapper.default-card-template article{
+	flex-basis: 48%;
+	margin-bottom: 2rem;
+	border: 1px solid #c8c8c8;
+	box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}
+
+.posts-in-page-wrapper.default-card-template article>*:not(img){
+	padding: 1rem;
+}
